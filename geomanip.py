@@ -1,5 +1,6 @@
 import math
 from typing import Tuple
+import time
 
 
 class Projection:
@@ -20,8 +21,8 @@ class MercatorProjection(Projection):
 	"""
 	Represent Mercator projection
 	"""
-	def __init__(self, map_size, center=(0.0, 0.0), zoom=1.0, chunk_size=(256, 256)):
-		super(MercatorProjection, self).__init__(map_size, center, zoom, chunk_size)
+	def __init__(self, map_size, center=(0.0, 0.0), zoom=1.0):
+		super(MercatorProjection, self).__init__(map_size, center, zoom, chunk_size=(256, 256))
 
 	def longitude_to_x(self, long: float) -> float:
 		long = math.radians(long)
@@ -43,6 +44,28 @@ class MercatorProjection(Projection):
 
 	def get_xy(self, long: float, lati: float) -> Tuple[float, float]:
 		return self.get_x(long), self.get_y(lati)
+
+	@classmethod
+	def from_points(cls, points, map_size, padding=0):
+		print(f'Warning: calling experimental function {cls.__name__}.from_points')
+		center_long = sum(p[0] for p in points) / len(points)
+		center_lati = sum(p[1] for p in points) / len(points)
+
+		projection = cls(map_size=map_size, center=(center_long, center_lati), zoom=0)
+		mer_points = [projection.get_xy(*p) for p in points]
+
+		min_x, max_x, min_y, max_y = padding + 0.5, padding + 0.5, padding + 0.5, padding + 0.5
+		while min_x > padding and min_y > padding and max_x < map_size[0] - padding and max_y < map_size[1] - padding:
+			min_x, max_x = min(mer_points, key=lambda p: p[0])[0], max(mer_points, key=lambda p: p[0])[0] - map_size[0] / 2
+			min_y, max_y = min(mer_points, key=lambda p: p[1])[1], max(mer_points, key=lambda p: p[1])[1] - map_size[1] / 2
+
+			projection.zoom += 0.05
+			mer_points = [projection.get_xy(*p) for p in points]
+
+			diff = min([min_x, max_x, min_y, max_y])
+		projection.zoom -= 0.05
+
+		return projection
 
 
 def haversine(lon1, lat1, lon2, lat2):

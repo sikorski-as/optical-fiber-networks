@@ -16,9 +16,9 @@ class Network(nx.Graph):
 		self.node_by_name = {}
 		self.name = name
 
-	@staticmethod
-	def load_native(filename):
-		network = Network(name=filename)
+	@classmethod
+	def load_native(cls, filename):
+		network = cls(name=filename)
 		with open(filename) as data_file:
 			state = ''
 			for line in data_file:

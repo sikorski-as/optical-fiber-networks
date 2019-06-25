@@ -62,11 +62,4 @@ def make_network(base_class):
                 node.x = projection.get_x(node.long)
                 node.y = projection.get_y(node.lati)
 
-        def add_attributes_to_edge(self, edge, attribute_dict: dict):
-            for key, value in attribute_dict.items():
-                self.add_attribute_to_edge(edge, key, value)
-
-        def add_attribute_to_edge(self, edge, key, value):
-            self.edges[edge][key] = value
-
     return Network

@@ -1,6 +1,6 @@
 import sndlib
 import geomanip
-
+import networkx as nx
 
 class World:
     # graph node(1,(lat, long))
@@ -23,11 +23,11 @@ class World:
         self.Q = Q
 
     def initialize_edges(self, calculate_distance):
-        attributes = {self.PHEROMONE_KEY: self.basic_pheromone_level}
+        nx.set_edge_attributes(self.net, self.basic_pheromone_level, self.PHEROMONE_KEY)
         for edge in self.net.edges:
-            attributes[self.DISTANCE_KEY] = geomanip.haversine(edge[0].long, edge[0].lati, edge[1].long,
+            distance = geomanip.haversine(edge[0].long, edge[0].lati, edge[1].long,
                                                edge[1].lati) if calculate_distance else 1
-            self.net.add_attributes_to_edge(edge, attributes)
+            nx.set_edge_attributes(self.net, distance, self.DISTANCE_KEY)
 
     def evaporate_pheromone(self):
         for edge in self.net.edges:

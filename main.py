@@ -10,7 +10,7 @@ import mapbox
 
 def algorithm():
 
-    net = sndlib.make_network(nx.DiGraph).load_native('data/polska.txt')
+    net = sndlib.DirectedNetwork(nx.DiGraph).load_native('data/polska.txt')
     w = world.World(net, 0.05, 0.1, False, 1, 1, 1)
 
     iterations = 200
@@ -27,6 +27,7 @@ def algorithm():
         global_best_solution = find_solution_for_goal(ants, iterations)
         w.reset_edges()
         solutions[goal] = global_best_solution
+        draw.prepare('data/map-pl.png')
         show_map(ants[0].world.net)
 
         print(f"{goal} - {global_best_solution}")
@@ -65,12 +66,18 @@ def prepare_map(net):
     )
     print('Map ' + ('' if status else 'not ') + 'dowloaded')
     net.add_pixel_coordinates(projection)
-    draw.prepare('data/map-pl.png')
 
 
 def show_map(net):
     for node in net.nodes:
         draw.text(node.x, node.y, node.name, fontsize=8, color='black', weight='bold', horizontalalignment='center')
+
+    for u, v, d in net.edges(data=True):
+        sx, sy = net.edge_middle_point(u, v, pixel_value=True)
+        pher = d['pheromone_level']
+        draw.line(u.x, u.y, v.x, v.y, marker='o', color='gray')
+        draw.text(sx, sy, f'{pher:.2f}', fontsize=7, color='navy', weight='bold', horizontalalignment='center')
+
     draw.show()
 
 

@@ -30,9 +30,8 @@ def get_map_as_file(filename, style: str, projection: geomanip.Projection, api_t
 		r = requests.get(url, allow_redirects=True)
 		if r.status_code != requests.codes.ok:
 			return False
-		file = open(filename, 'wb')
-		file.write(r.content)
-		file.close()
+		with open(filename, 'wb') as f:
+			f.write(r.content)
 		return True
 	except Exception as e:
 		print(e)

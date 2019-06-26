@@ -2,6 +2,7 @@ import sndlib
 import geomanip
 import networkx as nx
 
+
 class World:
     # graph node(1,(lat, long))
     # edge  begin, end, weight, distance

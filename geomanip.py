@@ -1,6 +1,6 @@
 import math
 from typing import Tuple
-import time
+from operator import itemgetter
 
 
 class Projection:
@@ -48,21 +48,26 @@ class MercatorProjection(Projection):
 	@classmethod
 	def from_points(cls, points, map_size, padding=0):
 		print(f'Warning: calling experimental function {cls.__name__}.from_points')
-		center_long = sum(p[0] for p in points) / len(points)
-		center_lati = sum(p[1] for p in points) / len(points)
+		if any(point[0] < -180 or point[0] > 180 or point[1] > 90 or point[1] < -90 for point in points):
+			raise ValueError('Coordinates not in ranges [-180, 180], [-90, 90]')
 
-		projection = cls(map_size=map_size, center=(center_long, center_lati), zoom=0)
-		mer_points = [projection.get_xy(*p) for p in points]
+		projection = cls(map_size=map_size, center=(0, 0), zoom=0)
 
-		min_x, max_x, min_y, max_y = padding + 0.5, padding + 0.5, padding + 0.5, padding + 0.5
-		while min_x > padding and min_y > padding and max_x < map_size[0] - padding and max_y < map_size[1] - padding:
-			min_x, max_x = min(mer_points, key=lambda p: p[0])[0], max(mer_points, key=lambda p: p[0])[0] - map_size[0] / 2
-			min_y, max_y = min(mer_points, key=lambda p: p[1])[1], max(mer_points, key=lambda p: p[1])[1] - map_size[1] / 2
+		x, y = itemgetter(0), itemgetter(1)
+		left = min(points, key=x)
+		right = max(points, key=x)
+		top = min(points, key=y)
+		bottom = max(points, key=y)
 
+		bounds = [left, right, top, bottom]
+		px_bounds = [projection.get_xy(*point) for point in bounds]
+
+		projection.center_long = (left[0] + right[0]) / 2
+		projection.center_lati = (top[1] + bottom[1]) / 2
+
+		while all(padding < p[0] < map_size[0] - padding and padding < p[1] < map_size[1] - padding for p in px_bounds):
+			px_bounds = [projection.get_xy(*point) for point in bounds]
 			projection.zoom += 0.05
-			mer_points = [projection.get_xy(*p) for p in points]
-
-			diff = min([min_x, max_x, min_y, max_y])
 		projection.zoom -= 0.05
 
 		return projection

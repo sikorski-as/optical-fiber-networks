@@ -10,9 +10,9 @@ class Node:
 		self.y = 0
 
 
-class Network:
+class _Network:
 	def __init__(self, name='', *args, **kwargs):
-		super(Network, self).__init__(*args, **kwargs)
+		super(_Network, self).__init__(*args, **kwargs)
 		self.node_by_name = {}
 		self.name = name
 
@@ -57,5 +57,5 @@ class Network:
 		return [(n.long, n.lati) for n in self.nodes]
 
 
-UndirectedNetwork = type('UndirectedNetwork', (Network, nx.Graph, ), {})
-DirectedNetwork = type('DirectedNetwork', (Network, nx.DiGraph, ), {})
+UndirectedNetwork = type('UndirectedNetwork', (_Network, nx.Graph, ), {})
+DirectedNetwork = type('DirectedNetwork', (_Network, nx.DiGraph, ), {})

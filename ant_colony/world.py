@@ -1,4 +1,3 @@
-import sndlib
 import geomanip
 import networkx as nx
 

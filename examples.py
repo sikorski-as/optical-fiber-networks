@@ -1,14 +1,12 @@
-# from sndlib import Network
 import sndlib
-import networkx as nx
-from geomanip import MercatorProjection, haversine
-import draw
 import mapbox
+import draw
 import os
+from geomanip import MercatorProjection, haversine
 
 
 def example_sndlib_draw_geomanip():
-	projection = MercatorProjection(map_size=(1024, 512), center=(19.6153711, 52.0892499), zoom=5)
+	projection = MercatorProjection(map_size=(1024, 512), center=(19.61537, 52.08924), zoom=5)
 
 	status = mapbox.get_map_as_file(
 		'data/map-pl.png',
@@ -85,5 +83,6 @@ def example_make_network():
 
 if __name__ == '__main__':
 	# example_sndlib_draw_geomanip()
-	example_get_adjusted_map()
+	# example_get_adjusted_map()
 	# example_make_network()
+	pass

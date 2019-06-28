@@ -42,5 +42,5 @@ class World:
         for edge in self.net.edges:
             self.net.edges[edge][self.PHEROMONE_KEY] = self.basic_pheromone_level
 
-    def calculate_edge_weigh(self, edge):
+    def calculate_edge_weight(self, edge):
         return pow(edge[2][self.PHEROMONE_KEY], self.alpha) * pow(1 / edge[2][self.DISTANCE_KEY], self.beta)

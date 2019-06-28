@@ -13,11 +13,14 @@ class Ant:
 
     @property
     def remaining_nodes(self):
-        return set(self.world.nodes) - self.visited_nodes
+        return set(self.world.net.nodes) - self.visited_nodes
 
+    #working for digraph
     @property
     def edges_available(self):
-        edges = [edge for edge in self.world.net.edges.data() if edge[0] == self.current_node and edge[1] not in self.visited_nodes]
+        edges = [
+            (self.current_node, node, self.world.net[self.current_node][node]) for node in self.world.net[self.current_node] if node not in self.visited_nodes
+        ]
         return [edge for edge in edges]
 
     # @property
@@ -43,8 +46,8 @@ class Ant:
         self.visited_nodes = set()
 
     def choose_edge(self):
-        total_pheromones = sum(self.world.calculate_edge_weigh(edge) for edge in self.edges_available)
-        probability = [self.world.calculate_edge_weigh(edge) / total_pheromones for edge in self.edges_available]
+        total_pheromones = sum(self.world.calculate_edge_weight(edge) for edge in self.edges_available)
+        probability = [self.world.calculate_edge_weight(edge) / total_pheromones for edge in self.edges_available]
         return self.edges_available[np.random.choice(len(self.edges_available), 1, p=probability)[0]]
 
     def move(self, edge):

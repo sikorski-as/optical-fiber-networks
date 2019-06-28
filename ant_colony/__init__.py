@@ -9,7 +9,7 @@ from geomanip import MercatorProjection
 
 
 def algorithm():
-    net = sndlib.DirectedNetwork(nx.DiGraph).load_native('data/polska.txt')
+    net = sndlib.UndirectedNetwork.load_native('data/polska.txt')
     w = world.World(net, 0.05, 0.1, False, 1, 1, 1)
 
     iterations = 200
@@ -24,10 +24,10 @@ def algorithm():
             ants.append(ant.Ant(w, goal[0], goal[1]))
 
         global_best_solution = find_solution_for_goal(ants, iterations)
-        w.reset_edges()
         solutions[goal] = global_best_solution
         draw.prepare('data/map-pl.png')
         show_map(ants[0].world.net)
+        w.reset_edges()
 
         print(f"{goal} - {global_best_solution}")
     pprint(solutions)
@@ -38,7 +38,6 @@ def find_solution_for_goal(ants, iterations):
 
     for _ in range(iterations):
         for a in ants:
-            # print(a.find_solution())
             a.find_solution()
         local_best_ant = ant.find_best_ant(ants)
         if local_best_ant is not None:

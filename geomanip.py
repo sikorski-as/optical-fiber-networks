@@ -68,6 +68,7 @@ class MercatorProjection(Projection):
 		while all(padding < p[0] < map_size[0] - padding and padding < p[1] < map_size[1] - padding for p in px_bounds):
 			px_bounds = [projection.get_xy(*point) for point in bounds]
 			projection.zoom += 0.05
+
 		projection.zoom -= 0.05
 
 		return projection

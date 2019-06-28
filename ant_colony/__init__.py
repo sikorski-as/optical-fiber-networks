@@ -8,48 +8,38 @@ from ant_colony import ant, world
 from geomanip import MercatorProjection
 
 
+def length(edges):
+    return 1 / len(edges)
+
+
+def calculate_distance(edges):
+    total_distance = sum([edge[2]['distance'] for edge in edges])
+    return total_distance
+
+
 def algorithm():
     net = sndlib.UndirectedNetwork.load_native('data/polska.txt')
     w = world.World(net, 0.05, 0.1, False, 1, 1, 1)
-
     iterations = 200
     number_of_ants = 50
+    assessment_fun = length
+    select_fun = max
+
     goals = [(n1, n2) for n1 in net.nodes for n2 in net.nodes if n1 != n2]
     solutions = {}
     prepare_map(net)
 
-    for goal in goals:
-        ants = []
-        for _ in range(number_of_ants):
-            ants.append(ant.Ant(w, goal[0], goal[1]))
+    colony = ant.Colony(number_of_ants, w, select_fun, assessment_fun)
 
-        global_best_solution = find_solution_for_goal(ants, iterations)
-        solutions[goal] = global_best_solution
+    for goal in goals:
+        best_solution = colony.find_best_solution(goal, n=iterations)
+        solutions[goal] = best_solution
         draw.prepare('data/map-pl.png')
-        show_map(ants[0].world.net)
+        show_map(w.net)
         w.reset_edges()
 
-        print(f"{goal} - {global_best_solution}")
+        print(f"{goal} - {best_solution}")
     pprint(solutions)
-
-
-def find_solution_for_goal(ants, iterations):
-    global_best_solution = None
-
-    for _ in range(iterations):
-        for a in ants:
-            a.find_solution()
-        local_best_ant = ant.find_best_ant(ants)
-        if local_best_ant is not None:
-            if global_best_solution is None:
-                global_best_solution = local_best_ant.solution
-            elif len(local_best_ant.solution) < len(global_best_solution):
-                global_best_solution = local_best_ant.solution
-        ants[0].world.evaporate_pheromone()
-        for a in ants:
-            a.update_path()
-            a.reset()
-    return global_best_solution
 
 
 def prepare_map(net):

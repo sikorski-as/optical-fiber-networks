@@ -9,7 +9,7 @@ def example_sndlib_draw_geomanip():
 	projection = MercatorProjection(map_size=(1024, 512), center=(19.61537, 52.08924), zoom=5)
 
 	status = mapbox.get_map_as_file(
-		'data/map-pl.png',
+		'data/polska.png',
 		replace=True,
 		api_token=os.environ['MAPBOX_API_KEY'],
 		projection=projection,
@@ -20,7 +20,7 @@ def example_sndlib_draw_geomanip():
 	net = sndlib.UndirectedNetwork.load_native('data/polska.txt')
 	net.add_pixel_coordinates(projection)
 
-	draw.prepare('data/map-pl.png')
+	draw.prepare('data/polska.png')
 	for u, v in net.edges:
 		sx, sy = net.edge_middle_point(u, v, pixel_value=True)
 		distance = haversine(u.long, u.lati, v.long, v.lati)

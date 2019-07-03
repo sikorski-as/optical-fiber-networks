@@ -27,7 +27,7 @@ class World:
         for edge in self.net.edges:
             distance = geomanip.haversine(edge[0].long, edge[0].lati, edge[1].long,
                                                edge[1].lati) if calculate_distance else 1
-            nx.set_edge_attributes(self.net, distance, self.DISTANCE_KEY)
+            self.net.edges[edge][self.DISTANCE_KEY] = distance
 
     def evaporate_pheromone(self):
         for edge in self.net.edges:

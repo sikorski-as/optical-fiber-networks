@@ -21,7 +21,7 @@ def algorithm():
         net,
         evaporation_level=0.05,
         basic_pheromone_level=0.1,
-        calculate_distance=False,
+        calculate_distance=True,
         alpha=1,
         beta=1,
         Q=1

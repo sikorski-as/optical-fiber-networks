@@ -1,14 +1,16 @@
 import copy
 import numpy as np
+import sortedcontainers
 
 
 class Ant:
-    def __init__(self, world):
+    def __init__(self, world, assessment_fun):
         self.solution = []
         self.used_edges = []
         self.current_node = None
         self.world = world
         self.visited_nodes = set()
+        self.assessment_fun = assessment_fun
 
     @property
     def remaining_nodes(self):
@@ -22,6 +24,10 @@ class Ant:
             self.world.net[self.current_node] if node not in self.visited_nodes
         ]
         return [edge for edge in edges]
+
+    @property
+    def total_distance(self):
+        return sum((self.world.get_edge_distance(edge) for edge in self.solution))
 
     # @property
     # def solution_without_cycles(self):
@@ -74,6 +80,18 @@ class Ant:
         if self.solution is not None:
             self.world.update_pheromone(self.used_edges, assessment_fun(self.solution))
 
+    def __hash__(self):
+        return hash(sum([self.world.get_edge_distance(edge) for edge in self.solution]))
+
+    def __eq__(self, other):
+        return self.solution == other.solution
+
+    def __lt__(self, other):
+        return self.assessment_fun(self.solution) < self.assessment_fun(other.solution)
+
+    def __str__(self):
+        return f"Ant:{self.total_distance} {self.solution}"
+
 
 def find_best_ant(ants, assessment_fun):
     ants_with_solutions = [ant for ant in ants if ant.solution is not None]
@@ -83,22 +101,28 @@ def find_best_ant(ants, assessment_fun):
 
 
 class Colony:
-    def __init__(self, n, world, select_fun, assessment_fun):
+    def __init__(self, n, k,  world, select_fun, assessment_fun):
         self.select_fun = select_fun
         self.assessment_fun = assessment_fun
         self.n = n
+        self.k = k
         self.world = world
-        self.ants = [Ant(world) for _ in range(n)]
+        self.ants = [Ant(world, assessment_fun) for _ in range(n)]
+        self.best_ants = sortedcontainers.SortedSet(key=lambda el: self.assessment_fun(el.solution))
 
     def find_best_solution(self, goal, n=1):
-        best_ant = self.find_best_ant(goal, n)
-        return best_ant.solution if best_ant else None
+        self.find_best_ant(goal, n)
+        best_ants = copy.deepcopy(self.best_ants)
+        self.best_ants.clear()
+        return best_ants
 
     def find_best_ant(self, goal, n=1):
         global_best_ant = None
         for _ in range(n):
             for ant in self.ants:
                 ant.find_solution(goal[0], goal[1])
+                if ant.solution:
+                    self.update_best_ants(copy.copy(ant))
             try:
                 local_best_ant = self.select_fun((ant for ant in self.ants if ant.solution is not None), key=lambda a: self.assessment_fun(a.solution))
                 if global_best_ant is None:
@@ -123,3 +147,12 @@ class Colony:
 
     def find_solutions(self, goal):
         return [ant.find_solution(goal[0], goal[1]) for ant in self.ants]
+
+    def update_best_ants(self, ant):
+        # print(ant)
+        if len(self.best_ants) == self.k and ant not in self.best_ants:
+            if self.assessment_fun(self.best_ants[0].solution) > self.assessment_fun(ant.solution):
+                self.best_ants.pop()
+                self.best_ants.add(ant)
+        else:
+            self.best_ants.add(ant)

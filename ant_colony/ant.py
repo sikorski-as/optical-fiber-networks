@@ -101,7 +101,7 @@ def find_best_ant(ants, assessment_fun):
 
 
 class Colony:
-    def __init__(self, n, k,  world, select_fun, assessment_fun):
+    def __init__(self, n, k, world, select_fun, assessment_fun):
         self.select_fun = select_fun
         self.assessment_fun = assessment_fun
         self.n = n
@@ -124,13 +124,15 @@ class Colony:
                 if ant.solution:
                     self.update_best_ants(copy.copy(ant))
             try:
-                local_best_ant = self.select_fun((ant for ant in self.ants if ant.solution is not None), key=lambda a: self.assessment_fun(a.solution))
+                local_best_ant = self.select_fun((ant for ant in self.ants if ant.solution is not None),
+                                                 key=lambda a: self.assessment_fun(a.solution))
                 if global_best_ant is None:
                     global_best_ant = copy.copy(local_best_ant)
                 else:
                     best_out_of_two = self.select_fun((global_best_ant, local_best_ant),
-                                                           key=lambda a: self.assessment_fun(a.solution))
-                    global_best_ant = global_best_ant if global_best_ant is best_out_of_two else copy.copy(local_best_ant)
+                                                      key=lambda a: self.assessment_fun(a.solution))
+                    global_best_ant = global_best_ant if global_best_ant is best_out_of_two else copy.copy(
+                        local_best_ant)
                 self.update_path()
                 self.reset()
             except ValueError:
@@ -151,8 +153,8 @@ class Colony:
     def update_best_ants(self, ant):
         # print(ant)
         if len(self.best_ants) == self.k and ant not in self.best_ants:
-            if self.assessment_fun(self.best_ants[0].solution) > self.assessment_fun(ant.solution):
+            if self.assessment_fun(self.best_ants[self.k - 1].solution) > self.assessment_fun(ant.solution):
                 self.best_ants.pop()
                 self.best_ants.add(ant)
-        else:
+        elif len(self.best_ants) < self.k:
             self.best_ants.add(ant)

@@ -1,4 +1,6 @@
 import networkx as nx
+
+import geomanip
 import mapbox
 import draw
 import os
@@ -16,6 +18,12 @@ class Node:
 
     def __repr__(self):
         return f"{self.name}"
+
+    def __eq__(self, other):
+        return other and self.name == other.name
+
+    def __hash__(self):
+        return hash(self.long) + hash(self.lati)
 
 
 class _Network:
@@ -116,3 +124,24 @@ class NetworkView:
 
 UndirectedNetwork = type('UndirectedNetwork', (_Network, nx.Graph,), {})
 DirectedNetwork = type('DirectedNetwork', (_Network, nx.DiGraph,), {})
+
+
+def create_undirected_net(network_name, calculate_distance=False):
+    net = UndirectedNetwork.load_native(f'data/{network_name}.txt')
+    if calculate_distance:
+        for edge in net.edges:
+            import geomanip
+            distance = int(geomanip.haversine(edge[0].long, edge[0].lati, edge[1].long,
+                                              edge[1].lati))
+            net.edges[edge]['distance'] = distance
+    return net
+
+
+def calculate_haversine_distance_between_each_node(net):
+    dist_dict = {}
+    for node in net.nodes:
+        dist_dict[node] = {}
+        for another_node in net.nodes:
+            dist_dict[node][another_node] = \
+                geomanip.haversine(node.long, node.lati, another_node.long, another_node.lati)
+    return dist_dict

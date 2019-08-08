@@ -12,8 +12,7 @@ def calculate_distance(edges):
     return total_distance
 
 
-def algorithm():
-    network_name = 'polska'
+def create_colony(network_name):
     net = sndlib.UndirectedNetwork.load_native(f'data/{network_name}.txt')
     view = sndlib.NetworkView(net, f'data/{network_name}.png')
 
@@ -31,26 +30,34 @@ def algorithm():
         node_dumping=15,
     )
 
-    iterations = 400
-    number_of_ants = 50
+    iterations = 40
+    number_of_ants = 35
     number_of_solutions = 3
     assessment_fun = calculate_distance
     select_fun = min
-
     goals = [(n1, n2) for n1 in net.nodes for n2 in net.nodes if n1 != n2]
+
+    return ant.Colony(number_of_ants, number_of_solutions, w, select_fun, assessment_fun, goals, iterations)
+
+
+def algorithm(colony):
     solutions = {}
-
-    colony = ant.Colony(number_of_ants, number_of_solutions, w, select_fun, assessment_fun)
-
-    for goal in goals:
-        best_ants = colony.find_best_solution(goal, n=iterations)
+    for goal in colony.goals:
+        best_ants = colony.find_best_solution(goal, n=colony.iterations)
         best_solution = best_ants[0].solution
-        solutions[goal] = best_solution
-        view.show()
-        w.reset_edges()
+        _add_solutions(solutions, goal, best_ants)
+        # view.show()
+        colony.world.reset_edges()
 
-        print(f'{goal} - {best_solution}')
-        for a in best_ants:
-            print(a)
-        print()
-    pprint(solutions)
+        # print(f'{goal} - {best_solution}')
+        # for a in best_ants:
+        #     print(a)
+        # print()
+    # pprint(solutions)
+    return solutions
+
+
+def _add_solutions(solutions_dict, goal, ants):
+    solutions_dict[goal] = []
+    for ant in ants:
+        solutions_dict[goal].append((ant.total_distance, ant.solution))

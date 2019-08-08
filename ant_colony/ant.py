@@ -101,7 +101,7 @@ def find_best_ant(ants, assessment_fun):
 
 
 class Colony:
-    def __init__(self, n, k, world, select_fun, assessment_fun):
+    def __init__(self, n, k, world, select_fun, assessment_fun, goals, iterations):
         self.select_fun = select_fun
         self.assessment_fun = assessment_fun
         self.n = n
@@ -109,6 +109,8 @@ class Colony:
         self.world = world
         self.ants = [Ant(world, assessment_fun) for _ in range(n)]
         self.best_ants = sortedcontainers.SortedSet(key=lambda el: self.assessment_fun(el.solution))
+        self.goals = goals
+        self.iterations = iterations
 
     def find_best_solution(self, goal, n=1):
         self.find_best_ant(goal, n)
@@ -124,15 +126,15 @@ class Colony:
                 if ant.solution:
                     self.update_best_ants(copy.copy(ant))
             try:
-                local_best_ant = self.select_fun((ant for ant in self.ants if ant.solution is not None),
-                                                 key=lambda a: self.assessment_fun(a.solution))
-                if global_best_ant is None:
-                    global_best_ant = copy.copy(local_best_ant)
-                else:
-                    best_out_of_two = self.select_fun((global_best_ant, local_best_ant),
-                                                      key=lambda a: self.assessment_fun(a.solution))
-                    global_best_ant = global_best_ant if global_best_ant is best_out_of_two else copy.copy(
-                        local_best_ant)
+                # local_best_ant = self.select_fun((ant for ant in self.ants if ant.solution is not None),
+                #                                  key=lambda a: self.assessment_fun(a.solution))
+                # if global_best_ant is None:
+                #     global_best_ant = copy.copy(local_best_ant)
+                # else:
+                #     best_out_of_two = self.select_fun((global_best_ant, local_best_ant),
+                #                                       key=lambda a: self.assessment_fun(a.solution))
+                #     global_best_ant = global_best_ant if global_best_ant is best_out_of_two else copy.copy(
+                #         local_best_ant)
                 self.update_path()
                 self.reset()
             except ValueError:

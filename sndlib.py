@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import networkx as nx
 
 import geomanip
@@ -24,6 +26,9 @@ class Node:
 
     def __hash__(self):
         return hash(self.long) + hash(self.lati)
+
+    def __lt__(self, other):
+        return other and self.name < other.name
 
 
 class _Network:
@@ -126,11 +131,12 @@ UndirectedNetwork = type('UndirectedNetwork', (_Network, nx.Graph,), {})
 DirectedNetwork = type('DirectedNetwork', (_Network, nx.DiGraph,), {})
 
 
-def create_undirected_net(network_name, calculate_distance=False):
-    net = UndirectedNetwork.load_native(f'data/{network_name}.txt')
+def create_undirected_net(network_name, calculate_distance=False, calculate_reinforcement=False):
+    base_path = Path(__file__).parent
+    file_path = (base_path / f'data/{network_name}.txt').resolve()
+    net = UndirectedNetwork.load_native(file_path)
     if calculate_distance:
         for edge in net.edges:
-            import geomanip
             distance = int(geomanip.haversine(edge[0].long, edge[0].lati, edge[1].long,
                                               edge[1].lati))
             net.edges[edge]['distance'] = distance
@@ -145,3 +151,18 @@ def calculate_haversine_distance_between_each_node(net):
             dist_dict[node][another_node] = \
                 geomanip.haversine(node.long, node.lati, another_node.long, another_node.lati)
     return dist_dict
+
+
+def calculate_reinforcement_for_each_node(net):
+    reinforcement_dict = {}
+    for node in net.nodes:
+        reinforcement_dict[node] = 10 + len(net[node])
+    return reinforcement_dict
+
+
+def calculate_reinforcement_for_each_edge(net, attribute_name='reinforcement'):
+    CONST = 0.24  # db/km
+    for edge in net.edges:
+        distance = int(geomanip.haversine(edge[0].long, edge[0].lati, edge[1].long,
+                                          edge[1].lati))
+        net[edge][attribute_name] = distance * CONST

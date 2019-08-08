@@ -143,6 +143,24 @@ def create_undirected_net(network_name, calculate_distance=False, calculate_rein
     return net
 
 
+def create_directed_net(network_name, calculate_distance=False, calculate_reinforcement=False):
+    base_path = Path(__file__).parent
+    file_path = (base_path / f'data/{network_name}.txt').resolve()
+    net = DirectedNetwork.load_native(file_path)
+    if calculate_distance:
+        for edge in net.edges:
+            distance = int(geomanip.haversine(edge[0].long, edge[0].lati, edge[1].long,
+                                              edge[1].lati))
+            net.edges[edge]['distance'] = distance
+    if calculate_reinforcement:
+        nodes_reinforcement = calculate_reinforcement_for_each_node(net)
+        edges_reinforcement = calculate_reinforcement_for_each_edge(net)
+        for edge in net.edges:
+            reinforcement = nodes_reinforcement[edge[0]] + edges_reinforcement[edge]
+            net[edge[0]][edge[1]]['reinforcement'] = reinforcement
+    return net
+
+
 def calculate_haversine_distance_between_each_node(net):
     dist_dict = {}
     for node in net.nodes:
@@ -160,9 +178,11 @@ def calculate_reinforcement_for_each_node(net):
     return reinforcement_dict
 
 
-def calculate_reinforcement_for_each_edge(net, attribute_name='reinforcement'):
+def calculate_reinforcement_for_each_edge(net):
     CONST = 0.24  # db/km
+    reinforcement_dict = {}
     for edge in net.edges:
         distance = int(geomanip.haversine(edge[0].long, edge[0].lati, edge[1].long,
                                           edge[1].lati))
-        net[edge][attribute_name] = distance * CONST
+        reinforcement_dict[edge] = distance * CONST
+    return reinforcement_dict

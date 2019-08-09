@@ -44,7 +44,7 @@ def algorithm(colony):
     solutions = {}
     for goal in colony.goals:
         best_ants = colony.find_best_solution(goal, n=colony.iterations)
-        best_solution = best_ants[0].solution
+        # best_solution = best_ants[0].solution
         _add_solutions(solutions, goal, best_ants)
         # view.show()
         colony.world.reset_edges()

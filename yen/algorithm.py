@@ -93,10 +93,10 @@ def ksp(G: nx.Graph, source, target, searching_fun, heuristic_fun=None, k=1, wei
 
 def _find_all_edges(G, node, directed_graph=False):
     edges = []
-    # firstly edges (node, x)
+    # edges (node, x)
     for neighbour, attrs in G[node].items():
         edges.append((node, neighbour, attrs))
-        # secondly edges(x, node)
+        # edges(x, node)
         if directed_graph:
             try:
                 edges.append((neighbour, node, G[neighbour][node]))
@@ -109,18 +109,6 @@ def _restore_graph(G, skipped_nodes):
     G.add_nodes_from(skipped_nodes.keys())
     for value in skipped_nodes.values():
         G.add_edges_from(value)
-
-
-# def _get_edges(skipped_nodes, directed_graph=False):
-#     edges = list()
-#     for node, values in skipped_nodes.items():
-#         for neighbour, attrs in values.items():
-#             if directed_graph:
-#                 edges.append((node, neighbour, attrs))
-#                 edges.append((neighbour, node, attrs))
-#             else:
-#                 edges.append((node, neighbour, attrs))
-#     return edges
 
 
 class PathBuffer:

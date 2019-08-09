@@ -113,33 +113,19 @@ class Colony:
         self.iterations = iterations
 
     def find_best_solution(self, goal, n=1):
-        self.find_best_ant(goal, n)
+        self.use_ants(goal, n)
         best_ants = copy.deepcopy(self.best_ants)
         self.best_ants.clear()
         return best_ants
 
-    def find_best_ant(self, goal, n=1):
-        global_best_ant = None
+    def use_ants(self, goal, n=1):
         for _ in range(n):
             for ant in self.ants:
                 ant.find_solution(goal[0], goal[1])
                 if ant.solution:
-                    self.update_best_ants(copy.copy(ant))
-            try:
-                # local_best_ant = self.select_fun((ant for ant in self.ants if ant.solution is not None),
-                #                                  key=lambda a: self.assessment_fun(a.solution))
-                # if global_best_ant is None:
-                #     global_best_ant = copy.copy(local_best_ant)
-                # else:
-                #     best_out_of_two = self.select_fun((global_best_ant, local_best_ant),
-                #                                       key=lambda a: self.assessment_fun(a.solution))
-                #     global_best_ant = global_best_ant if global_best_ant is best_out_of_two else copy.copy(
-                #         local_best_ant)
+                    self.update_best_ants(ant)
                 self.update_path()
                 self.reset()
-            except ValueError:
-                continue
-        return copy.copy(global_best_ant)
 
     def reset(self):
         for ant in self.ants:
@@ -157,6 +143,6 @@ class Colony:
         if len(self.best_ants) == self.k and ant not in self.best_ants:
             if self.assessment_fun(self.best_ants[self.k - 1].solution) > self.assessment_fun(ant.solution):
                 self.best_ants.pop()
-                self.best_ants.add(ant)
+                self.best_ants.add(copy.copy(ant))
         elif len(self.best_ants) < self.k:
-            self.best_ants.add(ant)
+            self.best_ants.add(copy.copy(ant))

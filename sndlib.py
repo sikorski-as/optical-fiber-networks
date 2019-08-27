@@ -6,7 +6,6 @@ import geomanip
 import mapbox
 import draw
 import os
-from ant_colony import world
 from geomanip import MercatorProjection
 
 

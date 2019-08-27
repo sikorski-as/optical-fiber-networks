@@ -1,11 +1,13 @@
 from typing import Tuple
 
 
-def find_k_shortest_paths_between_every_node(net, amount_of_paths: int):
+def find_k_shortest_paths_between_every_node(net, k: int):
     paths_dict = {}
     for node in net.nodes:
-        for neighbour in net[node]:
-            paths_dict[node] = generate_all_paths_between(net, (node, neighbour), amount_of_paths)
+        paths_dict[node] = {}
+        for another_node in net.nodes:
+            if node != another_node:
+                paths_dict[node][another_node] = generate_all_paths_between(net, (node, another_node), k)
     return paths_dict
 
 
@@ -13,16 +15,16 @@ def generate_all_paths_between(net, pair: Tuple, amount_of_paths: int):
     """
         Generating paths using BFS method.
     """
-    paths_created = 0
+    paths = []
     start, end = pair
     queue = [(start, [start])]
     while queue:
         (vertex, path) = queue.pop(0)
         for next in set(net[vertex]) - set(path):
             if next == end:
-                yield path + [next]
-                paths_created += 1
+                paths.append((len(path) + 1, path + [next]))
             else:
                 queue.append((next, path + [next]))
-        if paths_created == amount_of_paths:
+        if len(paths) == amount_of_paths:
             break
+    return paths

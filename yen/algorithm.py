@@ -32,10 +32,16 @@ def ksp(G: nx.Graph, source, target, searching_fun, heuristic_fun=None, k=1, wei
             score = 0
             for (u, v) in zip(path, path[1:]):
                 try:
-                    score += G.adj[u][v][weight]
+                    if weight:
+                        score += G.adj[u][v][weight]
+                    else:
+                        score += 1
                 except KeyError:
                     if skipped_nodes:
-                        score += info_graph[u][v][weight]
+                        if weight:
+                            score += info_graph[u][v][weight]
+                        else:
+                            score += 1
                     else:
                         raise
             return score
@@ -69,7 +75,7 @@ def ksp(G: nx.Graph, source, target, searching_fun, heuristic_fun=None, k=1, wei
                         spur = searching_fun(G, root[-1], target, heuristic_fun, weight=weight)
                     else:
                         _, spur = searching_fun(G, root[-1], target, weight=weight)
-                    spur_score = length_func(spur)
+                    spur_score = length_func(spur) - 1  #one node in root and spur!
                     potential_best_path = root[:-1] + spur
                     list_b.push(root_score + spur_score, potential_best_path)
                 except nx.NetworkXNoPath:

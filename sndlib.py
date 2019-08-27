@@ -6,7 +6,9 @@ import geomanip
 import mapbox
 import draw
 import os
+from ant_colony import world
 from geomanip import MercatorProjection
+from typing import Tuple, List, Callable
 
 
 class Node:
@@ -18,7 +20,7 @@ class Node:
         self.y = 0
 
     def __repr__(self):
-        return f"{self.name}"
+        return f"<{self.name}>"
 
     def __eq__(self, other):
         return other and self.name == other.name
@@ -32,15 +34,18 @@ class Node:
 
 class _Network:
     def __init__(self, name='', *args, **kwargs):
-        super(_Network, self).__init__(*args, **kwargs)
+        # super(_Network, self).__init__(*args, **kwargs)
         self.node_by_name = {}
         self.name = name
+
+    DISTANCE_KEY = 'distance'
 
     @classmethod
     def load_native(cls, filename):
         network = cls(name=filename)
         with open(filename) as data_file:
             state = ''
+            link_id = 1
             for line in data_file:
                 if state == '':
                     if line.startswith('NODES ('):
@@ -56,8 +61,9 @@ class _Network:
                         network.add_node(new_node)
                     elif state == 'LINKS':
                         _, _, n1, n2, _, *_ = line.split()
-                        network.add_edge(network.node_by_name[n1], network.node_by_name[n2])
-                        network.add_edge(network.node_by_name[n2], network.node_by_name[n1])
+                        network.add_edge(network.node_by_name[n1], network.node_by_name[n2], edge_id=link_id)
+                        network.add_edge(network.node_by_name[n2], network.node_by_name[n1], edge_id=link_id)
+                        link_id += 1
         return network
 
     def edge_middle_point(self, u, v, pixel_value=False):
@@ -76,6 +82,10 @@ class _Network:
 
     def get_list_of_coordinates(self):
         return [(n.long, n.lati) for n in self.nodes]
+
+    def initialize_edges(self, metric: Callable = None) -> None:
+        for n1, n2 in self.edges:
+            self[n1][n2][self.DISTANCE_KEY] = metric(n1, n2) if metric is not None else 1
 
 
 class NetworkView:
@@ -106,8 +116,9 @@ class NetworkView:
         for u, v, d in net.edges(data=True):
             sx, sy = net.edge_middle_point(u, v, pixel_value=True)
             pheromone = d['pheromone_level']
-            alpha = max(pheromone / pheromone_all, 0.05)
-            draw.line(u.x, u.y, v.x, v.y, marker='o', color=(0.5, 0.5, 0.5, alpha))
+            dist = d['distance']
+            alpha = max(pheromone / pheromone_all, 0.1)
+            draw.line(u.x, u.y, v.x, v.y, marker='o', color=(0.7, 0.0, 0.0, alpha))
             draw.text(
                 sx, sy, f'{pheromone:.2f}',
                 fontsize=7,
@@ -126,8 +137,16 @@ class NetworkView:
         draw.save_as(filename)
 
 
-UndirectedNetwork = type('UndirectedNetwork', (_Network, nx.Graph,), {})
-DirectedNetwork = type('DirectedNetwork', (_Network, nx.DiGraph,), {})
+class UndirectedNetwork(_Network, nx.Graph):
+    def __init__(self, name, *args, **kwargs):
+        nx.Graph.__init__(self, *args, **kwargs)
+        _Network.__init__(self, name)
+
+
+class DirectedNetwork(_Network, nx.DiGraph):
+    def __init__(self, name, *args, **kwargs):
+        nx.DiGraph.__init__(self, *args, **kwargs)
+        _Network.__init__(self, name)
 
 
 def create_undirected_net(network_name, calculate_distance=False, calculate_reinforcement=False):

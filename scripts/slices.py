@@ -7,6 +7,7 @@ import draw
 import os
 import sndlib
 import re
+import jsonmanip
 
 
 def linear_map(value, a, b, new_a, new_b):
@@ -161,14 +162,43 @@ class SlicesAnalyzer:
         return slices_in_edges
 
 
-if __name__ == '__main__':
-    with open("../data/ger3.out") as file, open("../data/ger3.dat") as path_file:
+def main():
+    class setup:
+        out_file = 'data/abilene2000.out'
+        data_file = 'data/abilene2000.dat'
+        sndlib_file = 'data/abilene.txt'
+        nslices = 384
+        npaths = 3
+
+        download_map = False
+        draw_map = False
+        map_file = 'data/abilene.png'
+        save_output = True
+        output_image_file = 'output/abilene2000.pdf'
+
+        country = 'usa'
+        draw_border = True
+
+    import numpy as np
+    import matplotlib.pyplot as plt
+    mat = np.random.random((10, 10))
+    plt.imshow(mat, origin="lower", cmap='gray', interpolation='nearest')
+    plt.colorbar()
+    plt.show()
+
+    # settings for appropriate mercator displaying
+    net = sndlib.UndirectedNetwork.load_native(setup.sndlib_file)
+    points = net.get_list_of_coordinates()
+    projection = geomanip.MercatorProjection.from_points(points=points, map_size=(1024, 768), padding=125)
+    net.add_pixel_coordinates(projection)
+
+    with open(setup.out_file) as file, open(setup.data_file) as path_file:
         data_info = SlicesAnalyzer(
             result_file=file, paths_file=path_file,
-            nvertices=17,
-            nedges=26,
-            npaths=3,
-            nslices=384
+            nvertices=net.number_of_nodes(),
+            nedges=net.number_of_edges(),
+            npaths=setup.npaths,
+            nslices=setup.nslices
         )
         data_info.upload_data()
         data_info.upload_paths()
@@ -179,22 +209,31 @@ if __name__ == '__main__':
         print('slices in edges (by band):')
         pprint(slices_in_bands)
 
-    # settings for appropriate mercator displaying
-    net = sndlib.UndirectedNetwork.load_native('../data/nobel-germany.txt')
-    points = net.get_list_of_coordinates()
-    projection = geomanip.MercatorProjection.from_points(points=points, map_size=(768, 1024), padding=75)
-    net.add_pixel_coordinates(projection)
+    if setup.download_map:
+        status = mapbox.get_map_as_file(
+            setup.map_file,
+            replace=True,
+            api_token=os.environ['MAPBOX_API_KEY'],
+            projection=projection,
+            style='countries_basic',
+        )
+        print('Map ' + ('' if status else 'not ') + 'dowloaded')
 
-    status = mapbox.get_map_as_file(
-        '../data/map-germany.png',
-        replace=True,
-        api_token=os.environ['MAPBOX_API_KEY'],
-        projection=projection,
-        style='countries_basic',
-    )
-    print('Map ' + ('' if status else 'not ') + 'dowloaded')
-
-    draw.prepare('../data/map-germany.png', draw=True)
+    draw.prepare(setup.map_file, draw=setup.draw_map)
+    if setup.draw_border:
+        for feature in jsonmanip.get_features(jsonmanip.load_geojson(setup.country)):
+            polys = jsonmanip.get_list_of_polygons(feature)
+            for poly in polys:
+                for j, point in enumerate(poly):
+                    poly[j] = projection.get_xy(*point)
+            draw.polygons(
+                polys,
+                closed=True,
+                facecolor='white',
+                # alpha=1.0,
+                linewidth=1,
+                edgecolor='black',
+            )
 
     linewidth = 3
     nslices_L = sum(1 for band in data_info.bands.values() if band == 1)
@@ -207,26 +246,18 @@ if __name__ == '__main__':
         L_color = (1, 0, 0, linear_map(L_slices, 0, nslices_L, 0.0, 1))
 
         oxs, oys = draw.offset_curve([u.x, v.x], [u.y, v.y], linewidth)
-        # draw.line(u.x, u.y, v.x, v.y, marker='', color=(1.0, 0.0, 0.0, L_slices / 384), linewidth=lw)
-        # draw.line(u.x + xtr, u.y + ytr, v.x + xtr, v.y + ytr, marker='', color='orange', linewidth=lw / 2)
-
         draw.line(oxs[0], oys[0], oxs[1], oys[1], color=C_color, linewidth=linewidth)
         draw.line(u.x, u.y, v.x, v.y, color=L_color, linewidth=linewidth)
-
-        # draw.line(u.x, u.y, v.x, v.y, marker='o', color='gray', linewidth=2)
-        # sx, sy = net.edge_middle_point(u, v, pixel_value=True)
-        # draw.text(
-        #     sx, sy,
-        #     f'L: {L_slices}, C: {C_slices}',
-        #     fontsize=8,
-        #     color='navy',
-        #     weight='bold',
-        #     horizontalalignment='center'
-        # )
 
     for node in net.nodes:
         text = node.name
         draw.text(node.x, node.y, text, fontsize=8, color='black', weight='bold', horizontalalignment='center')
 
-    draw.show()
-    # draw.save_as('../output/lc_band.png')
+    if setup.save_output:
+        draw.save_as(setup.output_image_file)
+    else:
+        draw.show()
+
+
+if __name__ == '__main__':
+    main()

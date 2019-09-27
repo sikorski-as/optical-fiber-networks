@@ -21,6 +21,11 @@ def point(*args, **kwargs):
     plt.scatter(*args, **kwargs)
 
 
+def circle(*args, **kwargs):
+    ax = plt.gca()
+    ax.add_artist(plt.Circle(*args, **kwargs))
+
+
 def line(x1, y1, x2, y2, *args, **kwargs):
     plt.plot([x1, x2], [y1, y2], *args, **kwargs)
 

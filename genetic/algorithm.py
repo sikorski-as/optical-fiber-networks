@@ -17,7 +17,7 @@ import genetic.transponder_config as t_config
 
 class Chromosome:
 
-    def __init__(self, predefined_paths, transponders_config, demands, bands, slices_usage, transponders_cost):
+    def __init__(self, net, predefined_paths, transponders_config, demands, bands, slices_usage, transponders_cost):
         """
         :param predefined_paths: {} key (city1, city2)
         :param transponders_config: {} key demand
@@ -25,6 +25,7 @@ class Chromosome:
         :param bands: [(begin, end), (begin, end)]
         :param slices_usage: amount of slices used by transponder
         """
+        self.net = net
         self.predefined_paths = predefined_paths
         self.transponders_config = transponders_config
         self.demands = demands
@@ -111,9 +112,53 @@ def fitness(chromosome):
     #                 else:
     #                     slices_usage[edge].add(slice)
 
+    power_overflow = _check_power(chromosome)
+
     # print(slices_overflow)
     # print(total_cost)
     return total_cost + pow(slices_overflow, 2)
+
+
+def _check_power(chromosome: Chromosome):
+    OSNR = {
+        0: 10,
+        1: 15.85,
+        2: 31.62,
+        3: 158.49
+    }
+    e = 2.718
+    h = 6.62607004 * pow(10, -34)
+    f = {
+        0: 193800000000000.0,
+        1: 188500000000000.0
+    }
+    l = {
+        0: 0.046,
+        1: 0.055
+    }
+    bandwidth = {
+        0: 25000000000.0,
+        1: 25000000000.0,
+        2: 50000000000.0,
+        3: 75000000000.0
+    }
+
+    node_reinforcement = sndlib.calculate_reinforcement_for_each_node(chromosome.net)
+    P = 1
+
+    power_overflow = 0
+    for gene in chromosome.genes.values():
+        for transponder_type, path, slice in gene:
+            total = 0
+            band = 0 if slice <= chromosome.bands[0][1] else 1
+            for edge in utils.pairwise(path):
+                total += (h * f[band] * (pow(e, l[band] * chromosome.net.edges[edge]['distance']) - 1) * bandwidth[transponder_type]
+                          + node_reinforcement[edge[0]])
+
+            total *= OSNR[transponder_type]
+            if total > P:
+                power_overflow += total
+    return power_overflow
 
 
 def _check_if_fits(genes, bands, transponder_slices_usage):
@@ -157,7 +202,6 @@ def _use_slices(transponder_slices_used, path_slices_utilization, bands):
 
 
 def main():
-
     net = sndlib.create_undirected_net('polska', calculate_distance=True, calculate_reinforcement=True)
 
     @lru_cache(maxsize=None)
@@ -168,7 +212,7 @@ def main():
     adapted_predefined_paths = {key: [value[1] for value in values] for key, values in predefined_paths.items()}
     # pprint(adapted_predefined_paths)
 
-    DEMAND = 3000
+    DEMAND = 350
     POP_SIZE = 50
 
     demands = {key: DEMAND for key in predefined_paths}
@@ -190,16 +234,17 @@ def main():
         2: 7,
         3: 9
     }
-    run_genetic(POP_SIZE, adapted_predefined_paths, transponders_config, demands, bands,
+    run_genetic(POP_SIZE, net, adapted_predefined_paths, transponders_config, demands, bands,
                 slices_usage, transponders_cost)
 
 
-def run_genetic(pop_size, adapted_predefined_paths, transponders_config, demands, bands, slices_usage, transponders_cost):
+def run_genetic(pop_size, net, adapted_predefined_paths, transponders_config, demands, bands, slices_usage,
+                transponders_cost):
     CPB = 100
     MPB = 50
     ITERATIONS = 300
     crt = GeneticAlg.Creator(Chromosome)
-    initial_population = crt.create(pop_size, adapted_predefined_paths, transponders_config, demands, bands,
+    initial_population = crt.create(pop_size, net, adapted_predefined_paths, transponders_config, demands, bands,
                                     slices_usage, transponders_cost)
     tools = GeneticAlg.Toolkit(crossing_probability=CPB, mutation_probability=MPB)
     tools.set_fitness_weights(weights=(-1,))
@@ -215,7 +260,7 @@ def run_genetic(pop_size, adapted_predefined_paths, transponders_config, demands
         tools.mutate(offspring, mutation_fun=mutating)
         tools.calculate_fitness_values(offspring, [fitness])
         new_population = tools.select_best(population + offspring, pop_size - 10)
-        additional_population = crt.create(10, adapted_predefined_paths, transponders_config, demands, bands,
+        additional_population = crt.create(10, net, adapted_predefined_paths, transponders_config, demands, bands,
                                            slices_usage, transponders_cost)
         additional_population = tools.create_individuals(additional_population)
         tools.calculate_fitness_values(additional_population, list_of_funcs=[fitness])

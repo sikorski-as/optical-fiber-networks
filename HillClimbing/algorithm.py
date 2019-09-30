@@ -13,11 +13,10 @@ def run(initial_value, random_neighbour_function, compare_function, n=1, descend
 
     while number_of_iterations < n:
         neighbour = random_neighbour_function(best)
-        if descending:
-            if compare_function(best) > compare_function(neighbour):
-                best = neighbour
-        else:
-            if compare_function(best) < compare_function(neighbour):
-                best = neighbour
+
+        if compare_function(best) > compare_function(neighbour) and descending \
+                or compare_function(best) < compare_function(neighbour) and not descending:
+            best = neighbour
+
         number_of_iterations += 1
     return best

@@ -8,6 +8,7 @@ import sndlib
 import utils
 import HillClimbing as hc
 from genetic import config
+import VNS as vns
 
 
 class Chromosome:
@@ -198,13 +199,14 @@ def _use_slices(transponder_slices_used, path_slices_utilization, bands):
 
 
 def main():
-
     adapted_predefined_paths = {key: [value[1] for value in values] for key, values in config.predefined_paths.items()}
     # pprint(adapted_predefined_paths)
-    best_individual = run_genetic(config.POP_SIZE, config.net, adapted_predefined_paths, config.transponders_config, config.demands, config.bands,
+    best_individual = run_genetic(config.POP_SIZE, config.net, adapted_predefined_paths, config.transponders_config,
+                                  config.demands, config.bands,
                                   config.slices_usage, config.transponders_cost)
 
-    best_result = hc.run(best_individual, random_neighbour_function=random_neighbour, compare_function=compare, n=config.HILL_ITERATIONS)
+    best_result = hc.run(best_individual, random_neighbour_function=random_neighbour, compare_function=compare,
+                         n=config.HILL_ITERATIONS)
     pprint(best_result)
 
 
@@ -225,9 +227,45 @@ def random_neighbour(individual: GeneticAlg.Individual):
     return neighbour
 
 
+def random_neighbour_ksize(individual: GeneticAlg.Individual, k):
+    neighbour = copy.deepcopy(individual)
+    chromosome = neighbour.chromosome
+    genes = chromosome.genes
+    keys = random.sample(list(genes.keys()), k=k)
+    for key in keys:
+        genes[key] = chromosome._create_gene(key)
+    tools = GeneticAlg.Toolkit(crossing_probability=config.CPB, mutation_probability=config.MPB)
+    tools.set_fitness_weights(weights=(-1,))
+    tools.calculate_fitness_values([neighbour], [fitness])
+    print(f"{neighbour.chromosome} {neighbour.values[0]} {k}")
+    return neighbour
+
+
+def create_individual():
+    adapted_predefined_paths = {key: [value[1] for value in values] for key, values in config.predefined_paths.items()}
+    individual = GeneticAlg.Individual(
+        Chromosome(config.net, adapted_predefined_paths, config.transponders_config, config.demands, config.bands,
+                   config.slices_usage, config.transponders_cost))
+    tools = GeneticAlg.Toolkit(crossing_probability=config.CPB, mutation_probability=config.MPB)
+    tools.set_fitness_weights(weights=(-1,))
+    tools.calculate_fitness_values([individual], [fitness])
+    return individual
+
+
+def run_hill():
+    individual = create_individual()
+    best = hc.run(individual, random_neighbour_function=random_neighbour, compare_function=compare, n=1000)
+    pprint(best)
+
+
+def run_vns():
+    individual = create_individual()
+    best = vns.run(individual, random_neighbour_function=random_neighbour_ksize, compare_function=compare, n=1000, m=100, K=10)
+    pprint(best)
+
+
 def run_genetic(pop_size, net, adapted_predefined_paths, transponders_config, demands, bands, slices_usage,
                 transponders_cost):
-
     crt = GeneticAlg.Creator(Chromosome)
     initial_population = crt.create(pop_size, net, adapted_predefined_paths, transponders_config, demands, bands,
                                     slices_usage, transponders_cost)
@@ -245,7 +283,8 @@ def run_genetic(pop_size, net, adapted_predefined_paths, transponders_config, de
         tools.mutate(offspring, mutation_fun=mutating)
         tools.calculate_fitness_values(offspring, [fitness])
         new_population = tools.select_best(population + offspring, pop_size - config.NEW_POP_SIZE)
-        additional_population = crt.create(config.NEW_POP_SIZE, net, adapted_predefined_paths, transponders_config, demands, bands,
+        additional_population = crt.create(config.NEW_POP_SIZE, net, adapted_predefined_paths, transponders_config,
+                                           demands, bands,
                                            slices_usage, transponders_cost)
         additional_population = tools.create_individuals(additional_population)
         tools.calculate_fitness_values(additional_population, list_of_funcs=[fitness])
@@ -261,4 +300,6 @@ def run_genetic(pop_size, net, adapted_predefined_paths, transponders_config, de
 
 
 if __name__ == '__main__':
-    main()
+    # main()
+    # run_hill()
+    run_vns()

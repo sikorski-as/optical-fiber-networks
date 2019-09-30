@@ -1,18 +1,13 @@
 import copy
 import random
 from collections import defaultdict
-from functools import lru_cache
 from pprint import pprint
-
 import bitstring
-
 import GeneticAlg
 import sndlib
 import utils
-import yen
-import networkx as nx
-
-import genetic.transponder_config as t_config
+import HillClimbing as hc
+from genetic import config
 
 
 class Chromosome:
@@ -55,8 +50,8 @@ class Chromosome:
         begin, end = random.choice(self.bands)
         return random.randrange(begin, end - slices_used)
 
-    def __repr__(self):
-        return str(self._structure)
+    # def __repr__(self):
+    #     return str(self._structure)
 
     @property
     def genes(self):
@@ -92,7 +87,7 @@ def fitness(chromosome):
     total_cost = 0
     for gene in chromosome.genes.values():
         for subgene in gene:
-            if subgene[2] > chromosome.bands[1][0]:
+            if subgene[2] >= chromosome.bands[1][0]:
                 total_cost += 1.5 * cost[subgene[0]]
             else:
                 total_cost += cost[subgene[0]]
@@ -112,7 +107,7 @@ def fitness(chromosome):
     #                 else:
     #                     slices_usage[edge].add(slice)
 
-    power_overflow = _check_power(chromosome)
+    # power_overflow = _check_power(chromosome)
 
     # print(slices_overflow)
     # print(total_cost)
@@ -152,7 +147,8 @@ def _check_power(chromosome: Chromosome):
             total = 0
             band = 0 if slice <= chromosome.bands[0][1] else 1
             for edge in utils.pairwise(path):
-                total += (h * f[band] * (pow(e, l[band] * chromosome.net.edges[edge]['distance']) - 1) * bandwidth[transponder_type]
+                total += (h * f[band] * (pow(e, l[band] * chromosome.net.edges[edge]['distance']) - 1) * bandwidth[
+                    transponder_type]
                           + node_reinforcement[edge[0]])
 
             total *= OSNR[transponder_type]
@@ -202,73 +198,66 @@ def _use_slices(transponder_slices_used, path_slices_utilization, bands):
 
 
 def main():
-    net = sndlib.create_undirected_net('polska', calculate_distance=True, calculate_reinforcement=True)
 
-    @lru_cache(maxsize=None)
-    def dist(a, b):
-        return sndlib.calculate_haversine_distance_between_each_node(net)[a][b]
-
-    predefined_paths = yen.ksp_all_nodes(net, nx.astar_path, heuristic_fun=dist, k=3)
-    adapted_predefined_paths = {key: [value[1] for value in values] for key, values in predefined_paths.items()}
+    adapted_predefined_paths = {key: [value[1] for value in values] for key, values in config.predefined_paths.items()}
     # pprint(adapted_predefined_paths)
+    best_individual = run_genetic(config.POP_SIZE, config.net, adapted_predefined_paths, config.transponders_config, config.demands, config.bands,
+                                  config.slices_usage, config.transponders_cost)
 
-    DEMAND = 350
-    POP_SIZE = 50
+    best_result = hc.run(best_individual, random_neighbour_function=random_neighbour, compare_function=compare, n=config.HILL_ITERATIONS)
+    pprint(best_result)
 
-    demands = {key: DEMAND for key in predefined_paths}
 
-    transponders_config = {DEMAND: t_config.create_config([(40, 4), (100, 4), (200, 8), (400, 12)], DEMAND, 3)}
+def compare(individual: GeneticAlg.Individual):
+    return individual.values[0]
 
-    # print(transponders_config)
-    bands = [(0, 191), (192, 383)]
-    slices_usage = {
-        0: 4,
-        1: 4,
-        2: 8,
-        3: 12
-    }
 
-    transponders_cost = {
-        0: 2,
-        1: 5,
-        2: 7,
-        3: 9
-    }
-    run_genetic(POP_SIZE, net, adapted_predefined_paths, transponders_config, demands, bands,
-                slices_usage, transponders_cost)
+def random_neighbour(individual: GeneticAlg.Individual):
+    neighbour = copy.deepcopy(individual)
+    chromosome = neighbour.chromosome
+    genes = chromosome.genes
+    chosen_gene_key = random.choice(list(genes.keys()))
+    genes[chosen_gene_key] = chromosome._create_gene(chosen_gene_key)
+    tools = GeneticAlg.Toolkit(crossing_probability=config.CPB, mutation_probability=config.MPB)
+    tools.set_fitness_weights(weights=(-1,))
+    tools.calculate_fitness_values([neighbour], [fitness])
+    print(f"{neighbour.chromosome} {neighbour.values[0]}")
+    return neighbour
 
 
 def run_genetic(pop_size, net, adapted_predefined_paths, transponders_config, demands, bands, slices_usage,
                 transponders_cost):
-    CPB = 100
-    MPB = 50
-    ITERATIONS = 300
+
     crt = GeneticAlg.Creator(Chromosome)
     initial_population = crt.create(pop_size, net, adapted_predefined_paths, transponders_config, demands, bands,
                                     slices_usage, transponders_cost)
-    tools = GeneticAlg.Toolkit(crossing_probability=CPB, mutation_probability=MPB)
+    tools = GeneticAlg.Toolkit(crossing_probability=config.CPB, mutation_probability=config.MPB)
     tools.set_fitness_weights(weights=(-1,))
     population = tools.create_individuals(initial_population)
     tools.calculate_fitness_values(population, list_of_funcs=[fitness])
     best = tools.select_best(population, 1)
     print(best)
     iteration = 0
-    while iteration < ITERATIONS:
+    while iteration < config.GA_ITERATIONS:
         iteration += 1
         couples = tools.create_couples(population, 2, int(pop_size / 2))
         offspring = tools.cross(couples, crossover_fun=crossing)
         tools.mutate(offspring, mutation_fun=mutating)
         tools.calculate_fitness_values(offspring, [fitness])
-        new_population = tools.select_best(population + offspring, pop_size - 10)
-        additional_population = crt.create(10, net, adapted_predefined_paths, transponders_config, demands, bands,
+        new_population = tools.select_best(population + offspring, pop_size - config.NEW_POP_SIZE)
+        additional_population = crt.create(config.NEW_POP_SIZE, net, adapted_predefined_paths, transponders_config, demands, bands,
                                            slices_usage, transponders_cost)
         additional_population = tools.create_individuals(additional_population)
         tools.calculate_fitness_values(additional_population, list_of_funcs=[fitness])
         population = new_population + additional_population
+        random.shuffle(population)
         best = tools.select_best(population, 1)
+        # pprint(population)
         print(f"{iteration}{best}")
 
-    pprint(sorted(population, key=lambda x: x.values[0]))
+    best_population = sorted(population, key=lambda x: x.values[0])
+    pprint(best_population)
+    return best_population[0]
 
 
 if __name__ == '__main__':

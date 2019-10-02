@@ -1,0 +1,5 @@
+numpy
+requests
+networkx
+bitstring
+sortedcontainers

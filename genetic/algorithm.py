@@ -262,7 +262,8 @@ def run_hill():
 
 def run_vns():
     individual = create_individual()
-    best = vns.run(individual, random_neighbour_function=random_neighbour_ksize, compare_function=compare, n=1000, m=100, K=10)
+    best = vns.run(individual, random_neighbour_function=random_neighbour_ksize, compare_function=compare, n=1000,
+                   m=100, K=10)
     pprint(best)
 
 
@@ -301,7 +302,11 @@ def run_genetic(pop_size, net, adapted_predefined_paths, transponders_config, de
     return best_population[0]
 
 
-if __name__ == '__main__':
+def main():
     # main()
     # run_hill()
     run_vns()
+
+
+if __name__ == '__main__':
+    main()

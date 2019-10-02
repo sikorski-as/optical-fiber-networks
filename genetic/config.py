@@ -9,12 +9,12 @@ import genetic.transponder_config as t_config
 net = sndlib.create_undirected_net('polska', calculate_distance=True, calculate_reinforcement=True)
 
 
-@lru_cache(maxsize=None)
+@lru_cache(maxsize=1024)
 def dist(a, b):
     return sndlib.calculate_haversine_distance_between_each_node(net)[a][b]
 
 
-K = 3
+K = 3  # number of predefined paths
 predefined_paths = yen.ksp_all_nodes(net, nx.astar_path, heuristic_fun=dist, k=K)
 
 slices_usage = {
@@ -31,7 +31,7 @@ transponders_cost = {
     3: 9
 }
 
-bands = [(0, 191), (192, 383)]
+bands = [(0, 191), (192, 383)]  # ranges of slices per band
 
 DEMAND = 250
 POP_SIZE = 50

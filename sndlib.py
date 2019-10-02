@@ -1,14 +1,13 @@
+import os
 from pathlib import Path
+from typing import Callable
 
 import networkx as nx
 
+import draw
 import geomanip
 import mapbox
-import draw
-import os
-from ant_colony import world
 from geomanip import MercatorProjection
-from typing import Tuple, List, Callable
 
 
 class Node:
@@ -151,7 +150,7 @@ class DirectedNetwork(_Network, nx.DiGraph):
 
 def create_undirected_net(network_name, calculate_distance=False, calculate_reinforcement=False):
     base_path = Path(__file__).parent
-    file_path = (base_path / f'data/{network_name}.txt').resolve()
+    file_path = (base_path / f'data/sndlib/native/{network_name}/{network_name}.txt').resolve()
     net = UndirectedNetwork.load_native(file_path)
     if calculate_distance:
         for edge in net.edges:
@@ -163,7 +162,7 @@ def create_undirected_net(network_name, calculate_distance=False, calculate_rein
 
 def create_directed_net(network_name, calculate_distance=False, calculate_reinforcement=False):
     base_path = Path(__file__).parent
-    file_path = (base_path / f'data/{network_name}.txt').resolve()
+    file_path = (base_path / f'data/sndlib/native/{network_name}/{network_name}.txt').resolve()
     net = DirectedNetwork.load_native(file_path)
     if calculate_distance:
         for edge in net.edges:

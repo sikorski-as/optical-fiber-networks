@@ -38,7 +38,6 @@ class Ant:
     def choose_edge(self):
         total_pheromones = sum(self.world.calculate_edge_weight(edge) for edge in self.edges_available)
         probability = [self.world.calculate_edge_weight(edge) / total_pheromones for edge in self.edges_available]
-        # np.random.seed(13)
         return self.edges_available[np.random.choice(len(self.edges_available), 1, p=probability)[0]]
 
     def move(self, edge):

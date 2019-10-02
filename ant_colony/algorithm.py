@@ -12,8 +12,8 @@ def calculate_distance(edges):
 
 
 def create_colony(network_name):
-    net = sndlib.UndirectedNetwork.load_native(f'data/sndlib-native/{network_name}.txt')
-    view = sndlib.NetworkView(net, f'data/sndlib-native/{network_name}.png')
+    net = sndlib.UndirectedNetwork.load_native(f'data/sndlib/native/{network_name}/{network_name}.txt')
+    view = sndlib.NetworkView(net, f'data/sndlib-images/{network_name}.png')
 
     edge_dumping = {edge: 0.24 for edge in net.edges}
 

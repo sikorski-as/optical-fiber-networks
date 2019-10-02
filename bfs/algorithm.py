@@ -1,4 +1,6 @@
 from typing import Tuple
+from collections import deque
+from sndlib import Node
 
 
 def find_k_shortest_paths_between_every_node(net, k: int):
@@ -11,20 +13,28 @@ def find_k_shortest_paths_between_every_node(net, k: int):
     return paths_dict
 
 
-def generate_all_paths_between(net, pair: Tuple, amount_of_paths: int):
+def generate_all_paths_between(net, pair: Tuple[Node, Node], npaths: int):
     """
-        Generating paths using BFS method.
+    Generating `n` paths using BFS method between pair of nodes.
     """
+    if npaths <= 0:
+        return []
+
     paths = []
     start, end = pair
-    queue = [(start, [start])]
-    while queue:
-        (vertex, path) = queue.pop(0)
-        for next in set(net[vertex]) - set(path):
-            if next == end:
-                paths.append((len(path) + 1, path + [next]))
+    first_case = (start, [start])
+    queue = deque()
+    queue.append(first_case)
+
+    while len(queue) > 0:
+        vertex, path = queue.popleft()
+        for next_node in set(net[vertex]) - set(path):
+            if next_node == end:
+                new_path = len(path) + 1, path + [next_node]
+                paths.append(new_path)
             else:
-                queue.append((next, path + [next]))
-        if len(paths) == amount_of_paths:
+                new_case = next_node, path + [next_node]
+                queue.append(new_case)
+        if len(paths) == npaths:
             break
     return paths

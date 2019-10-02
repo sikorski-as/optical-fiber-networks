@@ -4,7 +4,7 @@ import random
 
 import sortedcontainers
 
-from GeneticAlg import Creator, Toolkit
+from geneticlib import Creator, Toolkit
 
 
 class Chromosome:

@@ -1,10 +1,12 @@
-import timeit
 import pprint
+import timeit
+
 import networkx as nx
-import ant_colony
+
+import ant_colony.algorithm
+import bfs
 import sndlib
 import yen
-import BFS
 
 
 def compare_results(first_dict, f_dict_name, second_dict, s_dict_name):
@@ -57,7 +59,7 @@ NUMBER = 1  # number of iterations in tests
 if __name__ == "__main__":
     # BFS
     score = timeit.timeit('find_k_shortest_paths_between_every_node(net, k)',
-                          setup='from BFS import find_k_shortest_paths_between_every_node; from __main__ import create_net; net=create_net(); k=3',
+                          setup='from bfs import find_k_shortest_paths_between_every_node; from __main__ import create_net; net=create_net(); k=3',
                           number=NUMBER)
     print(f"BFS bez wag {score}")
 
@@ -81,7 +83,7 @@ if __name__ == "__main__":
 
     ###
     net = create_net()
-    colony = ant_colony.create_colony(NETWORK_NAME)
+    colony = ant_colony.run.create_colony(NETWORK_NAME)
 
     a_star_paths_dict = yen.ksp_all_nodes(net, nx.astar_path, heuristic_fun=dist, k=K, weight=WEIGHT)
     dijkstra_paths_dict = yen.ksp_all_nodes(net, nx.single_source_dijkstra, k=K, weight=WEIGHT)
@@ -103,7 +105,7 @@ if __name__ == "__main__":
     # Bez wag
     a_star_paths_dict = yen.ksp_all_nodes(net, nx.astar_path, heuristic_fun=dist, k=K)
     dijkstra_paths_dict = yen.ksp_all_nodes(net, nx.single_source_dijkstra, k=K)
-    bfs_paths_dict = BFS.find_k_shortest_paths_between_every_node(net, k=K)
+    bfs_paths_dict = bfs.find_k_shortest_paths_between_every_node(net, k=K)
 
     total_a_star_distance = calculate_total_distance(net, a_star_paths_dict)
     total_dijkstra_distance = calculate_total_distance(net, dijkstra_paths_dict)

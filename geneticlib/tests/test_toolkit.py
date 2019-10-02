@@ -1,6 +1,6 @@
 import copy
 import unittest
-from GeneticAlg import toolkit
+from geneticlib import toolkit
 
 
 class Test:

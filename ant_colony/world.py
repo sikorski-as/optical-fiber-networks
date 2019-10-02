@@ -1,11 +1,9 @@
-import geomanip
 import networkx as nx
+
+import geomanip
 
 
 class World:
-    # graph node(1,(lat, long))
-    # edge  begin, end, weight, distance
-
     """
     :param vertices iterable containing all vertices in graph
     :param edges iterable containing 2-element tuple (begin_node, end_node)

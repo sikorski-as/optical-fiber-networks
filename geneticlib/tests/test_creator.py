@@ -1,5 +1,5 @@
 import unittest
-from GeneticAlg import creator
+from geneticlib import creator
 
 
 class Test:

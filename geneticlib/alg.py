@@ -1,9 +1,9 @@
-from GeneticAlg import creator
-from GeneticAlg import toolkit
+from geneticlib import creator
+from geneticlib import toolkit
 import random
 import copy
 import pydoc
-import HillClimbing as hc
+import hill_climbing as hc
 import SimulatedAnnealing as sa
 
 

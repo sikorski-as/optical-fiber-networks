@@ -29,22 +29,6 @@ class Ant:
     def total_distance(self):
         return sum((self.world.get_edge_distance(edge) for edge in self.solution))
 
-    # @property
-    # def solution_without_cycles(self):
-    #     if self.solution is None:
-    #         return None
-    #     solution = self.solution
-    #     pos = len(solution) - 1
-    #     while pos != 0:
-    #         el = solution[pos]
-    #         another_pos = solution.index(el)
-    #         if another_pos != pos:
-    #             solution = solution[:another_pos] + solution[pos:]
-    #             self.used_edges = self.used_edges[:another_pos] + self.used_edges[pos:]
-    #             pos = another_pos
-    #         pos = pos - 1
-    #     return solution
-
     def reset(self):
         self.solution = []
         self.used_edges = []
@@ -139,7 +123,6 @@ class Colony:
         return [ant.find_solution(goal[0], goal[1]) for ant in self.ants]
 
     def update_best_ants(self, ant):
-        # print(ant)
         if len(self.best_ants) == self.k and ant not in self.best_ants:
             if self.assessment_fun(self.best_ants[self.k - 1].solution) > self.assessment_fun(ant.solution):
                 self.best_ants.pop()

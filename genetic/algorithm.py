@@ -2,13 +2,15 @@ import copy
 import random
 from collections import defaultdict
 from pprint import pprint
+
 import bitstring
-import GeneticAlg
+
+import geneticlib
+import hill_climbing as hc
 import sndlib
 import utils
-import HillClimbing as hc
+import vns as vns
 from genetic import config
-import VNS as vns
 
 
 class Chromosome:
@@ -210,31 +212,31 @@ def main():
     pprint(best_result)
 
 
-def compare(individual: GeneticAlg.Individual):
+def compare(individual: geneticlib.Individual):
     return individual.values[0]
 
 
-def random_neighbour(individual: GeneticAlg.Individual):
+def random_neighbour(individual: geneticlib.Individual):
     neighbour = copy.deepcopy(individual)
     chromosome = neighbour.chromosome
     genes = chromosome.genes
     chosen_gene_key = random.choice(list(genes.keys()))
     genes[chosen_gene_key] = chromosome._create_gene(chosen_gene_key)
-    tools = GeneticAlg.Toolkit(crossing_probability=config.CPB, mutation_probability=config.MPB)
+    tools = geneticlib.Toolkit(crossing_probability=config.CPB, mutation_probability=config.MPB)
     tools.set_fitness_weights(weights=(-1,))
     tools.calculate_fitness_values([neighbour], [fitness])
     print(f"{neighbour.chromosome} {neighbour.values[0]}")
     return neighbour
 
 
-def random_neighbour_ksize(individual: GeneticAlg.Individual, k):
+def random_neighbour_ksize(individual: geneticlib.Individual, k):
     neighbour = copy.deepcopy(individual)
     chromosome = neighbour.chromosome
     genes = chromosome.genes
     keys = random.sample(list(genes.keys()), k=k)
     for key in keys:
         genes[key] = chromosome._create_gene(key)
-    tools = GeneticAlg.Toolkit(crossing_probability=config.CPB, mutation_probability=config.MPB)
+    tools = geneticlib.Toolkit(crossing_probability=config.CPB, mutation_probability=config.MPB)
     tools.set_fitness_weights(weights=(-1,))
     tools.calculate_fitness_values([neighbour], [fitness])
     print(f"{neighbour.chromosome} {neighbour.values[0]} {k}")
@@ -243,10 +245,10 @@ def random_neighbour_ksize(individual: GeneticAlg.Individual, k):
 
 def create_individual():
     adapted_predefined_paths = {key: [value[1] for value in values] for key, values in config.predefined_paths.items()}
-    individual = GeneticAlg.Individual(
+    individual = geneticlib.Individual(
         Chromosome(config.net, adapted_predefined_paths, config.transponders_config, config.demands, config.bands,
                    config.slices_usage, config.transponders_cost))
-    tools = GeneticAlg.Toolkit(crossing_probability=config.CPB, mutation_probability=config.MPB)
+    tools = geneticlib.Toolkit(crossing_probability=config.CPB, mutation_probability=config.MPB)
     tools.set_fitness_weights(weights=(-1,))
     tools.calculate_fitness_values([individual], [fitness])
     return individual
@@ -266,10 +268,10 @@ def run_vns():
 
 def run_genetic(pop_size, net, adapted_predefined_paths, transponders_config, demands, bands, slices_usage,
                 transponders_cost):
-    crt = GeneticAlg.Creator(Chromosome)
+    crt = geneticlib.Creator(Chromosome)
     initial_population = crt.create(pop_size, net, adapted_predefined_paths, transponders_config, demands, bands,
                                     slices_usage, transponders_cost)
-    tools = GeneticAlg.Toolkit(crossing_probability=config.CPB, mutation_probability=config.MPB)
+    tools = geneticlib.Toolkit(crossing_probability=config.CPB, mutation_probability=config.MPB)
     tools.set_fitness_weights(weights=(-1,))
     population = tools.create_individuals(initial_population)
     tools.calculate_fitness_values(population, list_of_funcs=[fitness])

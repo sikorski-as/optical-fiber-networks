@@ -110,7 +110,7 @@ def fitness(chromosome):
     #                 else:
     #                     slices_usage[edge].add(slice)
 
-    # power_overflow = _check_power(chromosome)
+    power_overflow = _check_power(chromosome)
 
     # print(slices_overflow)
     # print(total_cost)
@@ -126,7 +126,7 @@ def _check_power(chromosome: Chromosome):
     }
     e = 2.718
     h = 6.62607004 * pow(10, -34)
-    f = {
+    freq = {
         0: 193800000000000.0,
         1: 188500000000000.0
     }
@@ -141,20 +141,23 @@ def _check_power(chromosome: Chromosome):
         3: 75000000000.0
     }
 
+    V = 31.62
+    W = 31.62
     node_reinforcement = sndlib.calculate_reinforcement_for_each_node(chromosome.net)
-    P = 1
+    P = 0.001
 
     power_overflow = 0
     for gene in chromosome.genes.values():
         for transponder_type, path, slice in gene:
-            total = 0
             band = 0 if slice <= chromosome.bands[0][1] else 1
+            total = 0
             for edge in utils.pairwise(path):
-                total += (h * f[band] * (pow(e, l[band] * chromosome.net.edges[edge]['distance']) - 1) * bandwidth[
-                    transponder_type]
-                          + node_reinforcement[edge[0]])
-
-            total *= OSNR[transponder_type]
+                total += chromosome.net.edges[edge]['ila'] * (pow(e, l[band] * chromosome.net.edges[edge]['distance'] /
+                                                                  (1 + chromosome.net.edges[edge]['ila'])) + V - 2)
+                total += pow(e, l[band] * chromosome.net.edges[edge]['distance'] / (1 + chromosome.net.edges[edge]['ila'])
+                             ) + W - 2
+            total *= h * freq[band] * OSNR[transponder_type] * bandwidth[transponder_type]
+            # print(total)
             if total > P:
                 power_overflow += total
     return power_overflow
@@ -185,6 +188,13 @@ def _check_if_fits(genes, bands, transponder_slices_usage):
 
 
 def _use_slices(transponder_slices_used, path_slices_utilization, bands):
+    """
+    Finds empty space for transponder.
+    :param transponder_slices_used: how many empty slices in a row needs to be found
+    :param path_slices_utilization: slices already used by previous transponders
+    :param bands:
+    :return: slices used or None if there is not enough space
+    """
     empty_space = 0
     for i, bit in enumerate(path_slices_utilization):
         if i + transponder_slices_used > bands[0][1] and i < bands[1][0]:
@@ -304,8 +314,8 @@ def run_genetic(pop_size, net, adapted_predefined_paths, transponders_config, de
 
 def main():
     # main()
-    # run_hill()
-    run_vns()
+    run_hill()
+    # run_vns()
 
 
 if __name__ == '__main__':

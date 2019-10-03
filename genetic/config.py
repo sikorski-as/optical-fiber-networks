@@ -6,7 +6,7 @@ import sndlib
 import yen
 import genetic.transponder_config as t_config
 
-net = sndlib.create_undirected_net('polska', calculate_distance=True, calculate_reinforcement=True)
+net = sndlib.create_undirected_net('polska', calculate_distance=True, calculate_reinforcement=True, calculate_ila=True)
 
 
 @lru_cache(maxsize=1024)
@@ -33,7 +33,7 @@ transponders_cost = {
 
 bands = [(0, 191), (192, 383)]  # ranges of slices per band
 
-DEMAND = 250
+DEMAND = 450
 POP_SIZE = 50
 NEW_POP_SIZE = 10
 

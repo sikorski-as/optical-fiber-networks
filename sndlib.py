@@ -148,7 +148,7 @@ class DirectedNetwork(_Network, nx.DiGraph):
         _Network.__init__(self, name)
 
 
-def create_undirected_net(network_name, calculate_distance=False, calculate_reinforcement=False):
+def create_undirected_net(network_name, calculate_distance=False, calculate_reinforcement=False, calculate_ila=False):
     base_path = Path(__file__).parent
     file_path = (base_path / f'data/sndlib/native/{network_name}/{network_name}.txt').resolve()
     net = UndirectedNetwork.load_native(file_path)
@@ -157,10 +157,18 @@ def create_undirected_net(network_name, calculate_distance=False, calculate_rein
             distance = int(geomanip.haversine(edge[0].long, edge[0].lati, edge[1].long,
                                               edge[1].lati))
             net.edges[edge]['distance'] = distance
+            if calculate_ila:
+                net.edges[edge]['ila'] = int(distance / 80)
+    if calculate_reinforcement:
+        nodes_reinforcement = calculate_reinforcement_for_each_node(net)
+        edges_reinforcement = calculate_reinforcement_for_each_edge(net)
+        for edge in net.edges:
+            reinforcement = nodes_reinforcement[edge[0]] + edges_reinforcement[edge]
+            net[edge[0]][edge[1]]['reinforcement'] = reinforcement
     return net
 
 
-def create_directed_net(network_name, calculate_distance=False, calculate_reinforcement=False):
+def create_directed_net(network_name, calculate_distance=False, calculate_reinforcement=False, calculate_ila=False):
     base_path = Path(__file__).parent
     file_path = (base_path / f'data/sndlib/native/{network_name}/{network_name}.txt').resolve()
     net = DirectedNetwork.load_native(file_path)
@@ -169,6 +177,8 @@ def create_directed_net(network_name, calculate_distance=False, calculate_reinfo
             distance = int(geomanip.haversine(edge[0].long, edge[0].lati, edge[1].long,
                                               edge[1].lati))
             net.edges[edge]['distance'] = distance
+            if calculate_ila:
+                net.edges[edge]['ila'] = int(distance / 80)
     if calculate_reinforcement:
         nodes_reinforcement = calculate_reinforcement_for_each_node(net)
         edges_reinforcement = calculate_reinforcement_for_each_edge(net)

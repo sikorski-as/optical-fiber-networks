@@ -13,6 +13,12 @@ import vns as vns
 from genetic import config
 
 
+class Slice:
+
+    def __init__(self, value):
+        self.value = value
+
+
 class Chromosome:
 
     def __init__(self, net, predefined_paths, transponders_config, demands, bands, slices_usage, transponders_cost):
@@ -45,7 +51,7 @@ class Chromosome:
         for transponder_type, ntransonders in enumerate(transponder_config):
             for _ in range(ntransonders):
                 L.append(
-                    (transponder_type, random.choice(self.predefined_paths[key]), self._choose_slice(transponder_type)))
+                    (transponder_type, random.choice(self.predefined_paths[key]), Slice(self._choose_slice(transponder_type))))
         return L
 
     def _choose_slice(self, transponder_type):
@@ -90,7 +96,7 @@ def fitness(chromosome):
     total_cost = 0
     for gene in chromosome.genes.values():
         for subgene in gene:
-            if subgene[2] >= chromosome.bands[1][0]:
+            if subgene[2].value >= chromosome.bands[1][0]:
                 total_cost += 1.5 * cost[subgene[0]]
             else:
                 total_cost += cost[subgene[0]]
@@ -104,7 +110,7 @@ def fitness(chromosome):
     # for gene in chromosome.genes.values():
     #     for subgene in gene:
     #         for edge in utils.pairwise(subgene[1]):
-    #             for slice in range(subgene[2], subgene[2] + chromosome.slices_usage[subgene[0]]):
+    #             for slice in range(subgene[2].value, subgene[2].value + chromosome.slices_usage[subgene[0]]):
     #                 if slice in slices_usage[edge]:
     #                     slices_overflow += 1
     #                 else:
@@ -154,7 +160,8 @@ def _check_power(chromosome: Chromosome):
             for edge in utils.pairwise(path):
                 total += chromosome.net.edges[edge]['ila'] * (pow(e, l[band] * chromosome.net.edges[edge]['distance'] /
                                                                   (1 + chromosome.net.edges[edge]['ila'])) + V - 2)
-                total += pow(e, l[band] * chromosome.net.edges[edge]['distance'] / (1 + chromosome.net.edges[edge]['ila'])
+                total += pow(e,
+                             l[band] * chromosome.net.edges[edge]['distance'] / (1 + chromosome.net.edges[edge]['ila'])
                              ) + W - 2
             total *= h * freq[band] * OSNR[transponder_type] * bandwidth[transponder_type]
             # print(total)
@@ -182,8 +189,12 @@ def _check_if_fits(genes, bands, transponder_slices_usage):
             for edge in utils.pairwise(gene[1]):
                 edge = tuple(sorted(edge))
                 slices_usage[edge].set(1, [i for i in range(slices_used[0], slices_used[1] + 1)])
+                #
+            gene[2].value = slices_used[0]
         else:
             slices_overflow += transponder_slices_usage[gene[0]]
+            #jaki slice ustawić jak sie nie miesci?
+
     return slices_overflow
 
 

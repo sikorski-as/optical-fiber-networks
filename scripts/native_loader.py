@@ -84,7 +84,19 @@ def action_demands(string, location, tokens):
     return {'name': 'demands', 'value': tokens.asList()}
 
 
-admissible_paths = keyword_admissible_paths + left_bracket + right_bracket
+admissible_path_definition = identifier + left_bracket + OneOrMore(identifier) + right_bracket
+@action_for(admissible_path_definition)
+def action_admissible_path_definition (string, location, tokens):
+    return {'path_id': tokens[0], 'links': tokens[1:]}
+
+
+admissible_paths_for_demand = identifier + left_bracket + ZeroOrMore(admissible_path_definition) + right_bracket
+@action_for(admissible_paths_for_demand)
+def action_admissible_paths_for_demand(string, location, tokens):
+    return {'demand_id': tokens[0], 'paths': tokens[1:]}
+
+
+admissible_paths = keyword_admissible_paths + left_bracket + ZeroOrMore(admissible_paths_for_demand) + right_bracket
 @action_for(admissible_paths)
 def action_admissible_paths(string, location, tokens):
     return {'name': 'admissible_paths', 'value': tokens.asList()}

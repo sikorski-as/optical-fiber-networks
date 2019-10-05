@@ -1,8 +1,7 @@
 import re
-from pprint import pprint
 
-from pyparsing import Word, Literal, pyparsing_common, OneOrMore, alphanums, Suppress, SkipTo, LineEnd, ParserElement, \
-    Forward, printables, ZeroOrMore, Group, Optional, delimitedList
+from pyparsing import Word, Literal, OneOrMore, Suppress, ZeroOrMore, Group, Optional
+from pyparsing import pyparsing_common, alphanums, ParserElement
 
 
 def action_for(token: ParserElement):
@@ -16,7 +15,7 @@ def action_for(token: ParserElement):
 left_bracket = Suppress('(')
 right_bracket = Suppress(')')
 number = pyparsing_common.number
-identifier = pyparsing_common.identifier
+identifier = Word(alphanums + '-' + '.' + '_')
 comma_separated_list = pyparsing_common.comma_separated_list
 operator_assign = Suppress(Literal('='))
 keyword_meta = Suppress(Literal('META'))
@@ -38,7 +37,7 @@ def action_node_definition(string, location, tokens):
     return {'module_capacity': tokens[0], 'module_cost': tokens[1]}
 
 
-link_definition = identifier + left_bracket + identifier + identifier + right_bracket + number * 4 + left_bracket + ZeroOrMore(Group(module_pair)) + right_bracket
+link_definition = identifier + left_bracket + identifier + identifier + right_bracket + number * 4 + left_bracket + Group(ZeroOrMore(module_pair)) + right_bracket
 @action_for(link_definition)
 def action_node_definition(string, location, tokens):
     return {
@@ -131,4 +130,22 @@ def load_as_dict(filepath: str):
     with open(filepath, 'r') as f:
         code = f.read()
         preprocessed = preprocess(code)
-        return native_file.parseString(preprocessed)[0]
+        parsed = native_file.parseString(preprocessed)[0]
+        return parsed
+
+
+# print(load_as_dict('data/sndlib/native/polska/polska.txt'))
+# import os, json
+# rootdir = 'data/sndlib/'
+# for i, instance in enumerate(os.listdir(rootdir + 'native/'), start=1):
+#     try:
+#         print(instance)
+#         native_filepath = rootdir + 'native/' + instance + '/' + instance + '.txt'
+#         json_dir = rootdir + 'json/' + instance + '/'
+#         json_filepath = json_dir + instance + '.json'
+#         os.makedirs(json_dir, exist_ok=True)
+#         with open(json_filepath, 'w') as f:
+#             parsed = load_as_dict(native_filepath)
+#             json.dump(parsed, f, indent=4)
+#     except ParseException as e:
+#         print(instance, e)

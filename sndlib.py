@@ -1,3 +1,4 @@
+import json
 import os
 from pathlib import Path
 from typing import Callable
@@ -36,6 +37,7 @@ class _Network:
         # super(_Network, self).__init__(*args, **kwargs)
         self.node_by_name = {}
         self.name = name
+        self.demands = {}
 
     DISTANCE_KEY = 'distance'
 
@@ -63,6 +65,27 @@ class _Network:
                         network.add_edge(network.node_by_name[n1], network.node_by_name[n2], edge_id=link_id)
                         network.add_edge(network.node_by_name[n2], network.node_by_name[n1], edge_id=link_id)
                         link_id += 1
+        return network
+
+    @classmethod
+    def load_json(cls, filename):
+        network = cls(name=filename)
+        with open(filename) as f:
+            model = json.load(f)
+            for n in model['nodes']:
+                node = Node(name=n['id'], long=n['longitude'], lati=n['latitude'])
+                network.node_by_name[n['id']] = node
+                network.add_node(node)
+            for e in model['links']:
+                s, t = e['source'], e['target']
+                s, t = network.node_by_name[s], network.node_by_name[t]
+                network.add_edge(s, t)
+            for demand in model['demands']:
+                s, t = demand['source'], demand['target']
+                s, t = network.node_by_name[s], network.node_by_name[t]
+                network.demands[(s, t)] = demand['demand_value']
+                if not nx.is_directed(network):
+                    network.demands[(t, s)] = demand['demand_value']
         return network
 
     def edge_middle_point(self, u, v, pixel_value=False):

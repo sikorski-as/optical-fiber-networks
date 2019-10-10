@@ -37,7 +37,7 @@ class _Network:
         # super(_Network, self).__init__(*args, **kwargs)
         self.node_by_name = {}
         self.name = name
-        self.demands = {}
+        self._demands = {}
 
     DISTANCE_KEY = 'distance'
 
@@ -83,10 +83,32 @@ class _Network:
             for demand in model['demands']:
                 s, t = demand['source'], demand['target']
                 s, t = network.node_by_name[s], network.node_by_name[t]
-                network.demands[(s, t)] = demand['demand_value']
-                if not nx.is_directed(network):
-                    network.demands[(t, s)] = demand['demand_value']
+                network._demands[(s, t)] = demand['demand_value']
         return network
+
+    @property
+    def demands(self):
+        """
+        :return: a dict with keys (n1, n2) and values being demanded values between n1 and n2.
+        """
+        return self._demands
+
+    @property
+    def all_demands(self):
+        """
+        :return: a dict with keys both (n1, n2) and (n2, n1) and values being demanded values between n1 and n2.
+        """
+        new = {}
+        for (n1, n2), value in self._demands.items():
+            new[(n1, n2)] = value
+            new[(n2, n1)] = value
+        return new
+
+    def get_demand(self, n1, n2):
+        try:
+            return self.demands[(n1, n2)]
+        except KeyError:
+            return self.demands[(n2, n1)]
 
     def edge_middle_point(self, u, v, pixel_value=False):
         if self.has_edge(u, v) or self.has_edge(v, u):
@@ -173,8 +195,8 @@ class DirectedNetwork(_Network, nx.DiGraph):
 
 def create_undirected_net(network_name, calculate_distance=False, calculate_reinforcement=False, calculate_ila=False):
     base_path = Path(__file__).parent
-    file_path = (base_path / f'data/sndlib/native/{network_name}/{network_name}.txt').resolve()
-    net = UndirectedNetwork.load_native(file_path)
+    file_path = (base_path / f'data/sndlib/json/{network_name}/{network_name}.json').resolve()
+    net = UndirectedNetwork.load_json(file_path)
     if calculate_distance:
         for edge in net.edges:
             distance = int(geomanip.haversine(edge[0].long, edge[0].lati, edge[1].long,
@@ -193,8 +215,8 @@ def create_undirected_net(network_name, calculate_distance=False, calculate_rein
 
 def create_directed_net(network_name, calculate_distance=False, calculate_reinforcement=False, calculate_ila=False):
     base_path = Path(__file__).parent
-    file_path = (base_path / f'data/sndlib/native/{network_name}/{network_name}.txt').resolve()
-    net = DirectedNetwork.load_native(file_path)
+    file_path = (base_path / f'data/sndlib/json/{network_name}/{network_name}.json').resolve()
+    net = DirectedNetwork.load_json(file_path)
     if calculate_distance:
         for edge in net.edges:
             distance = int(geomanip.haversine(edge[0].long, edge[0].lati, edge[1].long,

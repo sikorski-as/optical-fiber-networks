@@ -4,7 +4,8 @@ import networkx as nx
 
 import sndlib
 import yen
-import genetic.transponder_config as t_config
+import genetic.transponders as tconfiger
+# import genetic.transponder_config as t_config
 
 net = sndlib.create_undirected_net('polska', calculate_distance=True, calculate_reinforcement=True, calculate_ila=True)
 
@@ -37,8 +38,11 @@ DEMAND = 450
 POP_SIZE = 50
 NEW_POP_SIZE = 10
 
-demands = {key: DEMAND for key in predefined_paths}
-transponders_config = {DEMAND: t_config.create_config([(40, 4), (100, 4), (200, 8), (400, 12)], DEMAND, 3)}
+# demands = {key: DEMAND for key in predefined_paths}
+# transponders_config = {DEMAND: t_config.create_config([(40, 4), (100, 4), (200, 8), (400, 12)], DEMAND, 3)}
+transponders_config = tconfiger.load_config('data/transponder_config_ea.json')
+demands = net.all_demands
+
 
 CPB = 100
 MPB = 50

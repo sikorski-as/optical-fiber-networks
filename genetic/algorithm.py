@@ -155,7 +155,7 @@ def _check_power(chromosome: Chromosome):
     power_overflow = 0
     for gene in chromosome.genes.values():
         for transponder_type, path, slice in gene:
-            band = 0 if slice <= chromosome.bands[0][1] else 1
+            band = 0 if slice.value <= chromosome.bands[0][1] else 1
             total = 0
             for edge in utils.pairwise(path):
                 total += chromosome.net.edges[edge]['ila'] * (pow(e, l[band] * chromosome.net.edges[edge]['distance'] /

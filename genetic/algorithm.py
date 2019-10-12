@@ -1,7 +1,7 @@
 import copy
 import random
 from collections import defaultdict
-from pprint import pprint
+from pprint import pprint, pformat
 
 import bitstring
 
@@ -17,6 +17,9 @@ class Slice:
 
     def __init__(self, value):
         self.value = value
+
+    def __repr__(self):
+        return f"{self.value}"
 
 
 class Chromosome:
@@ -37,10 +40,12 @@ class Chromosome:
         self.slices_usage = slices_usage
         self.transponders_cost = transponders_cost
         self._structure = self._create_structure()
+        self.slices_overflow = None
+        self.power_overflow = None
 
     def _create_structure(self):
         structure = {}
-        for key in self.predefined_paths:
+        for key in self.demands:
             structure[key] = self._create_gene(key)
         return structure
 
@@ -51,7 +56,8 @@ class Chromosome:
         for transponder_type, ntransonders in enumerate(transponder_config):
             for _ in range(ntransonders):
                 L.append(
-                    (transponder_type, random.choice(self.predefined_paths[key]), Slice(self._choose_slice(transponder_type))))
+                    (transponder_type, random.choice(self.predefined_paths[key]),
+                     Slice(self._choose_slice(transponder_type))))
         return L
 
     def _choose_slice(self, transponder_type):
@@ -59,8 +65,8 @@ class Chromosome:
         begin, end = random.choice(self.bands)
         return random.randrange(begin, end - slices_used)
 
-    # def __repr__(self):
-    #     return str(self._structure)
+    def __repr__(self):
+        return f"PO:{self.power_overflow} SO:{self.slices_overflow}"
 
     @property
     def genes(self):
@@ -71,7 +77,7 @@ def crossing(individual1, individual2):
     child1 = copy.deepcopy(individual1.chromosome)
     child2 = copy.deepcopy(individual2.chromosome)
     for key in child1.genes:
-        if random.randrange(0, 100) < 20:
+        if random.randrange(0, 100) < config.GSPB:
             child1.genes[key], child2.genes[key] = child2.genes[key], child1.genes[key]
 
     return [child1, child2]
@@ -81,7 +87,7 @@ def mutating(individual):
     chromosome = individual.chromosome
     for key, gene in chromosome.genes.items():
         for i, subgene in enumerate(gene):
-            if random.randrange(0, 100) < 5:
+            if random.randrange(0, 100) < config.CPPB:
                 gene[i] = _change_path(subgene, chromosome.predefined_paths[key])
     return chromosome
 
@@ -96,14 +102,12 @@ def fitness(chromosome):
     total_cost = 0
     for gene in chromosome.genes.values():
         for subgene in gene:
-            if subgene[2].value >= chromosome.bands[1][0]:
-                total_cost += 1.5 * cost[subgene[0]]
-            else:
-                total_cost += cost[subgene[0]]
+            band = 0 if subgene[2].value <= chromosome.bands[1][0] else 1
+            total_cost += cost[subgene[0], band]
 
     # version 1
     slices_overflow = _check_if_fits(chromosome.genes.values(), chromosome.bands, chromosome.slices_usage)
-
+    chromosome.slices_overflow = slices_overflow
     # version 2
     # slices_overflow = 0
     # slices_usage = defaultdict(set)
@@ -167,6 +171,7 @@ def _check_power(chromosome: Chromosome):
             # print(total)
             if total > P:
                 power_overflow += total
+    chromosome.power_overflow = power_overflow
     return power_overflow
 
 
@@ -193,7 +198,7 @@ def _check_if_fits(genes, bands, transponder_slices_usage):
             gene[2].value = slices_used[0]
         else:
             slices_overflow += transponder_slices_usage[gene[0]]
-            #jaki slice ustawić jak sie nie miesci?
+            # jaki slice ustawić jak sie nie miesci?
 
     return slices_overflow
 
@@ -230,7 +235,7 @@ def main():
 
     best_result = hc.run(best_individual, random_neighbour_function=random_neighbour, compare_function=compare,
                          n=config.HILL_ITERATIONS)
-    pprint(best_result)
+    save_result(best_result.chromosome)
 
 
 def compare(individual: geneticlib.Individual):
@@ -306,7 +311,9 @@ def run_genetic(pop_size, net, adapted_predefined_paths, transponders_config, de
         offspring = tools.cross(couples, crossover_fun=crossing)
         tools.mutate(offspring, mutation_fun=mutating)
         tools.calculate_fitness_values(offspring, [fitness])
-        new_population = tools.select_best(population + offspring, pop_size - config.NEW_POP_SIZE)
+        # new_population = tools.select_best(population + offspring, pop_size - config.NEW_POP_SIZE)
+        # new_population = tools.select_tournament(population + offspring, pop_size - config.NEW_POP_SIZE, n=5)
+        new_population = tools.select_linear(population + offspring, pop_size - config.NEW_POP_SIZE)
         additional_population = crt.create(config.NEW_POP_SIZE, net, adapted_predefined_paths, transponders_config,
                                            demands, bands,
                                            slices_usage, transponders_cost)
@@ -319,15 +326,40 @@ def run_genetic(pop_size, net, adapted_predefined_paths, transponders_config, de
         print(f"{iteration}{best}")
 
     best_population = sorted(population, key=lambda x: x.values[0])
-    pprint(best_population)
+    # pprint(best_population)
     return best_population[0]
 
 
-def main():
-    # main()
-    run_hill()
-    # run_vns()
+def save_result(best_chromosome: Chromosome):
+    """
+    demandy, użyte transpondery dla danego połączenia, stan sieci(slice`y)?
+    suma użytych transponderów każdego typu
+    :param best_chromosome:
+    :return:
+    """
+    file_name = f"{config.net_name}_I{config.intensity}_PS{config.POP_SIZE}_GI{config.GA_ITERATIONS}_HI{config.HILL_ITERATIONS}"
+    ndemands = len(best_chromosome.demands.values())
+    structure = pformat(best_chromosome.genes, indent=1)
+    total_transonders_used = [0 for _ in range(int(len(best_chromosome.transponders_cost.values()) / 2))]
+    genes = best_chromosome.genes.values()
+    for gene in genes:
+        for subgene in gene:
+            total_transonders_used[subgene[0]] += 1
+
+    flatten_genes = [subgene for gene in genes for subgene in gene]
+    sorted_genes = [gene for gene in sorted(flatten_genes, key=lambda x: x[2].value)]
+
+    result = f"Number of demands: {ndemands}\n Cost: {fitness(best_chromosome)}\n Structure: {structure}\n " \
+        f"Transponders used:{total_transonders_used}\n" \
+        f"Sorted paths:{sorted_genes},\n Power overflow: {best_chromosome.power_overflow} \n" \
+        f" Slices overflow: {best_chromosome.slices_overflow}"
+    print(result)
+
+    with open(f'results/{file_name}', mode='w') as file:
+        file.write(result)
 
 
 if __name__ == '__main__':
     main()
+    # run_hill()
+    # run_vns()

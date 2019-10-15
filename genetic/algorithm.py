@@ -100,13 +100,9 @@ def _change_path(gene, predefined_paths):
 def fitness(chromosome):
     cost = chromosome.transponders_cost
     total_cost = 0
-    for gene in chromosome.genes.values():
-        for subgene in gene:
-            band = 0 if subgene[2].value <= chromosome.bands[1][0] else 1
-            total_cost += cost[subgene[0], band]
 
     # version 1
-    slices_overflow = _check_if_fits(chromosome.genes.values(), chromosome.bands, chromosome.slices_usage)
+    slices_overflow, bands_usage = _check_if_fits(chromosome.genes.values(), chromosome.bands, chromosome.slices_usage)
     chromosome.slices_overflow = slices_overflow
     # version 2
     # slices_overflow = 0
@@ -120,11 +116,19 @@ def fitness(chromosome):
     #                 else:
     #                     slices_usage[edge].add(slice)
 
+    for gene in chromosome.genes.values():
+        for subgene in gene:
+            band = 0 if subgene[2].value <= chromosome.bands[0][1] else 1
+            total_cost += cost[subgene[0], band]
+
     power_overflow = _check_power(chromosome)
 
     # print(slices_overflow)
     # print(total_cost)
-    return total_cost + pow(slices_overflow, 2)
+    amplifiers_cost = sum([config.b_cost[key] * value for key, value in bands_usage.items()])
+    if total_cost - int(total_cost) != 0:
+        print()
+    return total_cost + pow(slices_overflow, 2) + amplifiers_cost
 
 
 def _check_power(chromosome: Chromosome):
@@ -180,6 +184,8 @@ def _check_if_fits(genes, bands, transponder_slices_usage):
     flatten_genes = [subgene for gene in genes for subgene in gene]
     sorted_genes = sorted(flatten_genes, key=lambda x: len(x[1]), reverse=True)
     slices_overflow = 0
+    edges_used = defaultdict(set)
+    bands_usage = defaultdict(int)  # counts edges used in each band
 
     for gene in sorted_genes:
         path_slices_utilization = None
@@ -194,13 +200,16 @@ def _check_if_fits(genes, bands, transponder_slices_usage):
             for edge in utils.pairwise(gene[1]):
                 edge = tuple(sorted(edge))
                 slices_usage[edge].set(1, [i for i in range(slices_used[0], slices_used[1] + 1)])
-                #
+                band = 0 if slices_used[0] <= config.bands[0][1] else 1
+                if edge not in edges_used[band]:
+                    bands_usage[band] += 1
+                    edges_used[band].add(edge)
             gene[2].value = slices_used[0]
         else:
             slices_overflow += transponder_slices_usage[gene[0]]
             # jaki slice ustawić jak sie nie miesci?
 
-    return slices_overflow
+    return slices_overflow, bands_usage
 
 
 def _use_slices(transponder_slices_used, path_slices_utilization, bands):

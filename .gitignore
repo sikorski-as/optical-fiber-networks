@@ -190,3 +190,8 @@ dmypy.json
     Blog
     About
 
+.dat
+.txt
+.out
+results/
+data/

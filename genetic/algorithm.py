@@ -2,75 +2,11 @@ import copy
 import random
 from collections import defaultdict
 from pprint import pprint, pformat
-
 import bitstring
-
 import geneticlib
-import hill_climbing as hc
 import sndlib
 import utils
-import vns as vns
-from genetic import config
-
-
-class Slice:
-
-    def __init__(self, value):
-        self.value = value
-
-    def __repr__(self):
-        return f"{self.value}"
-
-
-class Chromosome:
-
-    def __init__(self, net, predefined_paths, transponders_config, demands, bands, slices_usage, transponders_cost):
-        """
-        :param predefined_paths: {} key (city1, city2)
-        :param transponders_config: {} key demand
-        :param demands: {} key (city1, city2)
-        :param bands: [(begin, end), (begin, end)]
-        :param slices_usage: amount of slices used by transponder
-        """
-        self.net = net
-        self.predefined_paths = predefined_paths
-        self.transponders_config = transponders_config
-        self.demands = demands
-        self.bands = bands
-        self.slices_usage = slices_usage
-        self.transponders_cost = transponders_cost
-        self._structure = self._create_structure()
-        self.slices_overflow = None
-        self.power_overflow = None
-
-    def _create_structure(self):
-        structure = {}
-        for key in self.demands:
-            structure[key] = self._create_gene(key)
-        return structure
-
-    def _create_gene(self, key):
-        demand = self.demands[key]
-        transponder_config = random.choice(self.transponders_config[demand])
-        L = []
-        for transponder_type, ntransonders in enumerate(transponder_config):
-            for _ in range(ntransonders):
-                L.append(
-                    (transponder_type, random.choice(self.predefined_paths[key]),
-                     Slice(self._choose_slice(transponder_type))))
-        return L
-
-    def _choose_slice(self, transponder_type):
-        slices_used = self.slices_usage[transponder_type]
-        begin, end = random.choice(self.bands)
-        return random.randrange(begin, end - slices_used)
-
-    def __repr__(self):
-        return f"PO:{self.power_overflow} SO:{self.slices_overflow}"
-
-    @property
-    def genes(self):
-        return self._structure
+from genetic import config, structure
 
 
 def crossing(individual1, individual2):
@@ -102,7 +38,7 @@ def fitness(chromosome):
     total_cost = 0
 
     # version 1
-    slices_overflow, bands_usage = _check_if_fits(chromosome.genes.values(), chromosome.bands, chromosome.slices_usage)
+    slices_overflow, bands_usage = _allocate_slices(chromosome.genes.values(), chromosome.bands, chromosome.slices_usage)
     chromosome.slices_overflow = slices_overflow
     # version 2
     # slices_overflow = 0
@@ -131,7 +67,7 @@ def fitness(chromosome):
     return total_cost + pow(slices_overflow, 2) + amplifiers_cost
 
 
-def _check_power(chromosome: Chromosome):
+def _check_power(chromosome: structure.Chromosome):
     OSNR = {
         0: 10,
         1: 15.85,
@@ -161,8 +97,8 @@ def _check_power(chromosome: Chromosome):
     P = 0.001
 
     power_overflow = 0
-    for gene in chromosome.genes.values():
-        for transponder_type, path, slice in gene:
+    for subgene in chromosome.genes.values():
+        for transponder_type, path, slice in subgene:
             band = 0 if slice.value <= chromosome.bands[0][1] else 1
             total = 0
             for edge in utils.pairwise(path):
@@ -179,34 +115,34 @@ def _check_power(chromosome: Chromosome):
     return power_overflow
 
 
-def _check_if_fits(genes, bands, transponder_slices_usage):
+def _allocate_slices(genes, bands, transponder_slices_usage):
     slices_usage = defaultdict(lambda: bitstring.BitArray(bands[1][1]))
-    flatten_genes = [subgene for gene in genes for subgene in gene]
-    sorted_genes = sorted(flatten_genes, key=lambda x: len(x[1]), reverse=True)
+    flatten_subgenes = [subgene for gene in genes for subgene in gene]
+    sorted_subgenes = sorted(flatten_subgenes, key=lambda x: len(x[1]), reverse=True)
     slices_overflow = 0
     edges_used = defaultdict(set)
     bands_usage = defaultdict(int)  # counts edges used in each band
 
-    for gene in sorted_genes:
+    for subgene in sorted_subgenes:
         path_slices_utilization = None
-        for edge in utils.pairwise(gene[1]):
+        for edge in utils.pairwise(subgene[1]):
             edge = tuple(sorted(edge))
             if path_slices_utilization is not None:
                 path_slices_utilization = path_slices_utilization | slices_usage[edge]
             else:
                 path_slices_utilization = slices_usage[edge]
-        slices_used = _use_slices(transponder_slices_usage[gene[0]], path_slices_utilization, bands)
+        slices_used = _use_slices(transponder_slices_usage[subgene[0]], path_slices_utilization, bands)
         if slices_used:
-            for edge in utils.pairwise(gene[1]):
+            for edge in utils.pairwise(subgene[1]):
                 edge = tuple(sorted(edge))
                 slices_usage[edge].set(1, [i for i in range(slices_used[0], slices_used[1] + 1)])
                 band = 0 if slices_used[0] <= config.bands[0][1] else 1
                 if edge not in edges_used[band]:
                     bands_usage[band] += 1
                     edges_used[band].add(edge)
-            gene[2].value = slices_used[0]
+            subgene[2].value = slices_used[0]
         else:
-            slices_overflow += transponder_slices_usage[gene[0]]
+            slices_overflow += transponder_slices_usage[subgene[0]]
             # jaki slice ustawić jak sie nie miesci?
 
     return slices_overflow, bands_usage
@@ -235,76 +171,9 @@ def _use_slices(transponder_slices_used, path_slices_utilization, bands):
     return None
 
 
-def main():
-    adapted_predefined_paths = {key: [value[1] for value in values] for key, values in config.predefined_paths.items()}
-    # pprint(adapted_predefined_paths)
-    best_individual = run_genetic(config.POP_SIZE, config.net, adapted_predefined_paths, config.transponders_config,
-                                  config.demands, config.bands,
-                                  config.slices_usage, config.transponders_cost)
-
-    best_result = hc.run(best_individual, random_neighbour_function=random_neighbour, compare_function=compare,
-                         n=config.HILL_ITERATIONS)
-    save_result(best_result.chromosome)
-
-
-def compare(individual: geneticlib.Individual):
-    return individual.values[0]
-
-
-def random_neighbour(individual: geneticlib.Individual):
-    neighbour = copy.deepcopy(individual)
-    chromosome = neighbour.chromosome
-    genes = chromosome.genes
-    chosen_gene_key = random.choice(list(genes.keys()))
-    genes[chosen_gene_key] = chromosome._create_gene(chosen_gene_key)
-    tools = geneticlib.Toolkit(crossing_probability=config.CPB, mutation_probability=config.MPB)
-    tools.set_fitness_weights(weights=(-1,))
-    tools.calculate_fitness_values([neighbour], [fitness])
-    print(f"{neighbour.chromosome} {neighbour.values[0]}")
-    return neighbour
-
-
-def random_neighbour_ksize(individual: geneticlib.Individual, k):
-    neighbour = copy.deepcopy(individual)
-    chromosome = neighbour.chromosome
-    genes = chromosome.genes
-    keys = random.sample(list(genes.keys()), k=k)
-    for key in keys:
-        genes[key] = chromosome._create_gene(key)
-    tools = geneticlib.Toolkit(crossing_probability=config.CPB, mutation_probability=config.MPB)
-    tools.set_fitness_weights(weights=(-1,))
-    tools.calculate_fitness_values([neighbour], [fitness])
-    print(f"{neighbour.chromosome} {neighbour.values[0]} {k}")
-    return neighbour
-
-
-def create_individual():
-    adapted_predefined_paths = {key: [value[1] for value in values] for key, values in config.predefined_paths.items()}
-    individual = geneticlib.Individual(
-        Chromosome(config.net, adapted_predefined_paths, config.transponders_config, config.demands, config.bands,
-                   config.slices_usage, config.transponders_cost))
-    tools = geneticlib.Toolkit(crossing_probability=config.CPB, mutation_probability=config.MPB)
-    tools.set_fitness_weights(weights=(-1,))
-    tools.calculate_fitness_values([individual], [fitness])
-    return individual
-
-
-def run_hill():
-    individual = create_individual()
-    best = hc.run(individual, random_neighbour_function=random_neighbour, compare_function=compare, n=1000)
-    pprint(best)
-
-
-def run_vns():
-    individual = create_individual()
-    best = vns.run(individual, random_neighbour_function=random_neighbour_ksize, compare_function=compare, n=1000,
-                   m=100, K=10)
-    pprint(best)
-
-
 def run_genetic(pop_size, net, adapted_predefined_paths, transponders_config, demands, bands, slices_usage,
                 transponders_cost):
-    crt = geneticlib.Creator(Chromosome)
+    crt = geneticlib.Creator(structure.Chromosome)
     initial_population = crt.create(pop_size, net, adapted_predefined_paths, transponders_config, demands, bands,
                                     slices_usage, transponders_cost)
     tools = geneticlib.Toolkit(crossing_probability=config.CPB, mutation_probability=config.MPB)
@@ -339,7 +208,7 @@ def run_genetic(pop_size, net, adapted_predefined_paths, transponders_config, de
     return best_population[0]
 
 
-def save_result(best_chromosome: Chromosome):
+def save_result(best_chromosome: structure.Chromosome):
     """
     demandy, użyte transpondery dla danego połączenia, stan sieci(slice`y)?
     suma użytych transponderów każdego typu
@@ -355,12 +224,12 @@ def save_result(best_chromosome: Chromosome):
         for subgene in gene:
             total_transonders_used[subgene[0]] += 1
 
-    flatten_genes = [subgene for gene in genes for subgene in gene]
-    sorted_genes = [gene for gene in sorted(flatten_genes, key=lambda x: x[2].value)]
+    flatten_subgenes = [subgene for gene in genes for subgene in gene]
+    sorted_subgenes = [subgene for subgene in sorted(flatten_subgenes, key=lambda x: x[2].value)]
 
     result = f"Number of demands: {ndemands}\n Cost: {fitness(best_chromosome)}\n Structure: {structure}\n " \
         f"Transponders used:{total_transonders_used}\n" \
-        f"Sorted paths:{sorted_genes},\n Power overflow: {best_chromosome.power_overflow} \n" \
+        f"Sorted paths:{sorted_subgenes},\n Power overflow: {best_chromosome.power_overflow} \n" \
         f" Slices overflow: {best_chromosome.slices_overflow}"
     print(result)
 
@@ -368,7 +237,14 @@ def save_result(best_chromosome: Chromosome):
         file.write(result)
 
 
+def main():
+    adapted_predefined_paths = {key: [value[1] for value in values] for key, values in config.predefined_paths.items()}
+    # pprint(adapted_predefined_paths)
+    best_individual = run_genetic(config.POP_SIZE, config.net, adapted_predefined_paths, config.transponders_config,
+                                  config.demands, config.bands,
+                                  config.slices_usage, config.transponders_cost)
+    return best_individual
+
+
 if __name__ == '__main__':
     main()
-    # run_hill()
-    # run_vns()

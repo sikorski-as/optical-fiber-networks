@@ -8,7 +8,12 @@ Transponder = namedtuple('Transponder', 'transfer width cost')
 def load_config(filename: str):
     with open(filename) as f:
         d = json.load(f)
-        return {int(demand_value): config for demand_value, config in d.items()}
+        try:
+            # load new format (with metric)
+            return {int(demand_value): config for demand_value, config in d['configs'].items()}
+        except KeyError:
+            # load old format (without metric, just demands and configurations)
+            return {int(demand_value): config for demand_value, config in d.items()}
 
 
 def save_config(filename: str, data):

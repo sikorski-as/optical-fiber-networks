@@ -8,10 +8,13 @@ from geneticlib import Creator, Toolkit
 
 
 class Chromosome:
-    def __init__(self, demand, transponders):
+    def __init__(self, demand, transponders, configuration=None):
         self.transponders = transponders
         self.demand = demand
-        self.configuration = [random.randint(0, math.ceil(demand / transponder.transfer)) for transponder in transponders]
+        if configuration is None:
+            self.configuration = [random.randint(0, math.ceil(demand / transponder.transfer)) for transponder in transponders]
+        else:
+            self.configuration = configuration
 
     @property
     def total_capacity(self):
@@ -63,12 +66,14 @@ def crossing(parent1, parent2):
     return [chromosome1, chromosome2]
 
 
-def create_config(demand, transponders, n):
+def create_config(demand, transponders, n, initial=None):
     best_results = sortedcontainers.SortedSet(key=lambda el: fitness(el))
+    if initial is not None:
+        best_results.update(Chromosome(demand, transponders, conf) for conf in initial)
     CPB = 20
     MPB = 100
-    pop_size = 50
-    ITERATIONS = 200
+    pop_size = 40
+    ITERATIONS = 150
     new_pop_size = 10
     crt = Creator(Chromosome)
     initial_population = crt.create(pop_size, demand, transponders)
@@ -102,7 +107,7 @@ def create_config(demand, transponders, n):
         iteration += 1
     configuration = []
     for result in best_results:
-        print(f"{result} {fitness(result)}")
+        # print(f"{result} {fitness(result)}")
         configuration.append(result.configuration)
     print('done with demand =', demand)
 

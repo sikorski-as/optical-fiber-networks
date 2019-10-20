@@ -1,6 +1,6 @@
 import json
 from collections import Counter, namedtuple
-from . import ip, ea
+from . import ip, ea, mixed
 
 Transponder = namedtuple('Transponder', 'transfer width cost')
 
@@ -14,6 +14,11 @@ def load_config(filename: str):
 def save_config(filename: str, data):
     with open(filename, 'w') as f:
         json.dump(data, f, indent=4)
+
+
+def find_configs_for_demand(demand, n, tdata, method):
+    configs = method(demand, tdata, n)
+    return configs
 
 
 def find_configs_for_range(a, b, n, tdata, method, stats=False):

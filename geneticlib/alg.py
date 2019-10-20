@@ -3,7 +3,7 @@ from geneticlib import toolkit
 import random
 import copy
 import pydoc
-import hill_climbing as hc
+import hill_climbinglib as hc
 import SimulatedAnnealing as sa
 
 

@@ -1,6 +1,8 @@
 import math
 from functools import lru_cache
 import networkx as nx
+
+import geneticlib
 import sndlib
 import yen
 import genetic.transponders as tconfiger
@@ -74,3 +76,6 @@ CPPB = 5  # Change path probability
 GA_ITERATIONS = 2
 
 HILL_ITERATIONS = 2000
+
+tools = geneticlib.Toolkit(crossing_probability=CPB, mutation_probability=MPB)
+tools.set_fitness_weights(weights=(-1,))

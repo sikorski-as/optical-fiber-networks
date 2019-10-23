@@ -34,6 +34,12 @@ class Chromosome:
         self.slices_overflow = None
         self.power_overflow = None
 
+    def clear_structure(self):
+        self._structure = {}
+
+    def set_structure(self, structure):
+        self._structure = structure
+
     def _create_structure(self):
         structure = {}
         for key in self.demands:

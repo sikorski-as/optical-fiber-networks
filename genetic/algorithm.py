@@ -24,11 +24,11 @@ def mutating(individual):
     for key, gene in chromosome.genes.items():
         for i, subgene in enumerate(gene):
             if random.randrange(0, 100) < config.CPPB:
-                gene[i] = _change_path(subgene, chromosome.predefined_paths[key])
+                gene[i] = change_path(subgene, chromosome.predefined_paths[key])
     return chromosome
 
 
-def _change_path(gene, predefined_paths):
+def change_path(gene, predefined_paths):
     new_gene = gene[0], random.choice(predefined_paths), gene[2]
     return new_gene
 

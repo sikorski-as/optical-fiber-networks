@@ -1,4 +1,5 @@
 import json
+import math
 from collections import Counter, namedtuple
 from . import ip, ea, mixed
 
@@ -10,7 +11,7 @@ def load_config(filename: str):
         d = json.load(f)
         try:
             # load new format (with metric)
-            return {int(demand_value): config for demand_value, config in d['configs'].items()}
+            return {int(math.ceil(float(demand_value))): config for demand_value, config in d['configs'].items()}
         except KeyError:
             # load old format (without metric, just demands and configurations)
             return {int(demand_value): config for demand_value, config in d.items()}

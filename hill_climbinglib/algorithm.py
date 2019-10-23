@@ -12,6 +12,7 @@ def run(initial_value, random_neighbour_function, compare_function, n=1, descend
     number_of_iterations = 1
 
     while number_of_iterations < n:
+        print(number_of_iterations)
         neighbour = random_neighbour_function(best)
 
         if compare_function(best) > compare_function(neighbour) and descending \

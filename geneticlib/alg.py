@@ -4,7 +4,7 @@ import random
 import copy
 import pydoc
 import hill_climbinglib as hc
-import SimulatedAnnealing as sa
+import simulated_annealinglib as sa
 
 
 class A:

@@ -1,9 +1,10 @@
 import math
+import time
 from functools import lru_cache
 import networkx as nx
-
 import geneticlib
 import sndlib
+import timer
 import yen
 import genetic.transponders as tconfiger
 # import genetic.transponder_config as t_config
@@ -19,7 +20,7 @@ def dist(a, b):
 
 
 def get_kozdro_paths():
-    with open("data\less025.dat") as path_file, open("data\cities.txt") as cities_file, open(
+    with open("data\pol2.dat") as path_file, open("data\cities.txt") as cities_file, open(
             'data\edges.txt') as edges_file:
         data_info = DataInfo(result_file=None, paths_file=path_file, cities_file=cities_file, edges_file=edges_file)
         data_info.upload_paths()
@@ -35,10 +36,10 @@ K = 3  # number of predefined paths
 predefined_paths = get_kozdro_paths()
 
 slices_usage = {
-    0: 4,
-    1: 4,
-    2: 8,
-    3: 12
+    0: 1,
+    1: 1,
+    2: 2,
+    3: 3
 }
 
 b_cost = {
@@ -57,15 +58,18 @@ transponders_cost = {
     (3, 1): 11.8,
 }
 
+clock = timer.Clock()
+
 bands = [(0, 191), (192, 383)]  # ranges of slices per band
 
 # DEMAND = 450
-POP_SIZE = 100
-NEW_POP_SIZE = 20
+POP_SIZE = 50
+NEW_POP_SIZE = 10
 
 # demands = {key: DEMAND for key in predefined_paths}
 # transponders_config = {DEMAND: t_config.create_config([(40, 4), (100, 4), (200, 8), (400, 12)], DEMAND, 3)}
-transponders_config = tconfiger.load_config('data/transponder_config_ea.json')
+t_config_file = 'data/transponder_config_mixed_with_400.json'
+transponders_config = tconfiger.load_config(t_config_file)
 intensity = 0.25
 demands = {key: math.ceil(value * intensity) for key, value in net.demands.items()}
 
@@ -73,9 +77,11 @@ CPB = 100
 GSPB = 20  # Gene swap probability
 MPB = 50
 CPPB = 5  # Change path probability
-GA_ITERATIONS = 2
+GA_ITERATIONS = 50
 
-HILL_ITERATIONS = 2000
+HILL_ITERATIONS = 600
 
 tools = geneticlib.Toolkit(crossing_probability=CPB, mutation_probability=MPB)
 tools.set_fitness_weights(weights=(-1,))
+
+

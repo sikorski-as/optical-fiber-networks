@@ -38,7 +38,8 @@ def fitness(chromosome):
     total_cost = 0
 
     # version 1
-    slices_overflow, bands_usage = _allocate_slices(chromosome.genes.values(), chromosome.bands, chromosome.slices_usage)
+    slices_overflow, bands_usage = _allocate_slices(chromosome.genes.values(), chromosome.bands,
+                                                    chromosome.slices_usage)
     chromosome.slices_overflow = slices_overflow
     # version 2
     # slices_overflow = 0
@@ -58,13 +59,10 @@ def fitness(chromosome):
             total_cost += cost[subgene[0], band]
 
     power_overflow = _check_power(chromosome)
-
     # print(slices_overflow)
     # print(total_cost)
     amplifiers_cost = sum([config.b_cost[key] * value for key, value in bands_usage.items()])
-    if total_cost - int(total_cost) != 0:
-        print()
-    return total_cost + pow(slices_overflow, 2) + amplifiers_cost
+    return total_cost * pow(2.72, power_overflow) + pow(slices_overflow, 2) + amplifiers_cost
 
 
 def _check_power(chromosome: structure.Chromosome):
@@ -227,10 +225,16 @@ def save_result(best_chromosome: structure.Chromosome):
     flatten_subgenes = [subgene for gene in genes for subgene in gene]
     sorted_subgenes = [subgene for subgene in sorted(flatten_subgenes, key=lambda x: x[2].value)]
 
-    result = f"Number of demands: {ndemands}\n Cost: {fitness(best_chromosome)}\n Structure: {structure}\n " \
-        f"Transponders used:{total_transonders_used}\n" \
-        f"Sorted paths:{sorted_subgenes},\n Power overflow: {best_chromosome.power_overflow} \n" \
-        f" Slices overflow: {best_chromosome.slices_overflow}"
+    result = f"Number of demands: {ndemands}\n" \
+        f"Cost: {fitness(best_chromosome)}\n" \
+        f"Structure: {structure}\n" \
+        f"Transponders used: {total_transonders_used}\n" \
+        f"Sorted paths: {sorted_subgenes}\n" \
+        f"Power overflow: {best_chromosome.power_overflow} \n" \
+        f"Slices overflow: {best_chromosome.slices_overflow}\n" \
+        f"Transponders config: {config.t_config_file}\n" \
+        f"Total time: {config.clock.time_elapsed()}\n"
+
     print(result)
 
     with open(f'results/{file_name}', mode='w') as file:

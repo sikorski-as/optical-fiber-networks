@@ -30,12 +30,26 @@ class Chromosome:
         return hash(tuple(self.configuration))
 
 
-def fitness(chromosome: Chromosome):
-    if chromosome.total_capacity < chromosome.demand:
-        return math.inf
-    else:
-        ntransponders = len(chromosome.transponders)
-        return sum(chromosome.configuration[i] * chromosome.transponders[i].width for i in range(ntransponders))
+# def fitness(chromosome: Chromosome):
+#     if chromosome.total_capacity < chromosome.demand:
+#         return math.inf
+#     else:
+#         ntransponders = len(chromosome.transponders)
+#         return sum(chromosome.configuration[i] * chromosome.transponders[i].width for i in range(ntransponders))
+#
+
+def parametrized_fitness(width_weight=1, cost_weight=0):
+    def fitness(chromosome: Chromosome):
+        ch = chromosome
+        if ch.total_capacity < ch.demand:
+            return math.inf
+        else:
+            return sum(
+                ch.configuration[i] * ch.transponders[i].width * width_weight +
+                ch.configuration[i] * ch.transponders[i].cost * cost_weight
+                for i in range(len(ch.transponders))
+            )
+    return fitness
 
 
 def mutating(individual):
@@ -66,7 +80,8 @@ def crossing(parent1, parent2):
     return [chromosome1, chromosome2]
 
 
-def create_config(demand, transponders, n, initial=None):
+def create_config(demand, transponders, n, width_weight=1, cost_weight=0, initial=None):
+    fitness = parametrized_fitness(width_weight, cost_weight)
     best_results = sortedcontainers.SortedSet(key=lambda el: fitness(el))
     if initial is not None:
         best_results.update(Chromosome(demand, transponders, conf) for conf in initial)

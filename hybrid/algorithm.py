@@ -1,6 +1,5 @@
 from genetic import config, run_genetic
 import hill_climbinglib as hc
-from genetic.algorithm import save_result
 from hill_climbing.algorithm import random_neighbour, compare
 
 
@@ -13,7 +12,8 @@ def run_genetic_with_hill():
     best_result = hc.run(best_individual, random_neighbour_function=random_neighbour, compare_function=compare,
                          n=config.HILL_ITERATIONS)
     config.clock.stop()
-    save_result(best_result.chromosome)
+    file_name = f"{config.net_name}_Genetic+Hill_I{config.intensity}_GI{config.GA_ITERATIONS}_HI{config.HILL_ITERATIONS}"
+    config.save_result(best_result, file_name)
 
 
 if __name__ == "__main__":

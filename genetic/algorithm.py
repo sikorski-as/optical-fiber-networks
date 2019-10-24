@@ -62,7 +62,7 @@ def fitness(chromosome):
     # print(slices_overflow)
     # print(total_cost)
     amplifiers_cost = sum([config.b_cost[key] * value for key, value in bands_usage.items()])
-    return total_cost * pow(2.72, power_overflow) + pow(slices_overflow, 2) + amplifiers_cost
+    return total_cost * pow(2.72, power_overflow*1000) + pow(slices_overflow, 2) + amplifiers_cost
 
 
 def _check_power(chromosome: structure.Chromosome):
@@ -206,47 +206,16 @@ def run_genetic(pop_size, net, adapted_predefined_paths, transponders_config, de
     return best_population[0]
 
 
-def save_result(best_chromosome: structure.Chromosome):
-    """
-    demandy, użyte transpondery dla danego połączenia, stan sieci(slice`y)?
-    suma użytych transponderów każdego typu
-    :param best_chromosome:
-    :return:
-    """
-    file_name = f"{config.net_name}_I{config.intensity}_PS{config.POP_SIZE}_GI{config.GA_ITERATIONS}_HI{config.HILL_ITERATIONS}"
-    ndemands = len(best_chromosome.demands.values())
-    structure = pformat(best_chromosome.genes, indent=1)
-    total_transonders_used = [0 for _ in range(int(len(best_chromosome.transponders_cost.values()) / 2))]
-    genes = best_chromosome.genes.values()
-    for gene in genes:
-        for subgene in gene:
-            total_transonders_used[subgene[0]] += 1
-
-    flatten_subgenes = [subgene for gene in genes for subgene in gene]
-    sorted_subgenes = [subgene for subgene in sorted(flatten_subgenes, key=lambda x: x[2].value)]
-
-    result = f"Number of demands: {ndemands}\n" \
-        f"Cost: {fitness(best_chromosome)}\n" \
-        f"Structure: {structure}\n" \
-        f"Transponders used: {total_transonders_used}\n" \
-        f"Sorted paths: {sorted_subgenes}\n" \
-        f"Power overflow: {best_chromosome.power_overflow} \n" \
-        f"Slices overflow: {best_chromosome.slices_overflow}\n" \
-        f"Transponders config: {config.t_config_file}\n" \
-        f"Total time: {config.clock.time_elapsed()}\n"
-
-    print(result)
-
-    with open(f'results/{file_name}', mode='w') as file:
-        file.write(result)
-
-
 def main():
     adapted_predefined_paths = {key: [value[1] for value in values] for key, values in config.predefined_paths.items()}
     # pprint(adapted_predefined_paths)
+    config.clock.start()
     best_individual = run_genetic(config.POP_SIZE, config.net, adapted_predefined_paths, config.transponders_config,
                                   config.demands, config.bands,
                                   config.slices_usage, config.transponders_cost)
+    config.clock.stop()
+    file_name = f"{config.net_name}_Genetic_I{config.intensity}_PS{config.POP_SIZE}_CPB{config.GSPB}_MPB{config.CPPB}_N{config.GA_ITERATIONS}"
+    config.save_result(best_individual, file_name)
     return best_individual
 
 

@@ -3,8 +3,8 @@ import random
 
 from sortedcontainers import sortedlist
 
-from genetic import config, fitness
-from genetic.algorithm import change_path, save_result
+from genetic import config
+from genetic.algorithm import change_path, fitness
 from genetic.structure import create_individual
 
 
@@ -55,9 +55,19 @@ def mutate_gene(gene, predefined_paths):
         gene[i] = change_path(subgene, predefined_paths)
 
 
-if __name__ == "__main__":
+def main():
+    accept_rate = 0.9
+    pa_rate = 0.1
+    memory_size = 30
+    n = 3500
+
     config.clock.start()
-    best_result = run(accept_rate=0.9, pa_rate=0.1, memory_size=30, n=2000)
+    best_result = run(accept_rate=accept_rate, pa_rate=pa_rate, memory_size=memory_size, n=n)
+    file_name = f"{config.net_name}_Harmony_I{config.intensity}_AR{accept_rate}_PR{pa_rate}_MS{memory_size}_N{n}"
     config.clock.stop()
-    save_result(best_result.chromosome)
+    config.save_result(best_result, file_name)
     print(config.clock.time_elapsed())
+
+
+if __name__ == "__main__":
+    main()

@@ -1,7 +1,7 @@
 import math
-import time
 from functools import lru_cache
-import networkx as nx
+from pprint import pformat
+
 import geneticlib
 import sndlib
 import timer
@@ -9,6 +9,7 @@ import yen
 import genetic.transponders as tconfiger
 # import genetic.transponder_config as t_config
 from DataAnalyzis.analyzer import DataInfo
+from geneticlib import Individual
 
 net_name = 'polska'
 net = sndlib.create_undirected_net(net_name, calculate_distance=True, calculate_reinforcement=True, calculate_ila=True)
@@ -68,20 +69,58 @@ NEW_POP_SIZE = 10
 
 # demands = {key: DEMAND for key in predefined_paths}
 # transponders_config = {DEMAND: t_config.create_config([(40, 4), (100, 4), (200, 8), (400, 12)], DEMAND, 3)}
-t_config_file = 'data/transponder_config_mixed_with_400.json'
+t_config_file = 'data/transponder_configs_ip_4.json'
 transponders_config = tconfiger.load_config(t_config_file)
-intensity = 0.25
+intensity = 2
 demands = {key: math.ceil(value * intensity) for key, value in net.demands.items()}
 
 CPB = 100
 GSPB = 20  # Gene swap probability
 MPB = 50
 CPPB = 5  # Change path probability
-GA_ITERATIONS = 50
+GA_ITERATIONS = 200
 
-HILL_ITERATIONS = 600
+HILL_ITERATIONS = 2000
 
 tools = geneticlib.Toolkit(crossing_probability=CPB, mutation_probability=MPB)
 tools.set_fitness_weights(weights=(-1,))
+
+
+def save_result(best_result: Individual, file_name: str):
+    """
+    demandy, użyte transpondery dla danego połączenia, stan sieci(slice`y)?
+    suma użytych transponderów każdego typu
+    :param best_chromosome:
+    :param file_name
+    :return:
+    """
+    best_chromosome = best_result.chromosome
+    ndemands = len(best_chromosome.demands.values())
+    structure = pformat(best_chromosome.genes, indent=1)
+    total_transonders_used = [0 for _ in range(int(len(best_chromosome.transponders_cost.values()) / 2))]
+    genes = best_chromosome.genes.values()
+    for gene in genes:
+        for subgene in gene:
+            total_transonders_used[subgene[0]] += 1
+
+    flatten_subgenes = [subgene for gene in genes for subgene in gene]
+    sorted_subgenes = [subgene for subgene in sorted(flatten_subgenes, key=lambda x: x[2].value)]
+
+    result = f"Number of demands: {ndemands}\n" \
+        f"Cost: {best_result.values[0]}\n" \
+        f"Structure: {structure}\n" \
+        f"Transponders used: {total_transonders_used}\n" \
+        f"Sorted paths: {sorted_subgenes}\n" \
+        f"Power overflow: {best_chromosome.power_overflow} \n" \
+        f"Slices overflow: {best_chromosome.slices_overflow}\n" \
+        f"Transponders config: {t_config_file}\n" \
+        f"Total time: {clock.time_elapsed()}\n"
+
+    print(result)
+
+    with open(f'results/{file_name}', mode='w') as file:
+        file.write(result)
+
+
 
 

@@ -3,14 +3,14 @@ from collections import namedtuple
 import mip
 
 
-def create_config(demanded_value, tdata, n, max_seconds=3600, debug=False):
+def create_config(demanded_value, tdata, n, width_weight=1, cost_weight=0, max_seconds=3600, debug=False):
     model = mip.Model()  # type: mip.Model
     nvars = len(tdata)
     tvars = [model.add_var(f'T{i}', var_type=mip.INTEGER, lb=0) for i in range(nvars)]
     model += mip.xsum(tvar * tdata[i].transfer for i, tvar in enumerate(tvars)) >= demanded_value
     model.objective = mip.minimize(
         mip.xsum(
-            tvar * tdata[i].width  # + tvar * tdata[i].cost / 100
+            tvar * tdata[i].width * width_weight + tvar * tdata[i].cost * cost_weight
             for i, tvar in enumerate(tvars)
         )
     )

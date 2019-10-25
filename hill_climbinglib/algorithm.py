@@ -1,6 +1,6 @@
-def run(initial_value, random_neighbour_function, compare_function, n=1, descending=True):
+def run(initial_values: iter, random_neighbour_function, compare_function, n=1, descending=True):
     """
-    :param initial_value: starting value
+    :param initial_values: starting values
     :param random_neighbour_function: function returning neighbour
     :param compare_function: function to compare elements
     :param n: number of iterations
@@ -8,16 +8,20 @@ def run(initial_value, random_neighbour_function, compare_function, n=1, descend
     :return: best element
     """
 
-    best = initial_value
-    number_of_iterations = 1
+    best_results = initial_values
+    number_of_iterations = 0
 
     while number_of_iterations < n:
-        print(number_of_iterations)
-        neighbour = random_neighbour_function(best)
+        for i, best_result in enumerate(best_results):
+            print(number_of_iterations)
+            neighbour = random_neighbour_function(best_result)
+            best_cost = compare_function(best_result)
+            neighbour_cost = compare_function(neighbour)
 
-        if compare_function(best) > compare_function(neighbour) and descending \
-                or compare_function(best) < compare_function(neighbour) and not descending:
-            best = neighbour
+            if best_cost > neighbour_cost and descending or best_cost < neighbour_cost and not descending:
+                best_results[i] = neighbour
 
         number_of_iterations += 1
-    return best
+
+    return min(best_results, key=lambda x: compare_function(x)) if descending \
+        else max(best_results, key=lambda x: compare_function(x))

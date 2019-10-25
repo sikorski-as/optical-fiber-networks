@@ -18,9 +18,7 @@ def random_neighbour(individual: geneticlib.Individual):
     genes = chromosome.genes
     chosen_gene_key = random.choice(list(genes.keys()))
     genes[chosen_gene_key] = chromosome._create_gene(chosen_gene_key)
-    tools = geneticlib.Toolkit(crossing_probability=config.CPB, mutation_probability=config.MPB)
-    tools.set_fitness_weights(weights=(-1,))
-    tools.calculate_fitness_values([neighbour], [fitness])
+    config.tools.calculate_fitness_values([neighbour], [fitness])
     print(f"{neighbour.chromosome} {neighbour.values[0]}")
     return neighbour
 
@@ -46,9 +44,15 @@ def run_vns():
 
 
 def run_hill():
-    individual = structure.create_individual()
-    config.tools.calculate_fitness_values([individual], [fitness])
-    best = hc.run(individual, random_neighbour_function=random_neighbour, compare_function=compare, n=1000)
+    n = config.HILL_ITERATIONS
+    size = 10
+    individuals = [structure.create_individual() for _ in range(size)]
+    config.tools.calculate_fitness_values(individuals, [fitness])
+    config.clock.start()
+    best = hc.run(individuals, random_neighbour_function=random_neighbour, compare_function=compare, n=n)
+    config.clock.stop()
+    file_name = f"{config.net_name}_Hill_I{config.intensity}_SIZE{size}_N{n}"
+    config.save_result(best, file_name)
     pprint(best)
 
 

@@ -117,13 +117,14 @@ def simple_configs():
 
 def multiple_objectives_configs():
     filenames = [
+        'data/sndlib/json/abilene/abilene.json',
         'data/sndlib/json/polska/polska.json',
         'data/sndlib/json/nobel-germany/nobel-germany.json',
         'data/sndlib/json/germany50/germany50.json',
         'data/sndlib/json/janos-us/janos-us.json',
     ]
     # multipliers = [1.0]
-    multipliers = [0.25, 1.0, 2.0, 5.0, 10.0, 20.0, 30.0, 40.0, 50.0]
+    multipliers = [0.01, 0.02, 0.05, 0.1, 0.25, 1.0, 2.0, 5.0, 10.0, 20.0, 30.0, 40.0, 50.0]
 
     demands = set()
     for filename in filenames:
@@ -143,8 +144,8 @@ def multiple_objectives_configs():
     ]
     low_power_transponders = transponders[:3]
 
-    input('Press <return> to start calculations')
-    import webbrowser; webbrowser.open('https://www.youtube.com/watch?v=VBlFHuCzPgY', new=2)
+    # input('Press <return> to start calculations')
+    # import webbrowser; webbrowser.open('https://www.youtube.com/watch?v=VBlFHuCzPgY', new=2)
 
     minimizing_width = partial(tconfiger.ip.create_config, width_weight=1.0, cost_weight=0.0)
     minimizing_cost = partial(tconfiger.ip.create_config, width_weight=0.0, cost_weight=1.0)
@@ -199,7 +200,7 @@ def multiple_objectives_configs():
                                               'possible repetitions of configs for a demand'),
         'configs': merge_cofigs(all_configs, all_low_power_configs)
     }
-    save_json(f'data/transponder_configs_ip_1.json', configs_data, indent=4)
+    save_json(f'data/transponder_configs_ip_5.json', configs_data, indent=4)
 
 
 def heap_configs():

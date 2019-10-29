@@ -86,6 +86,24 @@ class _Network:
                 network._demands[(s, t)] = demand['demand_value']
         return network
 
+    @staticmethod
+    def get_nodes_and_edges(filename):
+        nodes, edges = [], []
+        node_by_name = {}
+
+        with open(filename) as f:
+            model = json.load(f)
+            for n in model['nodes']:
+                node = Node(name=n['id'], long=n['longitude'], lati=n['latitude'])
+                node_by_name[n['id']] = node
+                nodes.append(node)
+            for e in model['links']:
+                s, t = e['source'], e['target']
+                s, t = node_by_name[s], node_by_name[t]
+                edges.append((s, t))
+
+        return nodes, edges
+
     @property
     def demands(self):
         """

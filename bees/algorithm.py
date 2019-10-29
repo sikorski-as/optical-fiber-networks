@@ -27,37 +27,34 @@ def bee_colony(nscouts=64, m_best=10, e_best=2, n1=20, n2=3, flower_patch_size=5
         tools.calculate_fitness_values(all_bees, list_of_funcs=[fitness])
         all_bees.extend(m_bees)
         scouts = tools.select_best(all_bees, m_best)
-        print(f'After iteration {i} top 3: {" ".join(str(s.values[0]) for s in scouts[:3])}')
+        top3_string = "\n    ".join(str(s) for s in scouts[:3])
+        print(f'After iteration {i} top 3: \n    {top3_string}')
         new_scouts = [create_individual() for _ in range(nscouts - m_best)]
         tools.calculate_fitness_values(new_scouts, list_of_funcs=[fitness])
         scouts.extend(new_scouts)
 
-    print(scouts)
+    return sorted(scouts, key=lambda x: x.values[0])[0]
 
 
-def run(initial_value, random_neighbour_function, compare_function, n=1, descending=True):
-    """
-    :param initial_value: starting value
-    :param random_neighbour_function: function returning neighbour
-    :param compare_function: function to compare elements
-    :param n: number of iterations
-    :param descending: determines if we are looking for min or max value
-    :return: best element
-    """
-
-    best = initial_value
-    number_of_iterations = 1
-
-    while number_of_iterations < n:
-        neighbour = random_neighbour_function(best)
-
-        if compare_function(best) > compare_function(neighbour) and descending \
-                or compare_function(best) < compare_function(neighbour) and not descending:
-            best = neighbour
-
-        number_of_iterations += 1
-    return best
+def main():
+    adapted_predefined_paths = {key: [value[1] for value in values] for key, values in config.predefined_paths.items()}
+    config.clock.start()
+    best_individual = bee_colony(
+        nscouts=config.BEES_NSCOUTS,
+        m_best=config.BEES_M_BEST,
+        e_best=config.BEES_E_BEST,
+        n1=config.BEES_N1,
+        n2=config.BEES_N2,
+        flower_patch_size=config.BEES_FLOWER_PATCH_SIZE,
+        iterations=config.BEES_ITERATIONS
+    )
+    config.clock.stop()
+    file_name = f"{config.net_name}_Bees_I{config.intensity}_NSCOUTS{config.BEES_NSCOUTS}" \
+        f"_M{config.BEES_M_BEST}_E{config.BEES_E_BEST}_N1{config.BEES_N1}_N2{config.BEES_N2}" \
+        f"_PATCHSIZE{config.BEES_FLOWER_PATCH_SIZE}_N{config.BEES_ITERATIONS}"
+    config.save_result(best_individual, file_name)
+    return best_individual
 
 
 if __name__ == '__main__':
-    bee_colony()
+    main()

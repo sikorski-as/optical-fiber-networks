@@ -1,8 +1,9 @@
 import math
 from functools import lru_cache
 from pprint import pformat
-
+import networkx as nx
 import geneticlib
+import time
 import sndlib
 import timer
 import yen
@@ -21,7 +22,7 @@ def dist(a, b):
 
 
 def get_kozdro_paths():
-    with open("data\pol2.dat") as path_file, open("data\cities.txt") as cities_file, open(
+    with open("data\pol10.dat") as path_file, open("data\cities.txt") as cities_file, open(
             'data\edges.txt') as edges_file:
         data_info = DataInfo(result_file=None, paths_file=path_file, cities_file=cities_file, edges_file=edges_file)
         data_info.upload_paths()
@@ -64,23 +65,23 @@ clock = timer.Clock()
 bands = [(0, 191), (192, 383)]  # ranges of slices per band
 
 # DEMAND = 450
-POP_SIZE = 50
+POP_SIZE = 100
 NEW_POP_SIZE = 10
 
 # demands = {key: DEMAND for key in predefined_paths}
 # transponders_config = {DEMAND: t_config.create_config([(40, 4), (100, 4), (200, 8), (400, 12)], DEMAND, 3)}
 t_config_file = 'data/transponder_configs_ip_4.json'
 transponders_config = tconfiger.load_config(t_config_file)
-intensity = 2
+intensity = 10
 demands = {key: math.ceil(value * intensity) for key, value in net.demands.items()}
 
-CPB = 100
+CPB = 80
 GSPB = 20  # Gene swap probability
 MPB = 50
-CPPB = 5  # Change path probability
-GA_ITERATIONS = 200
+CPPB = 1  # Change path probability
+GA_ITERATIONS = 75
 
-HILL_ITERATIONS = 2000
+HILL_ITERATIONS = 3000
 
 tools = geneticlib.Toolkit(crossing_probability=CPB, mutation_probability=MPB)
 tools.set_fitness_weights(weights=(-1,))
@@ -117,6 +118,7 @@ def save_result(best_result: Individual, file_name: str):
         f"Total time: {clock.time_elapsed()}\n"
 
     print(result)
+    file_name = f"{file_name}_{time.time()}"
 
     with open(f'results/{file_name}', mode='w') as file:
         file.write(result)

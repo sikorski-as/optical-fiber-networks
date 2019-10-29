@@ -1,3 +1,4 @@
+import copy
 import random
 import numpy.random
 
@@ -320,7 +321,7 @@ class Toolkit:
                 children = crossover_fun(*couple)
                 offspring += self.create_individuals(children)
             else:
-                offspring.extend(couple)
+                offspring.extend(copy.deepcopy(couple))
         return offspring
 
 

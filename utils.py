@@ -1,5 +1,5 @@
 from itertools import tee
-
+import time
 import sndlib
 
 
@@ -68,15 +68,30 @@ def get_predefined_paths(network_filename, dat_filename, npaths):
 
 
 class Timer:
-    def __init__(self, message=False):
-        self.message = message
+    DEFAULT_PRINT = False
+    DEFAULT_ACCURACY = 3
+
+    def __init__(self, name='It', accuracy: int = DEFAULT_ACCURACY, print_on_exit: bool = DEFAULT_PRINT):
+        self._name = name
+        self.print_on_exit = print_on_exit
+        self._start = None
+        if not isinstance(accuracy, int) or accuracy < 0:
+            raise ValueError('Accuracy must be a natural number')
+        self._accuracy = accuracy
 
     def __enter__(self):
-        self.start = time.clock()
+        self._start = time.time()
         return self
 
     def __exit__(self, *args):
-        self.end = time.clock()
-        self.interval = self.end - self.start
-        if self.message:
-            print(f'It took {self.interval:.3f}s')
+        if self.print_on_exit:
+            print(f'{self._name} took {self.elapsed:.{self._accuracy}f}s')
+
+    @property
+    def elapsed(self):
+        if self._start is None:
+            raise RuntimeError('Timer has to be started first, use with-statement')
+        return time.time() - self._start
+
+    def print_elapsed(self):
+        print(f'{self._name} so far: {self.elapsed:.{self._accuracy}f}s')

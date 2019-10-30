@@ -1,4 +1,4 @@
-from genetic.structure import create_individual
+from structure import create_individual
 from genetic import fitness
 from bees import config
 from hill_climbing.algorithm import random_neighbour_ksize

@@ -3,16 +3,6 @@ import main_config
 import hill_climbinglib as hc
 import structure
 from hill_climbing import config
-from hill_climbinglib import vns
-
-
-def run_vns():
-    individual = structure.create_individual()
-    main_config.tools.calculate_fitness_values([individual], [structure.fitness])
-    best = vns.run(individual, random_neighbour_function=structure.random_neighbour_ksize, compare_function=compare,
-                   n=config.HILL_ITERATIONS,
-                   m=config.HILL_M, K=config.HILL_K)
-    pprint(best)
 
 
 def run_hill():

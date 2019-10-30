@@ -1,5 +1,6 @@
 import json
 import os
+from contextlib import suppress
 from pathlib import Path
 from typing import Callable
 
@@ -38,12 +39,32 @@ class _Network:
         self.node_by_name = {}
         self.name = name
         self._demands = {}
+        self.node_by_id = {}  # numer node'a (1..|V|) -> obiekt typu node
 
     DISTANCE_KEY = 'distance'
+
+    def load_demands_from_datfile(self, filename):
+        self._demands = {}
+        with open(filename) as f:
+            fiter = iter(f)
+            while not next(fiter).startswith('param demand'):
+                pass
+            for line in fiter:
+                if not line.startswith(';'):  # pomija średnik
+                    splitted = line.split()
+                    if splitted:  # pomija puste listy
+                        v1 = int(splitted[0])
+                        splitted = splitted[1:]
+                        for v2, demand in enumerate(splitted, start=1):
+                            with suppress(ValueError):
+                                demand = float(demand)
+                                s, t = self.node_by_id[v1], self.node_by_id[v2]
+                                self._demands[(s, t)] = demand
 
     @classmethod
     def load_native(cls, filename):
         network = cls(name=filename)
+        print('Using depricated method load_native()')
         with open(filename) as data_file:
             state = ''
             link_id = 1
@@ -72,10 +93,12 @@ class _Network:
         network = cls(name=filename)
         with open(filename) as f:
             model = json.load(f)
-            for n in model['nodes']:
+            network.model = model
+            for i, n in enumerate(model['nodes'], start=1):
                 node = Node(name=n['id'], long=n['longitude'], lati=n['latitude'])
                 network.node_by_name[n['id']] = node
                 network.add_node(node)
+                network.node_by_id[i] = node
             for e in model['links']:
                 s, t = e['source'], e['target']
                 s, t = network.node_by_name[s], network.node_by_name[t]

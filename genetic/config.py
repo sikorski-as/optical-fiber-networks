@@ -16,6 +16,7 @@ from geneticlib import Individual
 net_name = 'abilene'
 dat_source_prefix = 'usa'
 net = sndlib.create_undirected_net(net_name, calculate_distance=True, calculate_reinforcement=True, calculate_ila=True)
+net.load_demands_from_datfile('data/usa001.dat')
 
 K = 3  # number of predefined paths
 # predefined_paths = yen.ksp_all_nodes(net, nx.astar_path, heuristic_fun=dist, k=K)
@@ -29,7 +30,7 @@ predefined_paths = utils.get_predefined_paths(network_filename=f"data/sndlib/jso
 # transponders_config = {DEMAND: t_config.create_config([(40, 4), (100, 4), (200, 8), (400, 12)], DEMAND, 3)}
 t_config_file = 'data/transponder_configs_ip_5.json'
 transponders_config = tconfiger.load_config(t_config_file)
-demands = {key: math.ceil(value * intensity) for key, value in net.demands.items()}
+demands = {key: math.ceil(value) for key, value in net.demands.items()}
 
 
 @lru_cache(maxsize=1024)

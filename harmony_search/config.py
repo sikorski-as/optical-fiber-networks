@@ -1,0 +1,6 @@
+from config import *
+
+HS_ACCEPT_RATE = 0.9
+HS_PA_RATE = 0.1
+HS_MEMORY_SIZE = 30
+HS_ITERATIONS = 3500

@@ -1,8 +1,7 @@
-import itertools
-
-from genetic.structure import Chromosome, create_individual
-from genetic import config, structure, fitness
-from hill_climbing.algorithm import random_neighbour, random_neighbour_ksize
+from genetic.structure import create_individual
+from genetic import fitness
+from bees import config
+from hill_climbing.algorithm import random_neighbour_ksize
 from random import randrange
 
 

@@ -1,7 +1,7 @@
 import random
 
 import geneticlib
-from genetic import config
+import config
 
 
 class Slice:

@@ -104,8 +104,8 @@ def create_config(demand, transponders, n, width_weight=1, cost_weight=0, initia
     iteration = 0
     while iteration < ITERATIONS:
         couples = tools.create_couples(individuals, 2, int(pop_size / 2))
-        offspring = tools.cross(couples, crossing)
-        tools.mutate(offspring, mutating)
+        offspring = tools.cross(couples, crossing, CPB)
+        tools.mutate(offspring, mutating, MPB)
         tools.calculate_fitness_values(offspring, [fitness])
         individuals = tools.select_tournament(individuals + offspring, pop_size - new_pop_size, n=5, replacement=True)
         new_population = crt.create(new_pop_size, demand, transponders)

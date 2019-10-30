@@ -108,8 +108,8 @@ def algos():
     print("{}. {}".format(iteration, best))
     while best.values[0] < chromosome_size:
         couples = tools.create_couples(individuals, 2, int(pop_size / 2))
-        offspring = tools.cross(couples, crossing)
-        tools.mutate(offspring, mutating)
+        offspring = tools.cross(couples, crossing, CPB)
+        tools.mutate(offspring, mutating, MPB)
         tools.calculate_fitness_values(offspring, [fitness])
         individuals = tools.select_tournament(individuals + offspring, pop_size, n=5, replacement=True)
         # individuals = tools.select_best(individuals + offspring, pop_size)

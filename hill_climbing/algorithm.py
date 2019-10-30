@@ -4,7 +4,8 @@ from pprint import pprint
 
 import hill_climbinglib as hc
 import geneticlib
-from genetic import config, structure, fitness
+from genetic import structure, fitness
+from hill_climbing import config
 from hill_climbinglib import vns
 
 
@@ -39,13 +40,13 @@ def run_vns():
     individual = structure.create_individual()
     config.tools.calculate_fitness_values([individual], [fitness])
     best = vns.run(individual, random_neighbour_function=random_neighbour_ksize, compare_function=compare, n=1000,
-                   m=100, K=10)
+                   m=config.HILL_M, K=config.HILL_K)
     pprint(best)
 
 
 def run_hill():
     n = config.HILL_ITERATIONS
-    size = 10
+    size = config.HILL_SIZE
     individuals = [structure.create_individual() for _ in range(size)]
     config.tools.calculate_fitness_values(individuals, [fitness])
     config.clock.start()

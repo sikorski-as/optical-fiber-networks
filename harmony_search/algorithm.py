@@ -1,9 +1,7 @@
 import itertools
 import random
-
 from sortedcontainers import sortedlist
-
-from genetic import config
+from harmony_search import config
 from genetic.algorithm import change_path, fitness
 from genetic.structure import create_individual
 
@@ -56,14 +54,9 @@ def mutate_gene(gene, predefined_paths):
 
 
 def main():
-    accept_rate = 0.9
-    pa_rate = 0.1
-    memory_size = 30
-    n = 3500
-
     config.clock.start()
-    best_result = run(accept_rate=accept_rate, pa_rate=pa_rate, memory_size=memory_size, n=n)
-    file_name = f"{config.net_name}_Harmony_I{config.intensity}_AR{accept_rate}_PR{pa_rate}_MS{memory_size}_N{n}"
+    best_result = run(accept_rate=config.HS_ACCEPT_RATE, pa_rate=config.HS_PA_RATE, memory_size=config.HS_MEMORY_SIZE, n=config.HS_ITERATIONS)
+    file_name = f"{config.net_name}_Harmony_I{config.intensity}_AR{config.HS_ACCEPT_RATE}_PR{config.HS_PA_RATE}_MS{config.HS_MEMORY_SIZE}_N{config.HS_ITERATIONS}"
     config.clock.stop()
     config.save_result(best_result, file_name)
     print(config.clock.time_elapsed())

@@ -1,4 +1,5 @@
-from genetic import config, run_genetic
+from genetic import run_genetic
+from hybrid import config
 import hill_climbinglib as hc
 from hill_climbing.algorithm import random_neighbour, compare
 

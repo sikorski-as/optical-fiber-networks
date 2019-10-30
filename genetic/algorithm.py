@@ -1,12 +1,12 @@
 import copy
 import random
 from collections import defaultdict
-from pprint import pprint, pformat
 import bitstring
 import geneticlib
 import sndlib
 import utils
-from genetic import config, structure
+from genetic import structure, config
+
 
 
 def crossing(individual1, individual2):
@@ -184,8 +184,8 @@ def run_genetic(pop_size, net, adapted_predefined_paths, transponders_config, de
     while iteration < config.GA_ITERATIONS:
         iteration += 1
         couples = tools.create_couples(population, 2, int(pop_size / 2))
-        offspring = tools.cross(couples, crossover_fun=crossing)
-        tools.mutate(offspring, mutation_fun=mutating)
+        offspring = tools.cross(couples, crossover_fun=crossing, CPB=config.CPB)
+        tools.mutate(offspring, mutation_fun=mutating, MPB=config.MPB)
         tools.calculate_fitness_values(offspring, [fitness])
         # new_population = tools.select_best(population + offspring, pop_size - config.NEW_POP_SIZE)
         # new_population = tools.select_tournament(population + offspring, pop_size - config.NEW_POP_SIZE, n=5)

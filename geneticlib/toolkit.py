@@ -5,10 +5,8 @@ import numpy.random
 
 class Toolkit:
 
-    def __init__(self, crossing_probability, mutation_probability):
+    def __init__(self):
         self.weights = tuple()
-        self.CPB = crossing_probability
-        self.MPB = mutation_probability
 
     def set_fitness_weights(self, weights: 'tuple of ints'):
         """
@@ -296,28 +294,30 @@ class Toolkit:
 
         return couples
 
-    def mutate(self, individuals: list, mutation_fun):
+    def mutate(self, individuals: list, mutation_fun, MPB):
         """
             Attributes:
                 individuals: list of individuals
                 mutation_fun: function used in mutating
+                MPB: mutation probability
         """
         for individual in individuals:
-            if numpy.random.randint(0, 101, 1) < self.MPB:
+            if numpy.random.randint(0, 101, 1) < MPB:
                 mutation_fun(individual)
 
-    def cross(self, couples: list, crossover_fun):
+    def cross(self, couples: list, crossover_fun, CPB):
         """
                 Note: crossover function should return list of offspring
                 Attributes:
                     couples: list of tuples in which couples are stored
                     crossover_fun: function used to cross couple, should return list of children
+                    CPB: crossover probability
                 Returns:
                     list of individuals
         """
         offspring = []
         for couple in couples:
-            if numpy.random.randint(0, 101, 1) < self.CPB:
+            if numpy.random.randint(0, 101, 1) < CPB:
                 children = crossover_fun(*couple)
                 offspring += self.create_individuals(children)
             else:
@@ -338,5 +338,6 @@ class Individual:
         return self.__repr__()
 
     def __repr__(self):
-        return "<{} {} {}>".format(self.chromosome, self.values[0] if isinstance(self.values, tuple) else None, self.__hash__())
+        return "<{} {} {}>".format(self.chromosome, self.values[0] if isinstance(self.values, tuple) else None,
+                                   self.__hash__())
         # return "<{}>".format(self.values[0])

@@ -1,7 +1,7 @@
 import copy
 import random
 from pprint import pprint
-
+import main_config
 import hill_climbinglib as hc
 import geneticlib
 from genetic import structure, fitness
@@ -48,12 +48,12 @@ def run_hill():
     n = config.HILL_ITERATIONS
     size = config.HILL_SIZE
     individuals = [structure.create_individual() for _ in range(size)]
-    config.tools.calculate_fitness_values(individuals, [fitness])
-    config.clock.start()
+    main_config.tools.calculate_fitness_values(individuals, [fitness])
+    main_config.clock.start()
     best = hc.run(individuals, random_neighbour_function=random_neighbour, compare_function=compare, n=n)
-    config.clock.stop()
-    file_name = f"{config.net_name}_Hill_I{config.intensity}_SIZE{size}_N{n}"
-    config.save_result(best, file_name)
+    main_config.clock.stop()
+    file_name = f"{main_config.net_name}_Hill_I{main_config.intensity}_SIZE{size}_N{n}"
+    main_config.save_result(best, file_name)
     pprint(best)
 
 

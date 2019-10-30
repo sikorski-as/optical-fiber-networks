@@ -1,4 +1,3 @@
-from config import *
 from hill_climbing.config import *
 from genetic.config import *
 

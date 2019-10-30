@@ -1,5 +1,3 @@
-from config import *
-
 HILL_ITERATIONS = 4500
 HILL_SIZE = 10
 

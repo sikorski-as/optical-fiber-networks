@@ -1,5 +1,3 @@
-from config import *
-
 POP_SIZE = 100
 NEW_POP_SIZE = 10
 

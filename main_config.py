@@ -10,7 +10,6 @@ import utils
 import yen
 import genetic.transponders as tconfiger
 # import genetic.transponder_config as t_config
-from DataAnalyzis.analyzer import DataInfo
 from geneticlib import Individual
 
 net_name = 'abilene'
@@ -65,6 +64,33 @@ clock = timer.Clock()
 
 bands = [(0, 191), (192, 383)]  # ranges of slices per band
 
+OSNR = {
+    0: 10,
+    1: 15.85,
+    2: 31.62,
+    3: 158.49
+}
+e = 2.718
+h = 6.62607004 * pow(10, -34)
+freq = {
+    0: 193800000000000.0,
+    1: 188500000000000.0
+}
+l = {
+    0: 0.046,
+    1: 0.055
+}
+bandwidth = {
+    0: 25000000000.0,
+    1: 25000000000.0,
+    2: 50000000000.0,
+    3: 75000000000.0
+}
+
+V = 31.62
+W = 31.62
+P = 0.001
+
 tools = geneticlib.Toolkit()
 tools.set_fitness_weights(weights=(-1,))
 
@@ -91,13 +117,13 @@ def save_result(best_result: Individual, file_name: str):
 
     result = f"Number of demands: {ndemands}\n" \
         f"Cost: {best_result.values[0]}\n" \
-        f"Structure: {structure}\n" \
         f"Transponders used: {total_transonders_used}\n" \
         f"Sorted paths: {sorted_subgenes}\n" \
         f"Power overflow: {best_chromosome.power_overflow} \n" \
         f"Slices overflow: {best_chromosome.slices_overflow}\n" \
         f"Transponders config: {t_config_file}\n" \
-        f"Total time: {clock.time_elapsed()}\n"
+        f"Total time: {clock.time_elapsed()}\n" \
+        f"Structure: {structure}\n"
 
     print(result)
     file_name = f"{file_name}_{time.time()}"

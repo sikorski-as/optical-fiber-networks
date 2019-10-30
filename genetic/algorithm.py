@@ -6,7 +6,8 @@ import geneticlib
 import sndlib
 import utils
 from genetic import structure, config
-
+from main_config import e, l, W, OSNR, freq, h, bandwidth, P, V, tools, b_cost
+import main_config
 
 
 def crossing(individual1, individual2):
@@ -61,38 +62,12 @@ def fitness(chromosome):
     power_overflow = _check_power(chromosome)
     # print(slices_overflow)
     # print(total_cost)
-    amplifiers_cost = sum([config.b_cost[key] * value for key, value in bands_usage.items()])
+    amplifiers_cost = sum([b_cost[key] * value for key, value in bands_usage.items()])
     return total_cost * pow(2.72, power_overflow*1000) + pow(slices_overflow, 2) + amplifiers_cost
 
 
 def _check_power(chromosome: structure.Chromosome):
-    OSNR = {
-        0: 10,
-        1: 15.85,
-        2: 31.62,
-        3: 158.49
-    }
-    e = 2.718
-    h = 6.62607004 * pow(10, -34)
-    freq = {
-        0: 193800000000000.0,
-        1: 188500000000000.0
-    }
-    l = {
-        0: 0.046,
-        1: 0.055
-    }
-    bandwidth = {
-        0: 25000000000.0,
-        1: 25000000000.0,
-        2: 50000000000.0,
-        3: 75000000000.0
-    }
-
-    V = 31.62
-    W = 31.62
-    node_reinforcement = sndlib.calculate_reinforcement_for_each_node(chromosome.net)
-    P = 0.001
+    # node_reinforcement = sndlib.calculate_reinforcement_for_each_node(chromosome.net)
 
     power_overflow = 0
     for subgene in chromosome.genes.values():
@@ -102,8 +77,7 @@ def _check_power(chromosome: structure.Chromosome):
             for edge in utils.pairwise(path):
                 total += chromosome.net.edges[edge]['ila'] * (pow(e, l[band] * chromosome.net.edges[edge]['distance'] /
                                                                   (1 + chromosome.net.edges[edge]['ila'])) + V - 2)
-                total += pow(e,
-                             l[band] * chromosome.net.edges[edge]['distance'] / (1 + chromosome.net.edges[edge]['ila'])
+                total += pow(e, l[band] * chromosome.net.edges[edge]['distance'] / (1 + chromosome.net.edges[edge]['ila'])
                              ) + W - 2
             total *= h * freq[band] * OSNR[transponder_type] * bandwidth[transponder_type]
             # print(total)
@@ -134,7 +108,7 @@ def _allocate_slices(genes, bands, transponder_slices_usage):
             for edge in utils.pairwise(subgene[1]):
                 edge = tuple(sorted(edge))
                 slices_usage[edge].set(1, [i for i in range(slices_used[0], slices_used[1] + 1)])
-                band = 0 if slices_used[0] <= config.bands[0][1] else 1
+                band = 0 if slices_used[0] <= main_config.bands[0][1] else 1
                 if edge not in edges_used[band]:
                     bands_usage[band] += 1
                     edges_used[band].add(edge)
@@ -169,13 +143,11 @@ def _use_slices(transponder_slices_used, path_slices_utilization, bands):
     return None
 
 
-def run_genetic(pop_size, net, adapted_predefined_paths, transponders_config, demands, bands, slices_usage,
+def run_genetic(pop_size, net, adapted_predefined_paths, transponders_config, bands, slices_usage,
                 transponders_cost):
     crt = geneticlib.Creator(structure.Chromosome)
-    initial_population = crt.create(pop_size, net, adapted_predefined_paths, transponders_config, demands, bands,
+    initial_population = crt.create(pop_size, net, adapted_predefined_paths, transponders_config, bands,
                                     slices_usage, transponders_cost)
-    tools = geneticlib.Toolkit(crossing_probability=config.CPB, mutation_probability=config.MPB)
-    tools.set_fitness_weights(weights=(-1,))
     population = tools.create_individuals(initial_population)
     tools.calculate_fitness_values(population, list_of_funcs=[fitness])
     best = tools.select_best(population, 1)
@@ -191,8 +163,7 @@ def run_genetic(pop_size, net, adapted_predefined_paths, transponders_config, de
         # new_population = tools.select_tournament(population + offspring, pop_size - config.NEW_POP_SIZE, n=5)
         new_population = tools.select_linear(population + offspring, pop_size - config.NEW_POP_SIZE)
         additional_population = crt.create(config.NEW_POP_SIZE, net, adapted_predefined_paths, transponders_config,
-                                           demands, bands,
-                                           slices_usage, transponders_cost)
+                                           bands, slices_usage, transponders_cost)
         additional_population = tools.create_individuals(additional_population)
         tools.calculate_fitness_values(additional_population, list_of_funcs=[fitness])
         population = new_population + additional_population
@@ -207,15 +178,14 @@ def run_genetic(pop_size, net, adapted_predefined_paths, transponders_config, de
 
 
 def main():
-    adapted_predefined_paths = {key: [value[1] for value in values] for key, values in config.predefined_paths.items()}
+    adapted_predefined_paths = {key: [value[1] for value in values] for key, values in main_config.predefined_paths.items()}
     # pprint(adapted_predefined_paths)
-    config.clock.start()
-    best_individual = run_genetic(config.POP_SIZE, config.net, adapted_predefined_paths, config.transponders_config,
-                                  config.demands, config.bands,
-                                  config.slices_usage, config.transponders_cost)
-    config.clock.stop()
-    file_name = f"{config.net_name}_Genetic_I{config.intensity}_PS{config.POP_SIZE}_CPB{config.GSPB}_MPB{config.CPPB}_N{config.GA_ITERATIONS}"
-    config.save_result(best_individual, file_name)
+    main_config.clock.start()
+    best_individual = run_genetic(config.POP_SIZE, main_config.net, adapted_predefined_paths, main_config.transponders_config,
+                                  main_config.bands, main_config.slices_usage, main_config.transponders_cost)
+    main_config.clock.stop()
+    file_name = f"{main_config.net_name}_Genetic_I{main_config.intensity}_PS{config.POP_SIZE}_CPB{config.GSPB}_MPB{config.CPPB}_N{config.GA_ITERATIONS}"
+    main_config.save_result(best_individual, file_name)
     return best_individual
 
 

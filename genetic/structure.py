@@ -1,7 +1,7 @@
 import random
 
 import geneticlib
-import config
+import main_config
 
 
 class Slice:
@@ -15,7 +15,7 @@ class Slice:
 
 class Chromosome:
 
-    def __init__(self, net, predefined_paths, transponders_config, demands, bands, slices_usage, transponders_cost):
+    def __init__(self, net, predefined_paths, transponders_config, bands, slices_usage, transponders_cost):
         """
         :param predefined_paths: {} key (city1, city2)
         :param transponders_config: {} key demand
@@ -26,7 +26,7 @@ class Chromosome:
         self.net = net
         self.predefined_paths = predefined_paths
         self.transponders_config = transponders_config
-        self.demands = demands
+        self.demands = net._demands
         self.bands = bands
         self.slices_usage = slices_usage
         self.transponders_cost = transponders_cost
@@ -75,8 +75,8 @@ def create_individual():
     Creates individual without fitness value.
     :return: Individual
     """
-    adapted_predefined_paths = {key: [value[1] for value in values] for key, values in config.predefined_paths.items()}
+    adapted_predefined_paths = {key: [value[1] for value in values] for key, values in main_config.predefined_paths.items()}
     individual = geneticlib.Individual(
-        Chromosome(config.net, adapted_predefined_paths, config.transponders_config, config.demands, config.bands,
-                   config.slices_usage, config.transponders_cost))
+        Chromosome(main_config.net, adapted_predefined_paths, main_config.transponders_config, main_config.bands,
+                   main_config.slices_usage, main_config.transponders_cost))
     return individual

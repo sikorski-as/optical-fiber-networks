@@ -1,5 +1,3 @@
-from config import *
-
 BEES_NSCOUTS = 64
 BEES_M_BEST = 10
 BEES_E_BEST = 2

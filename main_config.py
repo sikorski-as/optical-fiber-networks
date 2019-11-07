@@ -31,8 +31,8 @@ predefined_paths = utils.get_predefined_paths(network_filename=f"data/sndlib/jso
 t_config_file = 'data/transponder_configs_ip_5.json'
 transponders_config = tconfiger.load_config(t_config_file)
 
-for config_key in transponders_config:
-    transponders_config[config_key] = transponders_config[config_key][2:]
+# for config_key in transponders_config:
+#     transponders_config[config_key] = transponders_config[config_key][2:]
 
 demands = {key: math.ceil(value) for key, value in net.demands.items()}
 

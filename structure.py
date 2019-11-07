@@ -1,4 +1,5 @@
 import copy
+import operator
 import random
 from collections import defaultdict
 import bitstring
@@ -118,14 +119,14 @@ def fitness(chromosome):
 
     for gene in chromosome.genes.values():
         for subgene in gene:
-            band = 0 if subgene[2].value <= chromosome.bands[0][1] else 1
+            band = 0 if subgene[2].value < chromosome.bands[0][1] else 1
             total_cost += cost[subgene[0], band]
 
     power_overflow = _check_power(chromosome)
     # print(slices_overflow)
     # print(total_cost)
     amplifiers_cost = sum([main_config.b_cost[key] * value for key, value in bands_usage.items()])
-    return total_cost * pow(2.72, power_overflow*1000) + pow(slices_overflow, 2) + amplifiers_cost
+    return total_cost * pow(2.72, power_overflow * 100) + pow(slices_overflow, 2) + amplifiers_cost
 
 
 def _check_power(chromosome: Chromosome):
@@ -142,7 +143,7 @@ def _check_power(chromosome: Chromosome):
                 total += pow(e, l[band] * chromosome.net.edges[edge]['distance'] / (1 + chromosome.net.edges[edge]['ila'])
                              ) + W - 2
             total *= h * freq[band] * OSNR[transponder_type] * bandwidth[transponder_type]
-            # print(total)
+            total = round(total, 9)
             if total > P:
                 power_overflow += total
     chromosome.power_overflow = power_overflow
@@ -153,6 +154,8 @@ def _allocate_slices(genes, bands, transponder_slices_usage):
     slices_usage = defaultdict(lambda: bitstring.BitArray(bands[1][1]))
     flatten_subgenes = [subgene for gene in genes for subgene in gene]
     sorted_subgenes = sorted(flatten_subgenes, key=lambda x: len(x[1]), reverse=True)
+    # sorted_subgenes = sorted(flatten_subgenes, key=lambda x: x[0], reverse=True)
+    # sorted_subgenes = sorted(flatten_subgenes, key=lambda x: (x[0], len(x[1])), reverse=True)
     slices_overflow = 0
     edges_used = defaultdict(set)
     bands_usage = defaultdict(int)  # counts edges used in each band
@@ -170,7 +173,7 @@ def _allocate_slices(genes, bands, transponder_slices_usage):
             for edge in utils.pairwise(subgene[1]):
                 edge = tuple(sorted(edge))
                 slices_usage[edge].set(1, [i for i in range(slices_used[0], slices_used[1] + 1)])
-                band = 0 if slices_used[0] <= main_config.bands[0][1] else 1
+                band = 0 if slices_used[0] < main_config.bands[0][1] else 1
                 if edge not in edges_used[band]:
                     bands_usage[band] += 1
                     edges_used[band].add(edge)
@@ -178,6 +181,7 @@ def _allocate_slices(genes, bands, transponder_slices_usage):
         else:
             slices_overflow += transponder_slices_usage[subgene[0]]
             # jaki slice ustawić jak sie nie miesci?
+
 
     return slices_overflow, bands_usage
 

@@ -14,16 +14,17 @@ def run(accept_rate, pa_rate, memory_size, n, separate_genes=True):
     :param pa_rate:
     :param memory_size:
     :param n: number of iterations
+    :param separate_genes: determining if random choosing each gene or whole structure
     :return: best harmony
     """
-    harmonies = [structure.create_individual() for _ in range(memory_size)]
+    harmonies = [structure.create_individual(main_config.chromosome_type) for _ in range(memory_size)]
     main_config.tools.calculate_fitness_values(harmonies, list_of_funcs=[structure.fitness])
     harmony_memory = sortedlist.SortedList(harmonies, key=lambda x: x.values[0])
 
     iteration = itertools.count()
     while next(iteration) < n:
         print(iteration)
-        new_harmony = structure.create_individual()
+        new_harmony = structure.create_individual(main_config.chromosome_type)
         new_harmony.chromosome.clear_structure()
         harmony_structure = {}
         if separate_genes:  # choose for each gene if random or from memory
@@ -31,7 +32,7 @@ def run(accept_rate, pa_rate, memory_size, n, separate_genes=True):
                 if random.random() < accept_rate:
                     harmony_structure[key] = choose_gene_from_hm(harmony_memory, key)
                     if random.random() < pa_rate:
-                        structure.mutate_gene(harmony_structure[key], new_harmony.chromosome.predefined_paths[key])
+                        new_harmony.chromosome.mutate_gene(harmony_structure[key], new_harmony.chromosome.predefined_paths[key])
                 else:
                     harmony_structure[key] = new_harmony.chromosome._create_gene(key)
         else:  # draw all genes from memory or random
@@ -39,7 +40,7 @@ def run(accept_rate, pa_rate, memory_size, n, separate_genes=True):
                 for key in main_config.net.demands:
                     harmony_structure[key] = choose_gene_from_hm(harmony_memory, key)
                     if random.random() < pa_rate:
-                        structure.mutate_gene(harmony_structure[key], new_harmony.chromosome.predefined_paths[key])
+                        new_harmony.chromosome.mutate_gene(harmony_structure[key], new_harmony.chromosome.predefined_paths[key])
             else:
                 harmony_structure = new_harmony.chromosome._create_structure()
         new_harmony.chromosome.set_structure(harmony_structure)

@@ -1,13 +1,11 @@
 import copy
+import operator
 import random
 import abc
 from collections import defaultdict
 import bitstring
 import geneticlib
 import utils
-
-from main_config import e, l, bandwidth, P, OSNR, h, freq, W, V
-import main_config
 
 
 class Slice:
@@ -76,7 +74,7 @@ class Chromosome(abc.ABC):
 
     def _allocate_slices(self, subgenes):
         slices_usage_map = defaultdict(lambda: bitstring.BitArray(self.bands[1][1]))
-        sorted_subgenes = self.prepare_subgenes(subgenes)
+        sorted_subgenes = self.sorted_subgenes(sortfun=lambda x: len(x[1]), reverse=True)
         slices_overflow = 0
         edges_used = defaultdict(set)
         bands_usage = defaultdict(int)  # counts edges used in each band
@@ -108,10 +106,6 @@ class Chromosome(abc.ABC):
         return slices_overflow, bands_usage
 
     @abc.abstractmethod
-    def prepare_subgenes(self, subgenes):
-        return
-
-    @abc.abstractmethod
     def calculate_slices_demand(self, transponders):
         return
 
@@ -131,8 +125,16 @@ class Chromosome(abc.ABC):
     def _check_power(self):
         return
 
+    @abc.abstractmethod
+    def mutate_gene(self, gene, predefined_paths):
+        return
+
     def __repr__(self):
         return f"PO:{self.power_overflow} SO:{self.slices_overflow}"
+
+    @abc.abstractmethod
+    def sorted_subgenes(self, sortfun, reverse):
+        return
 
     @property
     def genes(self):
@@ -145,6 +147,16 @@ class OneSubgeneChromosome(Chromosome):
     def __init__(self, net, predefined_paths, transponders_config, bands, slices_usage, transponders_cost):
         super().__init__(net, predefined_paths, transponders_config, bands, slices_usage, transponders_cost)
 
+    @property
+    def total_transponders_used(self):
+        transponders_used = [0 for _ in range(int(len(self.transponders_cost.values()) / 2))]
+        for subgene in self.genes.values():
+            transponders_used = [a + b for a, b in zip(transponders_used, subgene[0])]
+        return transponders_used
+
+    def sorted_subgenes(self, sortfun, reverse=False):
+        return sorted(self.genes.values(), key=sortfun, reverse=reverse)
+
     def _create_gene(self, key):
         demand = self.demands[key]
         transponder_config = random.choice(self.transponders_config[demand])
@@ -155,9 +167,6 @@ class OneSubgeneChromosome(Chromosome):
         slices_used = self.calculate_slices_demand(transponders)
         begin, end = random.choice(self.bands)
         return random.randrange(begin, end - slices_used)
-
-    def prepare_subgenes(self, subgenes):
-        return sorted(subgenes, key=lambda x: len(x[1]), reverse=True)
 
     def calculate_slices_demand(self, transponders):
         return sum([amount * self.transponder_slices_usage[transponder_type] for transponder_type, amount in
@@ -179,24 +188,40 @@ class OneSubgeneChromosome(Chromosome):
                 total = 0
                 for edge in utils.pairwise(path):
                     total += self.net.edges[edge]['ila'] * (
-                            pow(e, l[band] * self.net.edges[edge]['distance'] /
-                                (1 + self.net.edges[edge]['ila'])) + V - 2)
-                    total += pow(e,
-                                 l[band] * self.net.edges[edge]['distance'] / (
+                            pow(main_config.e, main_config.l[band] * self.net.edges[edge]['distance'] /
+                                (1 + self.net.edges[edge]['ila'])) + main_config.V - 2)
+                    total += pow(main_config.e,
+                                 main_config.l[band] * self.net.edges[edge]['distance'] / (
                                          1 + self.net.edges[edge]['ila'])
-                                 ) + W - 2
-                total *= h * freq[band] * OSNR[transponder_type] * bandwidth[transponder_type] * amount
+                                 ) + main_config.W - 2
+                total *= main_config.h * main_config.freq[band] * main_config.OSNR[transponder_type] * \
+                         main_config.bandwidth[transponder_type] * amount
                 total = round(total, 9)
-                if total > P:
+                if total > main_config.P:
                     power_overflow += total
         self.power_overflow = power_overflow
         return power_overflow
+
+    def mutate_gene(self, subgene, predefined_paths):
+        change_path(subgene, predefined_paths)
 
 
 class MultipleSubgeneChromosome(Chromosome):
 
     def __init__(self, net, predefined_paths, transponders_config, bands, slices_usage, transponders_cost):
         super().__init__(net, predefined_paths, transponders_config, bands, slices_usage, transponders_cost)
+
+    @property
+    def total_transponders_used(self):
+        transponders_used = [0 for _ in range(int(len(self.transponders_cost.values()) / 2))]
+        for gene in self.genes.values():
+            for subgene in gene:
+                transponders_used[subgene[0]] += 1
+        return transponders_used
+
+    def sorted_subgenes(self, sortfun, reverse=False):
+        flatten_subgenes = [subgene for gene in self.genes.values() for subgene in gene]
+        return sorted(flatten_subgenes, key=sortfun, reverse=reverse)
 
     def _create_gene(self, key):
         demand = self.demands[key]
@@ -214,9 +239,6 @@ class MultipleSubgeneChromosome(Chromosome):
         begin, end = random.choice(self.bands)
         return random.randrange(begin, end - slices_used)
 
-    def prepare_subgenes(self, genes):
-        flatten_subgenes = [subgene for gene in genes for subgene in gene]
-        return sorted(flatten_subgenes, key=lambda x: len(x[1]), reverse=True)
 
     def calculate_slices_demand(self, transponder_type):
         return self.transponder_slices_usage[transponder_type]
@@ -237,18 +259,23 @@ class MultipleSubgeneChromosome(Chromosome):
                 total = 0
                 for edge in utils.pairwise(path):
                     total += self.net.edges[edge]['ila'] * (
-                            pow(e, l[band] * self.net.edges[edge]['distance'] /
-                                (1 + self.net.edges[edge]['ila'])) + V - 2)
-                    total += pow(e,
-                                 l[band] * self.net.edges[edge]['distance'] / (
+                            pow(main_config.e, main_config.l[band] * self.net.edges[edge]['distance'] /
+                                (1 + self.net.edges[edge]['ila'])) + main_config.V - 2)
+                    total += pow(main_config.e,
+                                 main_config.l[band] * self.net.edges[edge]['distance'] / (
                                          1 + self.net.edges[edge]['ila'])
-                                 ) + W - 2
-                total *= h * freq[band] * OSNR[transponder_type] * bandwidth[transponder_type]
+                                 ) + main_config.W - 2
+                total *= main_config.h * main_config.freq[band] * main_config.OSNR[transponder_type] * \
+                         main_config.bandwidth[transponder_type]
                 total = round(total, 9)
-                if total > P:
+                if total > main_config.P:
                     power_overflow += total
         self.power_overflow = power_overflow
         return power_overflow
+
+    def mutate_gene(self, gene, predefined_paths):
+        for i, subgene in enumerate(gene):
+            gene[i] = change_path(subgene, predefined_paths)
 
 
 def create_individual(ChromosomeType):
@@ -267,11 +294,6 @@ def create_individual(ChromosomeType):
 def change_path(gene, predefined_paths):
     new_gene = gene[0], random.choice(predefined_paths), gene[2]
     return new_gene
-
-
-def mutate_gene(gene, predefined_paths):
-    for i, subgene in enumerate(gene):
-        gene[i] = change_path(subgene, predefined_paths)
 
 
 def fitness(chromosome: Chromosome):
@@ -327,3 +349,5 @@ def random_neighbour_ksize(individual: geneticlib.Individual, k):
     print(f"{neighbour.chromosome} {neighbour.values[0]} {k}")
     return neighbour
 
+
+import main_config

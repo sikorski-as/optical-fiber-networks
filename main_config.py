@@ -3,6 +3,7 @@ import math
 from functools import lru_cache
 from pprint import pformat, pprint
 import networkx as nx
+import structure
 import geneticlib
 import time
 import sndlib
@@ -13,15 +14,15 @@ import genetic.transponders as tconfiger
 # import genetic.transponder_config as t_config
 from geneticlib import Individual
 
-net_name = 'abilene'
-dat_source_prefix = 'usa'
+net_name = 'polska'
+dat_source_prefix = 'pol'
 net = sndlib.create_undirected_net(net_name, calculate_distance=True, calculate_reinforcement=True, calculate_ila=True)
-net.load_demands_from_datfile('data/usa005.dat')
+net.load_demands_from_datfile('data/pol2.dat')
 
 K = 3  # number of predefined paths
 # predefined_paths = yen.ksp_all_nodes(net, nx.astar_path, heuristic_fun=dist, k=K)
 # predefined_paths = get_kozdro_paths()
-intensity = 0.05
+intensity = 2
 intensity_str = f"{intensity}".replace(".", "")
 predefined_paths = utils.get_predefined_paths(network_filename=f"data/sndlib/json/{net_name}/{net_name}.json",
                                               dat_filename=f"data/{dat_source_prefix}{intensity_str}.dat", npaths=K)
@@ -41,6 +42,8 @@ demands = {key: math.ceil(value) for key, value in net.demands.items()}
 def dist(a, b):
     return sndlib.calculate_haversine_distance_between_each_node(net)[a][b]
 
+
+chromosome_type = structure.MultipleSubgeneChromosome
 
 slices_usage = {
     0: 1,
@@ -112,40 +115,37 @@ def save_result(best_result: Individual, file_name: str):
     ndemands = len(best_chromosome.demands.values())
     # structure = pformat(best_chromosome.genes, indent=1)
     structure = best_chromosome.genes
-    total_transonders_used = [0 for _ in range(int(len(best_chromosome.transponders_cost.values()) / 2))]
-    genes = best_chromosome.genes.values()
-    for gene in genes:
-        for subgene in gene:
-            total_transonders_used[subgene[0]] += 1
-
-    flatten_subgenes = [subgene for gene in genes for subgene in gene]
-    sorted_subgenes = [subgene for subgene in sorted(flatten_subgenes, key=lambda x: x[2].value)]
+    total_transponders_used = best_chromosome.total_transponders_used
 
     band_usage = {i: [0, 0] for i in range(4)}
     edge_usage = {edge: [0, 0] for edge in best_result.chromosome.net.edges}
-    for t_type, path, slice in sorted_subgenes:
-        band = 0 if slice.value <= best_result.chromosome.bands[0][1] else 1
-        band_usage[t_type][band] += 1
-        for c1, c2 in utils.pairwise(path):
-            try:
-                edge_usage[c1, c2][band] += 1
-            except KeyError:
-                edge_usage[c2, c1][band] += 1
 
-    print(band_usage)
-    pprint(edge_usage)
+    sorted_subgenes = best_chromosome.sorted_subgenes(sortfun=lambda x: x[2].value)
+
+    # for t_type, path, slice in sorted_subgenes:
+    #     band = 0 if slice.value <= best_result.chromosome.bands[0][1] else 1
+    #     band_usage[t_type][band] += 1
+    #     for c1, c2 in utils.pairwise(path):
+    #         try:
+    #             edge_usage[c1, c2][band] += 1
+    #         except KeyError:
+    #             edge_usage[c2, c1][band] += 1
+    #
+    # print(band_usage)
+    # pprint(edge_usage)
+
     result = {
         "Number of demands": ndemands,
         "Cost": best_result.values[0],
-        "Transponders used": total_transonders_used,
+        "Transponders used": total_transponders_used,
         "Sorted paths": sorted_subgenes,
         "Power overflow": best_chromosome.power_overflow,
         "Slices overflow": best_chromosome.slices_overflow,
         "Transponders config": t_config_file,
         "Total time": clock.time_elapsed(),
         "Structure": structure,
-        "Band_info": band_usage,
-        "Edge_info": edge_usage
+        # "Band_info": band_usage,
+        # "Edge_info": edge_usage
     }
     print(result)
     file_name = f"{file_name}_{time.time()}"

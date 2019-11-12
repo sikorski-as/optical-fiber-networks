@@ -17,12 +17,12 @@ from geneticlib import Individual
 net_name = 'polska'
 dat_source_prefix = 'pol'
 net = sndlib.create_undirected_net(net_name, calculate_distance=True, calculate_reinforcement=True, calculate_ila=True)
-net.load_demands_from_datfile('data/pol2.dat')
+net.load_demands_from_datfile('data/pol025.dat')
 
 K = 3  # number of predefined paths
 # predefined_paths = yen.ksp_all_nodes(net, nx.astar_path, heuristic_fun=dist, k=K)
 # predefined_paths = get_kozdro_paths()
-intensity = 2
+intensity = 0.25
 intensity_str = f"{intensity}".replace(".", "")
 predefined_paths = utils.get_predefined_paths(network_filename=f"data/sndlib/json/{net_name}/{net_name}.json",
                                               dat_filename=f"data/{dat_source_prefix}{intensity_str}.dat", npaths=K)
@@ -107,7 +107,7 @@ def save_result(best_result: Individual, file_name: str):
     """
     demandy, użyte transpondery dla danego połączenia, stan sieci(slice`y)?
     suma użytych transponderów każdego typu
-    :param best_chromosome:
+    :param best_result:
     :param file_name
     :return:
     """
@@ -116,23 +116,8 @@ def save_result(best_result: Individual, file_name: str):
     # structure = pformat(best_chromosome.genes, indent=1)
     structure = best_chromosome.genes
     total_transponders_used = best_chromosome.total_transponders_used
-
-    band_usage = {i: [0, 0] for i in range(4)}
-    edge_usage = {edge: [0, 0] for edge in best_result.chromosome.net.edges}
-
+    band_usage, edge_usage = best_chromosome.calculate_band_edge_usage()
     sorted_subgenes = best_chromosome.sorted_subgenes(sortfun=lambda x: x[2].value)
-
-    # for t_type, path, slice in sorted_subgenes:
-    #     band = 0 if slice.value <= best_result.chromosome.bands[0][1] else 1
-    #     band_usage[t_type][band] += 1
-    #     for c1, c2 in utils.pairwise(path):
-    #         try:
-    #             edge_usage[c1, c2][band] += 1
-    #         except KeyError:
-    #             edge_usage[c2, c1][band] += 1
-    #
-    # print(band_usage)
-    # pprint(edge_usage)
 
     result = {
         "Number of demands": ndemands,
@@ -144,8 +129,8 @@ def save_result(best_result: Individual, file_name: str):
         "Transponders config": t_config_file,
         "Total time": clock.time_elapsed(),
         "Structure": structure,
-        # "Band_info": band_usage,
-        # "Edge_info": edge_usage
+        "Band info": band_usage,
+        "Edge info": edge_usage
     }
     print(result)
     file_name = f"{file_name}_{time.time()}"

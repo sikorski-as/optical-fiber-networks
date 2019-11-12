@@ -136,6 +136,10 @@ class Chromosome(abc.ABC):
     def sorted_subgenes(self, sortfun, reverse):
         return
 
+    @abc.abstractmethod
+    def calculate_band_edge_usage(self):
+        return
+
     @property
     def genes(self):
         return self._structure
@@ -205,6 +209,20 @@ class OneSubgeneChromosome(Chromosome):
     def mutate_gene(self, subgene, predefined_paths):
         change_path(subgene, predefined_paths)
 
+    def calculate_band_edge_usage(self):
+        band_usage = {i: [0, 0] for i in range(int(len(self.transponders_cost.values()) / 2))}
+        edge_usage = {edge: [0, 0] for edge in self.net.edges}
+        for transponders, path, slice in self.genes.values():
+            band = 0 if slice.value <= self.bands[0][1] else 1
+            for t_type, amount in enumerate(transponders):
+                band_usage[t_type][band] += amount
+            for c1, c2 in utils.pairwise(path):
+                try:
+                    edge_usage[c1, c2][band] += 1
+                except KeyError:
+                    edge_usage[c2, c1][band] += 1
+        return band_usage, edge_usage
+
 
 class MultipleSubgeneChromosome(Chromosome):
 
@@ -238,7 +256,6 @@ class MultipleSubgeneChromosome(Chromosome):
         slices_used = self.transponder_slices_usage[transponder_type]
         begin, end = random.choice(self.bands)
         return random.randrange(begin, end - slices_used)
-
 
     def calculate_slices_demand(self, transponder_type):
         return self.transponder_slices_usage[transponder_type]
@@ -276,6 +293,19 @@ class MultipleSubgeneChromosome(Chromosome):
     def mutate_gene(self, gene, predefined_paths):
         for i, subgene in enumerate(gene):
             gene[i] = change_path(subgene, predefined_paths)
+
+    def calculate_band_edge_usage(self):
+        band_usage = {i: [0, 0] for i in range(int(len(self.transponders_cost.values()) / 2))}
+        edge_usage = {edge: [0, 0] for edge in self.net.edges}
+        for t_type, path, slice in self.sorted_subgenes(lambda x: x[2].value):
+            band = 0 if slice.value <= self.bands[0][1] else 1
+            band_usage[t_type][band] += 1
+            for c1, c2 in utils.pairwise(path):
+                try:
+                    edge_usage[c1, c2][band] += 1
+                except KeyError:
+                    edge_usage[c2, c1][band] += 1
+        return band_usage, edge_usage
 
 
 def create_individual(ChromosomeType):

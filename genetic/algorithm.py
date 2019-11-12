@@ -27,7 +27,7 @@ def mutating(individual):
 
 def run_genetic(pop_size=config.POP_SIZE, n=config.GA_ITERATIONS, new_pop_size=config.NEW_POP_SIZE, MPB=config.MPB,
                 CPB=config.CPB):
-    population = [structure.create_individual() for _ in range(pop_size)]
+    population = [structure.create_individual(main_config.chromosome_type) for _ in range(pop_size)]
     tools.calculate_fitness_values(population, list_of_funcs=[structure.fitness])
     best = tools.select_best(population, 1)
     print(best)
@@ -41,7 +41,7 @@ def run_genetic(pop_size=config.POP_SIZE, n=config.GA_ITERATIONS, new_pop_size=c
         new_population = tools.select_best(population + offspring, pop_size - new_pop_size)
         # new_population = tools.select_tournament(population + offspring, pop_size - config.NEW_POP_SIZE, n=5)
         # new_population = tools.select_linear(population + offspring, pop_size - config.NEW_POP_SIZE)
-        additional_population = [structure.create_individual() for _ in range(new_pop_size)]
+        additional_population = [structure.create_individual(main_config.chromosome_type) for _ in range(new_pop_size)]
         tools.calculate_fitness_values(additional_population, list_of_funcs=[structure.fitness])
         population = new_population + additional_population
         random.shuffle(population)

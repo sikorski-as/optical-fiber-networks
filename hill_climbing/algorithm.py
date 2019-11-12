@@ -8,7 +8,7 @@ from hill_climbing import config
 def run_hill():
     n = config.HILL_ITERATIONS
     size = config.HILL_SIZE
-    individuals = [structure.create_individual() for _ in range(size)]
+    individuals = [structure.create_individual(main_config.chromosome_type) for _ in range(size)]
     main_config.tools.calculate_fitness_values(individuals, [structure.fitness])
     main_config.clock.start()
     best = hc.run(individuals, random_neighbour_function=structure.random_neighbour, compare_function=structure.compare, n=n)

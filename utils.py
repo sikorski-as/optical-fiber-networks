@@ -1,3 +1,4 @@
+from copy import copy
 from itertools import tee
 
 import sndlib
@@ -39,10 +40,13 @@ def get_predefined_paths(network_filename, dat_filename, npaths):
             paths_dict[key] = new_values
 
     def organise_path(key, path: list):
+        remove_redundant_edges(path)
         start_node, end_node = key
         current_node = start_node
         organised_path = [start_node]
+        starting_path = copy(path)
         while path:
+            l = len(path)
             for edge in path:
                 if edge[0] == current_node:
                     organised_path.append(edge[1])
@@ -52,8 +56,22 @@ def get_predefined_paths(network_filename, dat_filename, npaths):
                     organised_path.append(edge[0])
                     path.remove(edge)
                     current_node = edge[0]
+            if l == len(path):
+                print(starting_path)
+                raise Exception("No coś nie tak")
         return organised_path
 
+    def remove_redundant_edges(path):
+        p = copy(path)
+        used = set()
+        for (n1, n2) in p:
+            if (n1, n2) not in used:
+                try:
+                    path.remove((n2, n1))
+                    used.add((n1, n2))
+                    used.add((n2, n1))
+                except ValueError:
+                    continue
     with open(dat_filename) as datfile:
         datfile.readline()
         for _ in range(nedges):
@@ -65,6 +83,8 @@ def get_predefined_paths(network_filename, dat_filename, npaths):
         organise_paths()
 
     return paths_dict
+
+
 
 
 class Timer:

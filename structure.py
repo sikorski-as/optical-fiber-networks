@@ -72,7 +72,7 @@ class Chromosome(abc.ABC):
 
         return None
 
-    def _allocate_slices(self, subgenes):
+    def _allocate_slices(self):
         slices_usage_map = defaultdict(lambda: bitstring.BitArray(self.bands[1][1]))
         sorted_subgenes = self.sorted_subgenes(sortfun=lambda x: len(x[1]), reverse=True)
         slices_overflow = 0
@@ -342,7 +342,7 @@ def fitness(chromosome: Chromosome):
 
     # version 1
 
-    slices_overflow, bands_usage = chromosome._allocate_slices(chromosome.genes.values())
+    slices_overflow, bands_usage = chromosome._allocate_slices()
     chromosome.slices_overflow = slices_overflow
     total_cost += chromosome.get_transponder_usage_cost()
 

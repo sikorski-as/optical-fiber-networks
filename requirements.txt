@@ -4,3 +4,4 @@ networkx
 mip
 bitstring
 sortedcontainers
+jsonpickle

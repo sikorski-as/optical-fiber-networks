@@ -126,7 +126,7 @@ class Chromosome(abc.ABC):
         return
 
     @abc.abstractmethod
-    def mutate_gene(self, gene, predefined_paths):
+    def mutate_gene(self, key):
         return
 
     def __repr__(self):
@@ -206,8 +206,8 @@ class OneSubgeneChromosome(Chromosome):
         self.power_overflow = power_overflow
         return power_overflow
 
-    def mutate_gene(self, subgene, predefined_paths):
-        change_path(subgene, predefined_paths)
+    def mutate_gene(self, key):
+        self._structure[key] = create_gene_with_random_path(self._structure[key], self.predefined_paths[key])
 
     def calculate_band_edge_usage(self):
         band_usage = {i: [0, 0] for i in range(int(len(self.transponders_cost.values()) / 2))}
@@ -290,9 +290,10 @@ class MultipleSubgeneChromosome(Chromosome):
         self.power_overflow = power_overflow
         return power_overflow
 
-    def mutate_gene(self, gene, predefined_paths):
+    def mutate_gene(self, key):
+        gene = self._structure[key]
         for i, subgene in enumerate(gene):
-            gene[i] = change_path(subgene, predefined_paths)
+            gene[i] = create_gene_with_random_path(subgene, self.predefined_paths[key])
 
     def calculate_band_edge_usage(self):
         band_usage = {i: [0, 0] for i in range(int(len(self.transponders_cost.values()) / 2))}
@@ -321,7 +322,7 @@ def create_individual(ChromosomeType):
     return individual
 
 
-def change_path(gene, predefined_paths):
+def create_gene_with_random_path(gene, predefined_paths):
     new_gene = gene[0], random.choice(predefined_paths), gene[2]
     return new_gene
 

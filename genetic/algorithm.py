@@ -19,9 +19,8 @@ def crossing(individual1, individual2):
 def mutating(individual):
     chromosome = individual.chromosome
     for key, gene in chromosome.genes.items():
-        for i, subgene in enumerate(gene):
-            if random.randrange(0, 100) < config.CPPB:
-                gene[i] = structure.change_path(subgene, chromosome.predefined_paths[key])
+        if random.randrange(0, 100) < config.CPPB:
+            chromosome.mutate_gene(key)
     return chromosome
 
 

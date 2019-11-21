@@ -17,7 +17,7 @@ def run(initial_values, random_neighbour_function, compare_function, n=1, m=1, K
     iterations_per_k = [0 for _ in range(size)]
 
     while number_of_iterations < n and k.count(K) < size:
-
+        print(number_of_iterations)
         for i, best_result in enumerate(best_results):
             if k[i] < K:
                 neighbour = random_neighbour_function(best_result, k[i])

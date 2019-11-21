@@ -1,7 +1,9 @@
+import jsonpickle
 import math
 from functools import lru_cache
-from pprint import pformat
+from pprint import pformat, pprint
 import networkx as nx
+import structure
 import geneticlib
 import time
 import sndlib
@@ -12,16 +14,21 @@ import genetic.transponders as tconfiger
 # import genetic.transponder_config as t_config
 from geneticlib import Individual
 
-net_name = 'abilene'
-dat_source_prefix = 'usa'
-net = sndlib.create_undirected_net(net_name, calculate_distance=True, calculate_reinforcement=True, calculate_ila=True)
-net.load_demands_from_datfile('data/usa001.dat')
+
+@lru_cache(maxsize=1024)
+def dist(a, b):
+    return sndlib.calculate_haversine_distance_between_each_node(net)[a][b]
+
 
 K = 3  # number of predefined paths
-# predefined_paths = yen.ksp_all_nodes(net, nx.astar_path, heuristic_fun=dist, k=K)
-# predefined_paths = get_kozdro_paths()
-intensity = 0.01
+
+net_name = 'janos-us'
+dat_source_prefix = 'janos-us'
+intensity = 1
+
 intensity_str = f"{intensity}".replace(".", "")
+net = sndlib.create_undirected_net(net_name, calculate_distance=True, calculate_reinforcement=True, calculate_ila=True)
+net.load_demands_from_datfile(f'data/{dat_source_prefix}{intensity_str}.dat')
 predefined_paths = utils.get_predefined_paths(network_filename=f"data/sndlib/json/{net_name}/{net_name}.json",
                                               dat_filename=f"data/{dat_source_prefix}{intensity_str}.dat", npaths=K)
 
@@ -29,13 +36,13 @@ predefined_paths = utils.get_predefined_paths(network_filename=f"data/sndlib/jso
 # transponders_config = {DEMAND: t_config.create_config([(40, 4), (100, 4), (200, 8), (400, 12)], DEMAND, 3)}
 t_config_file = 'data/transponder_configs_ip_5.json'
 transponders_config = tconfiger.load_config(t_config_file)
+
+# for config_key in transponders_config:
+#     transponders_config[config_key] = transponders_config[config_key][2:]
+
 demands = {key: math.ceil(value) for key, value in net.demands.items()}
 
-
-@lru_cache(maxsize=1024)
-def dist(a, b):
-    return sndlib.calculate_haversine_distance_between_each_node(net)[a][b]
-
+chromosome_type = structure.MultipleSubgeneChromosome
 
 slices_usage = {
     0: 1,
@@ -62,7 +69,7 @@ transponders_cost = {
 
 clock = timer.Clock()
 
-bands = [(0, 191), (192, 383)]  # ranges of slices per band
+bands = [(0, 192), (192, 384)]  # ranges of slices per band
 
 OSNR = {
     0: 10,
@@ -99,34 +106,34 @@ def save_result(best_result: Individual, file_name: str):
     """
     demandy, użyte transpondery dla danego połączenia, stan sieci(slice`y)?
     suma użytych transponderów każdego typu
-    :param best_chromosome:
+    :param best_result:
     :param file_name
     :return:
     """
     best_chromosome = best_result.chromosome
     ndemands = len(best_chromosome.demands.values())
-    structure = pformat(best_chromosome.genes, indent=1)
-    total_transonders_used = [0 for _ in range(int(len(best_chromosome.transponders_cost.values()) / 2))]
-    genes = best_chromosome.genes.values()
-    for gene in genes:
-        for subgene in gene:
-            total_transonders_used[subgene[0]] += 1
+    # structure = pformat(best_chromosome.genes, indent=1)
+    structure = best_chromosome.genes
+    total_transponders_used = best_chromosome.total_transponders_used
+    band_usage, edge_usage = best_chromosome.calculate_band_edge_usage()
+    sorted_subgenes = best_chromosome.sorted_subgenes(sortfun=lambda x: x[2].value)
 
-    flatten_subgenes = [subgene for gene in genes for subgene in gene]
-    sorted_subgenes = [subgene for subgene in sorted(flatten_subgenes, key=lambda x: x[2].value)]
-
-    result = f"Number of demands: {ndemands}\n" \
-        f"Cost: {best_result.values[0]}\n" \
-        f"Transponders used: {total_transonders_used}\n" \
-        f"Sorted paths: {sorted_subgenes}\n" \
-        f"Power overflow: {best_chromosome.power_overflow} \n" \
-        f"Slices overflow: {best_chromosome.slices_overflow}\n" \
-        f"Transponders config: {t_config_file}\n" \
-        f"Total time: {clock.time_elapsed()}\n" \
-        f"Structure: {structure}\n"
-
+    result = {
+        "Number of demands": ndemands,
+        "Cost": best_result.values[0],
+        "Transponders used": total_transponders_used,
+        "Sorted paths": sorted_subgenes,
+        "Power overflow": best_chromosome.power_overflow,
+        "Slices overflow": best_chromosome.slices_overflow,
+        "Transponders config": t_config_file,
+        "Total time": clock.time_elapsed(),
+        "Structure": structure,
+        "Band info": band_usage,
+        "Edge info": edge_usage,
+        "Chromosome type": best_chromosome.__class__
+    }
     print(result)
     file_name = f"{file_name}_{time.time()}"
 
     with open(f'results/{file_name}', mode='w') as file:
-        file.write(result)
+        file.write(jsonpickle.encode(result))

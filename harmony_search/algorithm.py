@@ -6,7 +6,7 @@ from harmony_search import config
 import structure
 
 
-def run(accept_rate, pa_rate, memory_size, n):
+def run(accept_rate, pa_rate, memory_size, n, separate_genes=True):
     """
     rpa best (0.1-0.5)
     r_accept (0.7-0.95)
@@ -14,25 +14,35 @@ def run(accept_rate, pa_rate, memory_size, n):
     :param pa_rate:
     :param memory_size:
     :param n: number of iterations
+    :param separate_genes: determining if random choosing each gene or whole structure
     :return: best harmony
     """
-    harmonies = [structure.create_individual() for _ in range(memory_size)]
+    harmonies = [structure.create_individual(main_config.chromosome_type) for _ in range(memory_size)]
     main_config.tools.calculate_fitness_values(harmonies, list_of_funcs=[structure.fitness])
     harmony_memory = sortedlist.SortedList(harmonies, key=lambda x: x.values[0])
-    print(harmony_memory)
 
     iteration = itertools.count()
     while next(iteration) < n:
-        new_harmony = structure.create_individual()
+        print(iteration)
+        new_harmony = structure.create_individual(main_config.chromosome_type)
         new_harmony.chromosome.clear_structure()
         harmony_structure = {}
-        for key in main_config.net.demands:
+        if separate_genes:  # choose for each gene if random or from memory
+            for key in main_config.net.demands:
+                if random.random() < accept_rate:
+                    harmony_structure[key] = choose_gene_from_hm(harmony_memory, key)
+                    if random.random() < pa_rate:
+                        new_harmony.chromosome.mutate_gene(harmony_structure[key], new_harmony.chromosome.predefined_paths[key])
+                else:
+                    harmony_structure[key] = new_harmony.chromosome._create_gene(key)
+        else:  # draw all genes from memory or random
             if random.random() < accept_rate:
-                harmony_structure[key] = choose_gene_from_hm(harmony_memory, key)
-                if random.random() < pa_rate:
-                    structure.mutate_gene(harmony_structure[key], new_harmony.chromosome.predefined_paths[key])
+                for key in main_config.net.demands:
+                    harmony_structure[key] = choose_gene_from_hm(harmony_memory, key)
+                    if random.random() < pa_rate:
+                        new_harmony.chromosome.mutate_gene(harmony_structure[key], new_harmony.chromosome.predefined_paths[key])
             else:
-                harmony_structure[key] = new_harmony.chromosome._create_gene(key)
+                harmony_structure = new_harmony.chromosome._create_structure()
         new_harmony.chromosome.set_structure(harmony_structure)
         main_config.tools.calculate_fitness_values([new_harmony], list_of_funcs=[structure.fitness])
         print(new_harmony)
@@ -51,11 +61,11 @@ def choose_gene_from_hm(hm: sortedlist.SortedList, key):
 def main():
     main_config.clock.start()
     best_result = run(accept_rate=config.HS_ACCEPT_RATE, pa_rate=config.HS_PA_RATE, memory_size=config.HS_MEMORY_SIZE,
-                      n=config.HS_ITERATIONS)
+                      n=config.HS_ITERATIONS, separate_genes=True)
     file_name = f"{main_config.net_name}_Harmony_I{main_config.intensity}_AR{config.HS_ACCEPT_RATE}_PR{config.HS_PA_RATE}_MS{config.HS_MEMORY_SIZE}_N{config.HS_ITERATIONS}"
     main_config.clock.stop()
     main_config.save_result(best_result, file_name)
-    print(main_config.clock.time_elapsed())
+    print(best_result)
 
 
 if __name__ == "__main__":

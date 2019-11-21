@@ -1,4 +1,5 @@
 import json
+import math
 import os
 from contextlib import suppress
 from pathlib import Path
@@ -260,7 +261,7 @@ def create_directed_net(network_name, calculate_distance=False, calculate_reinfo
     net = DirectedNetwork.load_json(file_path)
     if calculate_distance:
         for edge in net.edges:
-            distance = int(geomanip.haversine(edge[0].long, edge[0].lati, edge[1].long,
+            distance = math.ceil(geomanip.haversine(edge[0].long, edge[0].lati, edge[1].long,
                                               edge[1].lati))
             net.edges[edge]['distance'] = distance
             if calculate_ila:

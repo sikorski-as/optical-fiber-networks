@@ -14,16 +14,21 @@ import genetic.transponders as tconfiger
 # import genetic.transponder_config as t_config
 from geneticlib import Individual
 
-net_name = 'polska'
-dat_source_prefix = 'pol'
-net = sndlib.create_undirected_net(net_name, calculate_distance=True, calculate_reinforcement=True, calculate_ila=True)
-net.load_demands_from_datfile('data/pol025.dat')
+
+@lru_cache(maxsize=1024)
+def dist(a, b):
+    return sndlib.calculate_haversine_distance_between_each_node(net)[a][b]
+
 
 K = 3  # number of predefined paths
-# predefined_paths = yen.ksp_all_nodes(net, nx.astar_path, heuristic_fun=dist, k=K)
-# predefined_paths = get_kozdro_paths()
-intensity = 0.25
+
+net_name = 'janos-us'
+dat_source_prefix = 'janos-us'
+intensity = 1
+
 intensity_str = f"{intensity}".replace(".", "")
+net = sndlib.create_undirected_net(net_name, calculate_distance=True, calculate_reinforcement=True, calculate_ila=True)
+net.load_demands_from_datfile(f'data/{dat_source_prefix}{intensity_str}.dat')
 predefined_paths = utils.get_predefined_paths(network_filename=f"data/sndlib/json/{net_name}/{net_name}.json",
                                               dat_filename=f"data/{dat_source_prefix}{intensity_str}.dat", npaths=K)
 
@@ -36,12 +41,6 @@ transponders_config = tconfiger.load_config(t_config_file)
 #     transponders_config[config_key] = transponders_config[config_key][2:]
 
 demands = {key: math.ceil(value) for key, value in net.demands.items()}
-
-
-@lru_cache(maxsize=1024)
-def dist(a, b):
-    return sndlib.calculate_haversine_distance_between_each_node(net)[a][b]
-
 
 chromosome_type = structure.MultipleSubgeneChromosome
 
@@ -130,7 +129,8 @@ def save_result(best_result: Individual, file_name: str):
         "Total time": clock.time_elapsed(),
         "Structure": structure,
         "Band info": band_usage,
-        "Edge info": edge_usage
+        "Edge info": edge_usage,
+        "Chromosome type": best_chromosome.__class__
     }
     print(result)
     file_name = f"{file_name}_{time.time()}"

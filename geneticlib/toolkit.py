@@ -341,3 +341,10 @@ class Individual:
         return "<{} {} {}>".format(self.chromosome, self.values[0] if isinstance(self.values, tuple) else None,
                                    self.__hash__())
         # return "<{}>".format(self.values[0])
+
+    @property
+    def value(self):
+        if self.values is None or len(self.values) > 1:
+            return self.values
+        else:
+            return self.values[0]

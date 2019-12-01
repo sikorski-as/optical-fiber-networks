@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 import jsonpickle
 import math
 from functools import lru_cache
@@ -137,3 +139,63 @@ def save_result(best_result: Individual, file_name: str):
 
     with open(f'results/{file_name}', mode='w') as file:
         file.write(jsonpickle.encode(result))
+
+
+class SolutionTracer:
+    def __init__(self, filename: str, collect_partial: bool = True):
+        self.filename = filename
+        self.collect_partial = collect_partial
+        self.best = None
+        self.best_time = math.inf
+        self.times = []
+        self.scores = []
+
+    def update(self, solution, time):
+        if self.collect_partial:
+            self.scores.append(solution.value)
+            self.times.append(time)
+        if self.best is None or solution.value < self.best.value:
+            self.best = deepcopy(solution)
+            self.best_time = time
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *args):
+        best_chromosome = self.best.chromosome
+        ndemands = len(best_chromosome.demands.values())
+        structure = best_chromosome.genes
+        total_transponders_used = best_chromosome.total_transponders_used
+        band_usage, edge_usage = best_chromosome.calculate_band_edge_usage()
+        sorted_subgenes = best_chromosome.sorted_subgenes(sortfun=lambda x: x[2].value)
+        result = {
+            "Number of demands": ndemands,
+            "Cost": self.best.values[0],
+            "Transponders used": total_transponders_used,
+            "Sorted paths": sorted_subgenes,
+            "Power overflow": best_chromosome.power_overflow,
+            "Slices overflow": best_chromosome.slices_overflow,
+            "Transponders config": t_config_file,
+            "Total time": self.best_time,
+            "Structure": structure,
+            "Band info": band_usage,
+            "Edge info": edge_usage,
+            "Chromosome type": best_chromosome.__class__,
+            "Partial times": self.times,
+            "Partial scores": self.scores
+        }
+        print(result)
+        file_name = f"{self.filename}_{time.time()}"
+        with open(f'resul'
+                  f'ts/{file_name}', mode='w') as file:
+            file.write(jsonpickle.encode(result))
+
+    def __str__(self):
+        return f'<SolutionTracer' \
+            f'\n\tbest solution: {self.best}' \
+            f'\n\ttime: {self.best_time:.3f}s' \
+            f'\n\tcost: {self.best.value:.3f}' \
+            f'\n>'
+
+    def print(self):
+        print(str(self))

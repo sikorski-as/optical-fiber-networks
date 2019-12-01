@@ -1,6 +1,11 @@
-from copy import copy
-from itertools import tee
+import math
 import time
+from contextlib import contextmanager
+from copy import copy, deepcopy
+from itertools import tee
+
+import jsonpickle
+
 import sndlib
 
 
@@ -72,6 +77,7 @@ def get_predefined_paths(network_filename, dat_filename, npaths):
                     used.add((n2, n1))
                 except ValueError:
                     continue
+
     with open(dat_filename) as datfile:
         datfile.readline()
         for _ in range(nedges):
@@ -85,8 +91,6 @@ def get_predefined_paths(network_filename, dat_filename, npaths):
     return paths_dict
 
 
-
-
 class Timer:
     DEFAULT_PRINT = False
     DEFAULT_ACCURACY = 3
@@ -95,6 +99,7 @@ class Timer:
         self._name = name
         self.print_on_exit = print_on_exit
         self._start = None
+        self._accumulator = 0.0
         if not isinstance(accuracy, int) or accuracy < 0:
             raise ValueError('Accuracy must be a natural number')
         self._accuracy = accuracy
@@ -107,11 +112,17 @@ class Timer:
         if self.print_on_exit:
             print(f'{self._name} took {self.elapsed:.{self._accuracy}f}s')
 
+    @contextmanager
+    def suspend(self):
+        self._accumulator += self.elapsed
+        yield
+        self._start = time.time()
+
     @property
     def elapsed(self):
         if self._start is None:
             raise RuntimeError('Timer has to be started first, use with-statement')
-        return time.time() - self._start
+        return time.time() - self._start + self._accumulator
 
     def print_elapsed(self):
         print(f'{self._name} so far: {self.elapsed:.{self._accuracy}f}s')

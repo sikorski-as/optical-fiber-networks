@@ -180,32 +180,41 @@ class SolutionTracer:
         return self
 
     def __exit__(self, exc_type, exc_value, exc_traceback):
-        best_chromosome = self.best.chromosome
-        ndemands = len(best_chromosome.demands.values())
-        structure = best_chromosome.genes
-        total_transponders_used = best_chromosome.total_transponders_used
-        band_usage, edge_usage = best_chromosome.calculate_band_edge_usage()
-        sorted_subgenes = best_chromosome.sorted_subgenes(sortfun=lambda x: x[2].value)
-        result = {
-            "Exit status": {
-                "Finished normally": exc_type is None,
-                "Traceback": exc_traceback
-            },
-            "Number of demands": ndemands,
-            "Cost": self.best.values[0],
-            "Transponders used": total_transponders_used,
-            "Sorted paths": sorted_subgenes,
-            "Power overflow": best_chromosome.power_overflow,
-            "Slices overflow": best_chromosome.slices_overflow,
-            "Transponders config": t_config_file,
-            "Total time": self.best_time,
-            "Structure": structure,
-            "Band info": band_usage,
-            "Edge info": edge_usage,
-            "Chromosome type": best_chromosome.__class__,
-            "Partial times": self.times,
-            "Partial scores": self.scores
-        }
+        try:
+            best_chromosome = self.best.chromosome
+            ndemands = len(best_chromosome.demands.values())
+            structure = best_chromosome.genes
+            total_transponders_used = best_chromosome.total_transponders_used
+            band_usage, edge_usage = best_chromosome.calculate_band_edge_usage()
+            sorted_subgenes = best_chromosome.sorted_subgenes(sortfun=lambda x: x[2].value)
+            result = {
+                "Exit status": {
+                    "Finished normally": exc_type is None,
+                    'Exception type': str(exc_type),
+                },
+                "Number of demands": ndemands,
+                "Cost": self.best.values[0],
+                "Transponders used": total_transponders_used,
+                "Sorted paths": sorted_subgenes,
+                "Power overflow": best_chromosome.power_overflow,
+                "Slices overflow": best_chromosome.slices_overflow,
+                "Transponders config": t_config_file,
+                "Total time": self.best_time,
+                "Structure": structure,
+                "Band info": band_usage,
+                "Edge info": edge_usage,
+                "Chromosome type": best_chromosome.__class__,
+                "Partial times": self.times,
+                "Partial scores": self.scores
+            }
+        except AttributeError:
+            result = {
+                "Exit status": {
+                    'Finished normally': exc_type is None,
+                    'Exception type': str(exc_type)
+                },
+                'Error': 'No best chromosome set'
+            }
         print(result)
         file_name = f"{self.filename}_{time.time()}"
         with open(f'resul'

@@ -3,16 +3,13 @@ from copy import deepcopy
 import jsonpickle
 import math
 from functools import lru_cache
-from pprint import pformat, pprint
-import networkx as nx
 import structure
 import geneticlib
 import time
 import sndlib
 import timer
 import utils
-import yen
-import genetic.transponders as tconfiger
+import transponder_configs as tconfiger
 # import genetic.transponder_config as t_config
 from geneticlib import Individual
 

@@ -52,9 +52,6 @@ def bee_colony(nscouts=64, m_best=10, e_best=2, n1=20, n2=3, flower_patch_size=5
 
 
 def main():
-    adapted_predefined_paths = {key: [value[1] for value in values] for key, values in
-                                main_config.predefined_paths.items()}
-    # main_config.clock.start()
     best_individual = bee_colony(
         nscouts=config.BEES_NSCOUTS,
         m_best=config.BEES_M_BEST,
@@ -64,9 +61,6 @@ def main():
         flower_patch_size=config.BEES_FLOWER_PATCH_SIZE,
         iterations=config.BEES_ITERATIONS
     )
-    # main_config.clock.stop()
-
-    # main_config.save_result(best_individual, file_name)
     return best_individual
 
 

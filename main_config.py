@@ -43,6 +43,27 @@ demands = {key: math.ceil(value) for key, value in net.demands.items()}
 
 chromosome_type = structure.MultipleSubgeneChromosome
 
+
+def init(new_net_name, new_dat_source_prefix, new_intensity):
+    global net_name, dat_source_prefix, intensity, intensity_str, net, predefined_paths, t_config_file, transponders_config, demands
+
+    net_name = new_net_name
+    dat_source_prefix = new_dat_source_prefix
+    intensity = new_intensity
+
+    intensity_str = f"{intensity}".replace(".", "")
+    net = sndlib.create_undirected_net(net_name,
+                                       calculate_distance=True,
+                                       calculate_reinforcement=True,
+                                       calculate_ila=True)
+    net.load_demands_from_datfile(f'data/{dat_source_prefix}{intensity_str}.dat')
+    predefined_paths = utils.get_predefined_paths(network_filename=f"data/sndlib/json/{net_name}/{net_name}.json",
+                                                  dat_filename=f"data/{dat_source_prefix}{intensity_str}.dat",
+                                                  npaths=K)
+
+    demands = {key: math.ceil(value) for key, value in net.demands.items()}
+
+
 slices_usage = {
     0: 1,
     1: 1,
@@ -158,7 +179,7 @@ class SolutionTracer:
     def __enter__(self):
         return self
 
-    def __exit__(self, *args):
+    def __exit__(self, exc_type, exc_value, exc_traceback):
         best_chromosome = self.best.chromosome
         ndemands = len(best_chromosome.demands.values())
         structure = best_chromosome.genes
@@ -166,6 +187,10 @@ class SolutionTracer:
         band_usage, edge_usage = best_chromosome.calculate_band_edge_usage()
         sorted_subgenes = best_chromosome.sorted_subgenes(sortfun=lambda x: x[2].value)
         result = {
+            "Exit status": {
+                "Finished normally": exc_type is None,
+                "Traceback": exc_traceback
+            },
             "Number of demands": ndemands,
             "Cost": self.best.values[0],
             "Transponders used": total_transponders_used,

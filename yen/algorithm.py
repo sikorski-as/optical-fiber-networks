@@ -10,10 +10,10 @@ def ksp_all_nodes(G, searching_fun, heuristic_fun=None, k=1, weight=None):
     paths_dict = {}
     net = copy.deepcopy(G)
     for node in G.nodes:
-        paths_dict[node] = {}
+        # paths_dict[node] = {}
         for another_node in G.nodes:
             if node != another_node:
-                paths_dict[node][another_node] = ksp(net, node, another_node, searching_fun, heuristic_fun, k, weight)
+                paths_dict[node, another_node] = ksp(net, node, another_node, searching_fun, heuristic_fun, k, weight)
     return paths_dict
 
 

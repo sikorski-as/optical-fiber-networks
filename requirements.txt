@@ -1,0 +1,7 @@
+numpy
+requests
+networkx
+mip
+bitstring
+sortedcontainers
+jsonpickle

@@ -1,23 +1,27 @@
-import geomanip
 import networkx as nx
+
+import geomanip
 
 
 class World:
-    # graph node(1,(lat, long))
-    # edge  begin, end, weight, distance
-
-    """
-    :param vertices iterable containing all vertices in graph
-    :param edges iterable containing 2-element tuple (begin_node, end_node)
-    :param edge_dumping [db/km]
-    :param node_dumping [db]
-    """
     PHEROMONE_KEY = 'pheromone_level'
     DISTANCE_KEY = 'distance'
     DUMPING_KEY = 'dumping'
 
     def __init__(self, net, edge_dumping: dict, evaporation_level=0.1, basic_pheromone_level=0.1,
                  calculate_distance=False, alpha=1, beta=3, Q=1, node_dumping=1):
+        """
+
+        :param net: networkx network-like object
+        :param edge_dumping: [db/km]
+        :param evaporation_level: how quickly pheromone evaporates
+        :param basic_pheromone_level: lowest pheromone level possible
+        :param calculate_distance: should distance be precalculated for each edge?
+        :param alpha: ant-colony algorithm parameter
+        :param beta: ant-colony algorithm parameter
+        :param Q: ant-colony algorithm parameter
+        :param node_dumping: [db]
+        """
         self.net = net
         self.evaporation_level = evaporation_level
         self.basic_pheromone_level = basic_pheromone_level

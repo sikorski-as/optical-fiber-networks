@@ -1,14 +1,16 @@
+import json
+import math
+import os
+from contextlib import suppress
 from pathlib import Path
+from typing import Callable
 
 import networkx as nx
 
+import draw
 import geomanip
 import mapbox
-import draw
-import os
-from ant_colony import world
 from geomanip import MercatorProjection
-from typing import Tuple, List, Callable
 
 
 class Node:
@@ -37,12 +39,33 @@ class _Network:
         # super(_Network, self).__init__(*args, **kwargs)
         self.node_by_name = {}
         self.name = name
+        self._demands = {}
+        self.node_by_id = {}  # numer node'a (1..|V|) -> obiekt typu node
 
     DISTANCE_KEY = 'distance'
+
+    def load_demands_from_datfile(self, filename):
+        self._demands = {}
+        with open(filename) as f:
+            fiter = iter(f)
+            while not next(fiter).startswith('param demand'):
+                pass
+            for line in fiter:
+                if not line.startswith(';'):  # pomija średnik
+                    splitted = line.split()
+                    if splitted:  # pomija puste listy
+                        v1 = int(splitted[0])
+                        splitted = splitted[1:]
+                        for v2, demand in enumerate(splitted, start=1):
+                            with suppress(ValueError):
+                                demand = float(demand)
+                                s, t = self.node_by_id[v1], self.node_by_id[v2]
+                                self._demands[(s, t)] = demand
 
     @classmethod
     def load_native(cls, filename):
         network = cls(name=filename)
+        print('Using depricated method load_native()')
         with open(filename) as data_file:
             state = ''
             link_id = 1
@@ -65,6 +88,69 @@ class _Network:
                         network.add_edge(network.node_by_name[n2], network.node_by_name[n1], edge_id=link_id)
                         link_id += 1
         return network
+
+    @classmethod
+    def load_json(cls, filename):
+        network = cls(name=filename)
+        with open(filename) as f:
+            model = json.load(f)
+            network.model = model
+            for i, n in enumerate(model['nodes'], start=1):
+                node = Node(name=n['id'], long=n['longitude'], lati=n['latitude'])
+                network.node_by_name[n['id']] = node
+                network.add_node(node)
+                network.node_by_id[i] = node
+            for e in model['links']:
+                s, t = e['source'], e['target']
+                s, t = network.node_by_name[s], network.node_by_name[t]
+                network.add_edge(s, t)
+            for demand in model['demands']:
+                s, t = demand['source'], demand['target']
+                s, t = network.node_by_name[s], network.node_by_name[t]
+                network._demands[(s, t)] = demand['demand_value']
+        return network
+
+    @staticmethod
+    def get_nodes_and_edges(filename):
+        nodes, edges = [], []
+        node_by_name = {}
+
+        with open(filename) as f:
+            model = json.load(f)
+            for n in model['nodes']:
+                node = Node(name=n['id'], long=n['longitude'], lati=n['latitude'])
+                node_by_name[n['id']] = node
+                nodes.append(node)
+            for e in model['links']:
+                s, t = e['source'], e['target']
+                s, t = node_by_name[s], node_by_name[t]
+                edges.append((s, t))
+
+        return nodes, edges
+
+    @property
+    def demands(self):
+        """
+        :return: a dict with keys (n1, n2) and values being demanded values between n1 and n2.
+        """
+        return self._demands
+
+    @property
+    def all_demands(self):
+        """
+        :return: a dict with keys both (n1, n2) and (n2, n1) and values being demanded values between n1 and n2.
+        """
+        new = {}
+        for (n1, n2), value in self._demands.items():
+            new[(n1, n2)] = value
+            new[(n2, n1)] = value
+        return new
+
+    def get_demand(self, n1, n2):
+        try:
+            return self.demands[(n1, n2)]
+        except KeyError:
+            return self.demands[(n2, n1)]
 
     def edge_middle_point(self, u, v, pixel_value=False):
         if self.has_edge(u, v) or self.has_edge(v, u):
@@ -149,27 +235,37 @@ class DirectedNetwork(_Network, nx.DiGraph):
         _Network.__init__(self, name)
 
 
-def create_undirected_net(network_name, calculate_distance=False, calculate_reinforcement=False):
+def create_undirected_net(network_name, calculate_distance=False, calculate_reinforcement=False, calculate_ila=False):
     base_path = Path(__file__).parent
-    file_path = (base_path / f'data/{network_name}.txt').resolve()
-    net = UndirectedNetwork.load_native(file_path)
+    file_path = (base_path / f'data/sndlib/json/{network_name}/{network_name}.json').resolve()
+    net = UndirectedNetwork.load_json(file_path)
     if calculate_distance:
         for edge in net.edges:
             distance = int(geomanip.haversine(edge[0].long, edge[0].lati, edge[1].long,
                                               edge[1].lati))
             net.edges[edge]['distance'] = distance
+            if calculate_ila:
+                net.edges[edge]['ila'] = int(distance / 80)
+    if calculate_reinforcement:
+        nodes_reinforcement = calculate_reinforcement_for_each_node(net)
+        edges_reinforcement = calculate_reinforcement_for_each_edge(net)
+        for edge in net.edges:
+            reinforcement = nodes_reinforcement[edge[0]] + edges_reinforcement[edge]
+            net[edge[0]][edge[1]]['reinforcement'] = reinforcement
     return net
 
 
-def create_directed_net(network_name, calculate_distance=False, calculate_reinforcement=False):
+def create_directed_net(network_name, calculate_distance=False, calculate_reinforcement=False, calculate_ila=False):
     base_path = Path(__file__).parent
-    file_path = (base_path / f'data/{network_name}.txt').resolve()
-    net = DirectedNetwork.load_native(file_path)
+    file_path = (base_path / f'data/sndlib/json/{network_name}/{network_name}.json').resolve()
+    net = DirectedNetwork.load_json(file_path)
     if calculate_distance:
         for edge in net.edges:
-            distance = int(geomanip.haversine(edge[0].long, edge[0].lati, edge[1].long,
+            distance = math.ceil(geomanip.haversine(edge[0].long, edge[0].lati, edge[1].long,
                                               edge[1].lati))
             net.edges[edge]['distance'] = distance
+            if calculate_ila:
+                net.edges[edge]['ila'] = int(distance / 80)
     if calculate_reinforcement:
         nodes_reinforcement = calculate_reinforcement_for_each_node(net)
         edges_reinforcement = calculate_reinforcement_for_each_edge(net)

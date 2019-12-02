@@ -1,0 +1,6 @@
+python -m venv venv
+source venv/Scripts/activate
+pip install setuptools
+pip install .
+mkdir -p results
+mkdir -p batchtests

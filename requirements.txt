@@ -5,3 +5,4 @@ mip
 bitstring
 sortedcontainers
 jsonpickle
+matplotlib

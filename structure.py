@@ -365,7 +365,7 @@ def random_neighbour(individual: geneticlib.Individual):
     chosen_gene_key = random.choice(list(genes.keys()))
     genes[chosen_gene_key] = chromosome._create_gene(chosen_gene_key)
     main_config.tools.calculate_fitness_values([neighbour], [fitness])
-    print(f"{neighbour.chromosome} {neighbour.values[0]}")
+    # print(f"{neighbour.chromosome} {neighbour.values[0]}")
     return neighbour
 
 
@@ -377,7 +377,7 @@ def random_neighbour_ksize(individual: geneticlib.Individual, k):
     for key in keys:
         genes[key] = chromosome._create_gene(key)
     main_config.tools.calculate_fitness_values([neighbour], [fitness])
-    print(f"{neighbour.chromosome} {neighbour.values[0]} {k}")
+    # print(f"{neighbour.chromosome} {neighbour.values[0]} {k}")
     return neighbour
 
 

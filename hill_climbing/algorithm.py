@@ -8,16 +8,12 @@ from hill_climbing import config
 def main():
     n = config.HILL_ITERATIONS
     size = config.HILL_SIZE
+    print("Start hill climbing:\n")
     individuals = [structure.create_individual(main_config.chromosome_type) for _ in range(size)]
     main_config.tools.calculate_fitness_values(individuals, [structure.fitness])
-    main_config.clock.start()
-    best = hc.run(individuals, random_neighbour_function=structure.random_neighbour, compare_function=structure.compare, n=n)
-    main_config.clock.stop()
-    file_name = f"{main_config.net_name}_Hill_I{main_config.intensity}_SIZE{size}_N{n}"
-    main_config.save_result(best, file_name)
-    pprint(best)
+    return hc.run(individuals, random_neighbour_function=structure.random_neighbour, compare_function=structure.compare,
+           n=n)
 
 
 if __name__ == "__main__":
     main()
-    # run_vns()

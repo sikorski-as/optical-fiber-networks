@@ -7,25 +7,27 @@ import main_config
 
 
 def main():
-    nets = {
-        ('germany50', 'germany'): [10, 20, 30],
-        ('janos-us', 'janos-us'): [1, 2],
-        ('polska', 'pol'): [0.25, 1, 2, 5, 10, 20, 30],
-    }
 
     algorithms = [
-        harmony_search.algorithm.main,
         hybrid.algorithm.main,
         hill_climbing.algorithm.main,
-        bees.algorithm.main,
+        harmony_search.algorithm.main,
         genetic.algorithm.main,
+        bees.algorithm.main,
     ]
+    nets = {
+        ('abilene', 'abilene'): [0.01, 0.02],
+        ('polska', 'pol'): [0.25, 1, 2, 5, 10, 20, 30],
+        ('germany50', 'germany'): [10, 20, 30],
+        ('janos-us', 'janos-us'): [1, 2],
+    }
 
     for (netfile, datfile), intensities in nets.items():
         for intensity in intensities:
             main_config.init(netfile, datfile, intensity)
             for algorithm in algorithms:
                 algorithm()
+                print("\n\n\n")
 
 
 if __name__ == '__main__':

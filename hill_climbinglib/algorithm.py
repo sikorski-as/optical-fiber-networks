@@ -1,3 +1,8 @@
+from main_config import SolutionTracer
+import main_config
+from utils import Timer
+
+
 def run(initial_values: iter, random_neighbour_function, compare_function, n=1, descending=True):
     """
     :param initial_values: starting values
@@ -9,19 +14,24 @@ def run(initial_values: iter, random_neighbour_function, compare_function, n=1, 
     """
 
     best_results = initial_values
-    number_of_iterations = 0
+    iteration = 0
 
-    while number_of_iterations < n:
-        for i, best_result in enumerate(best_results):
-            print(number_of_iterations)
-            neighbour = random_neighbour_function(best_result)
-            best_cost = compare_function(best_result)
-            neighbour_cost = compare_function(neighbour)
+    file_name = f"{main_config.net_name}_Hill_I{main_config.intensity}_SIZE{len(best_results)}_N{n}"
+    with Timer() as timer, SolutionTracer(file_name) as solution_tracer:
 
-            if best_cost > neighbour_cost and descending or best_cost < neighbour_cost and not descending:
-                best_results[i] = neighbour
+        while iteration < n:
+            for i, best_result in enumerate(best_results):
+                # print(number_of_iterations)
+                neighbour = random_neighbour_function(best_result)
+                best_cost = compare_function(best_result)
+                neighbour_cost = compare_function(neighbour)
 
-        number_of_iterations += 1
+                if best_cost > neighbour_cost and descending or best_cost < neighbour_cost and not descending:
+                    best_results[i] = neighbour
+
+            solution_tracer.update(min(best_results), timer.elapsed)
+            print(f'Iteration {iteration} ended\n' + str(solution_tracer))
+            iteration += 1
 
     return min(best_results, key=lambda x: compare_function(x)) if descending \
         else max(best_results, key=lambda x: compare_function(x))

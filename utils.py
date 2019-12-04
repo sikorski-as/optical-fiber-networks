@@ -62,7 +62,7 @@ def get_predefined_paths(network_filename, dat_filename, npaths):
                     path.remove(edge)
                     current_node = edge[0]
             if l == len(path):
-                print(starting_path)
+                # print(starting_path)
                 raise Exception("No coś nie tak")
         return organised_path
 

@@ -21,15 +21,13 @@ def dist(a, b):
 
 K = 3  # number of predefined paths
 
-net_name = 'germany50'
-dat_source_prefix = 'germany'
-intensity = 10
+net_name = None
+dat_source_prefix = None
+intensity = 1
 
-intensity_str = f"{intensity}".replace(".", "")
-net = sndlib.create_undirected_net(net_name, calculate_distance=True, calculate_reinforcement=True, calculate_ila=True)
-net.load_demands_from_datfile(f'data/{dat_source_prefix}{intensity_str}.dat')
-predefined_paths = utils.get_predefined_paths(network_filename=f"data/sndlib/json/{net_name}/{net_name}.json",
-                                              dat_filename=f"data/{dat_source_prefix}{intensity_str}.dat", npaths=K)
+intensity_str = None
+net = None
+predefined_paths = None
 
 # demands = {key: DEMAND for key in predefined_paths}
 # transponders_config = {DEMAND: t_config.create_config([(40, 4), (100, 4), (200, 8), (400, 12)], DEMAND, 3)}
@@ -39,17 +37,14 @@ transponders_config = tconfiger.load_config(t_config_file)
 # for config_key in transponders_config:
 #     transponders_config[config_key] = transponders_config[config_key][2:]
 
-demands = {key: math.ceil(value) for key, value in net.demands.items()}
-
+demands = None
 chromosome_type = structure.MultipleSubgeneChromosome
 
 
 def init(new_net_name, new_dat_source_prefix, new_intensity):
     global net_name, dat_source_prefix, intensity, intensity_str, net, predefined_paths, t_config_file, transponders_config, demands
 
-    print(net_name)
     net_name = new_net_name
-    print(net_name)
     dat_source_prefix = new_dat_source_prefix
     intensity = new_intensity
 

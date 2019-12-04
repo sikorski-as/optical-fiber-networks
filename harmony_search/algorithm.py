@@ -32,7 +32,7 @@ def run(accept_rate, pa_rate, memory_size, n, separate_genes=True):
                 if random.random() < accept_rate:
                     harmony_structure[key] = choose_gene_from_hm(harmony_memory, key)
                     if random.random() < pa_rate:
-                        new_harmony.chromosome.mutate_gene(harmony_structure[key], new_harmony.chromosome.predefined_paths[key])
+                        harmony_structure[key] = change_gene(key, change_fun=new_harmony.chromosome._create_gene)
                 else:
                     harmony_structure[key] = new_harmony.chromosome._create_gene(key)
         else:  # draw all genes from memory or random
@@ -40,7 +40,9 @@ def run(accept_rate, pa_rate, memory_size, n, separate_genes=True):
                 for key in main_config.net.demands:
                     harmony_structure[key] = choose_gene_from_hm(harmony_memory, key)
                     if random.random() < pa_rate:
-                        new_harmony.chromosome.mutate_gene(harmony_structure[key], new_harmony.chromosome.predefined_paths[key])
+                        harmony_structure[key] = change_gene(key, change_fun=new_harmony.chromosome._create_gene) \
+                            if random.random() < 0.5 else \
+                            mutate_gene(harmony_structure[key], new_harmony.chromosome.predefined_paths[key])
             else:
                 harmony_structure = new_harmony.chromosome._create_structure()
         new_harmony.chromosome.set_structure(harmony_structure)
@@ -51,6 +53,15 @@ def run(accept_rate, pa_rate, memory_size, n, separate_genes=True):
             harmony_memory.add(new_harmony)
     print(harmony_memory[0])
     return harmony_memory[0]
+
+
+def change_gene(key, change_fun):
+    return change_fun(key)
+
+
+def mutate_gene(gene, predefined_paths):
+    mutated_gene = structure.create_gene_with_random_path(gene, predefined_paths)
+    return mutated_gene
 
 
 def choose_gene_from_hm(hm: sortedlist.SortedList, key):

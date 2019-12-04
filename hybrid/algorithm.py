@@ -5,7 +5,7 @@ import main_config
 from structure import random_neighbour, compare
 
 
-def run_genetic_with_hill():
+def main():
     main_config.clock.start()
     best_individual = run_genetic(pop_size=config.POP_SIZE, new_pop_size=config.NEW_POP_SIZE, n=config.GA_ITERATIONS)
     best_result = hc.run([best_individual], random_neighbour_function=random_neighbour, compare_function=compare,
@@ -16,6 +16,6 @@ def run_genetic_with_hill():
 
 
 if __name__ == "__main__":
-    run_genetic_with_hill()
+    main()
 
 

@@ -5,7 +5,7 @@ import structure
 from hill_climbing import config
 
 
-def run_hill():
+def main():
     n = config.HILL_ITERATIONS
     size = config.HILL_SIZE
     individuals = [structure.create_individual(main_config.chromosome_type) for _ in range(size)]
@@ -19,5 +19,5 @@ def run_hill():
 
 
 if __name__ == "__main__":
-    run_hill()
+    main()
     # run_vns()

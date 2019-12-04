@@ -21,9 +21,9 @@ def dist(a, b):
 
 K = 3  # number of predefined paths
 
-net_name = 'janos-us'
-dat_source_prefix = 'janos-us'
-intensity = 1
+net_name = 'germany50'
+dat_source_prefix = 'germany'
+intensity = 10
 
 intensity_str = f"{intensity}".replace(".", "")
 net = sndlib.create_undirected_net(net_name, calculate_distance=True, calculate_reinforcement=True, calculate_ila=True)
@@ -47,7 +47,9 @@ chromosome_type = structure.MultipleSubgeneChromosome
 def init(new_net_name, new_dat_source_prefix, new_intensity):
     global net_name, dat_source_prefix, intensity, intensity_str, net, predefined_paths, t_config_file, transponders_config, demands
 
+    print(net_name)
     net_name = new_net_name
+    print(net_name)
     dat_source_prefix = new_dat_source_prefix
     intensity = new_intensity
 

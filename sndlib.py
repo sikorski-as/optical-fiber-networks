@@ -238,6 +238,7 @@ class DirectedNetwork(_Network, nx.DiGraph):
 def create_undirected_net(network_name, calculate_distance=False, calculate_reinforcement=False, calculate_ila=False):
     base_path = Path(__file__).parent
     file_path = (base_path / 'data/sndlib/json/{}/{}.json'.format(network_name, network_name)).resolve()
+    file_path = str(file_path)
     net = UndirectedNetwork.load_json(file_path)
     if calculate_distance:
         for edge in net.edges:
@@ -257,7 +258,8 @@ def create_undirected_net(network_name, calculate_distance=False, calculate_rein
 
 def create_directed_net(network_name, calculate_distance=False, calculate_reinforcement=False, calculate_ila=False):
     base_path = Path(__file__).parent
-    file_path = (base_path / 'data/sndlib/json/{}/{}.json'.format(network_name)).resolve()
+    file_path = (base_path / 'data/sndlib/json/{}/{}.json'.format(network_name, network_name)).resolve()
+    file_path = str(file_path)
     net = DirectedNetwork.load_json(file_path)
     if calculate_distance:
         for edge in net.edges:

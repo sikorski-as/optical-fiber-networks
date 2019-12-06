@@ -14,7 +14,7 @@ class Slice:
         self.value = value
 
     def __repr__(self):
-        return f"{self.value}"
+        return str(self.value)
 
 
 class Chromosome(abc.ABC):
@@ -130,7 +130,7 @@ class Chromosome(abc.ABC):
         return
 
     def __repr__(self):
-        return f"PO:{self.power_overflow} SO:{self.slices_overflow}"
+        return "PO:{} SO:{}".format(self.power_overflow, self.slices_overflow)
 
     @abc.abstractmethod
     def sorted_subgenes(self, sortfun, reverse):

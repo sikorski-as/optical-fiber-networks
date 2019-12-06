@@ -18,7 +18,7 @@ def run(accept_rate, pa_rate, memory_size, n, separate_genes=True):
     :param separate_genes: determining if random choosing each gene or whole structure
     :return: best harmony
     """
-    file_name = f"{main_config.net_name}_Harmony_I{main_config.intensity}_AR{config.HS_ACCEPT_RATE}_PR{config.HS_PA_RATE}_MS{config.HS_MEMORY_SIZE}_N{config.HS_ITERATIONS}"
+    file_name = "{}_Harmony_I{}_AR{}_PR{}_MS{}_N{}".format(main_config.net_name, main_config.intensity, config.HS_ACCEPT_RATE, config.HS_PA_RATE, config.HS_MEMORY_SIZE, config.HS_ITERATIONS)
 
     harmonies = [structure.create_individual(main_config.chromosome_type) for _ in range(memory_size)]
     main_config.tools.calculate_fitness_values(harmonies, list_of_funcs=[structure.fitness])
@@ -58,7 +58,7 @@ def run(accept_rate, pa_rate, memory_size, n, separate_genes=True):
                 harmony_memory.pop()
                 harmony_memory.add(new_harmony)
             solution_tracer.update(harmony_memory[0], timer.elapsed)
-            print(f'Iteration {iteration} ended\n' + str(solution_tracer))
+            print('Iteration {} ended\n'.format(iteration) + str(solution_tracer))
 
         return solution_tracer.best
 

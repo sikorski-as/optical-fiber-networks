@@ -13,7 +13,7 @@ def run_vns():
     main_config.clock.start()
     best = vns.run(individuals, random_neighbour_function=structure.random_neighbour_ksize,
                    compare_function=structure.compare, n=config.VNS_ITERATIONS, m=config.VNS_M, K=config.VNS_K)
-    file_name = f"{main_config.net_name}_VNS_I{main_config.intensity}_SIZE{size}_N{config.VNS_ITERATIONS}"
+    file_name = "{}_VNS_I{}_SIZE{}_N{}".format(main_config.net_name, main_config.intensity, size, config.VNS_ITERATIONS)
     main_config.clock.stop()
     main_config.save_result(best, file_name)
     pprint(best)

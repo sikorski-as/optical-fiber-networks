@@ -7,7 +7,7 @@ def create_config(demanded_value, tdata, n, width_weight=1, cost_weight=0, max_s
     model = mip.Model()  # type: mip.Model
     model.verbose = 0
     nvars = len(tdata)
-    tvars = [model.add_var(f'T{i}', var_type=mip.INTEGER, lb=0) for i in range(nvars)]
+    tvars = [model.add_var('T{}'.format(i), var_type=mip.INTEGER, lb=0) for i in range(nvars)]
     model += mip.xsum(tvar * tdata[i].transfer for i, tvar in enumerate(tvars)) >= demanded_value
     model.objective = mip.minimize(
         mip.xsum(
@@ -28,7 +28,7 @@ def create_config(demanded_value, tdata, n, width_weight=1, cost_weight=0, max_s
             print('no feasible solution found, lower bound is: {}'.format(model.objective_bound))
         if status == mip.OptimizationStatus.OPTIMAL or status == mip.OptimizationStatus.FEASIBLE:
             print('solution:')
-            vars = (f'{v.name}={v.x}' for v in model.vars)
+            vars = ('{}={}'.format(v.name, v.x) for v in model.vars)
             print(*vars, sep=', ')
 
     n = min(n, model.num_solutions)

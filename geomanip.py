@@ -47,7 +47,7 @@ class MercatorProjection(Projection):
 
     @classmethod
     def from_points(cls, points, map_size, padding=0):
-        print(f'Warning: calling experimental function {cls.__name__}.from_points')
+        print('Warning: calling experimental function {}.from_points'.format(cls.__name__))
         if any(point[0] < -180 or point[0] > 180 or point[1] > 90 or point[1] < -90 for point in points):
             raise ValueError('Coordinates not in ranges [-180, 180], [-90, 90]')
 

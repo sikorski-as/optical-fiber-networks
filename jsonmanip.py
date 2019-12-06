@@ -9,7 +9,7 @@ def load_from_file(filename):
 
 
 def load_geojson(a3_code):
-    return load_from_file(f'data/countries/data/{a3_code.lower()}.geo.json')
+    return load_from_file('data/countries/data/{}.geo.json'.format(a3_code.lower()))
 
 
 def get_countries_db():

@@ -43,9 +43,8 @@ def simple_configs():
                 tdata=tdata,
                 method=transponders.mixed.create_config
             )
-            print(f'{i / len(demands_multiplied) * 100:.2f}% done')
-    print(f'It took {t.interval:.3f}s')
-
+            print('{:.2f}% done'.format(i / len(demands_multiplied) * 100))
+    print('It took {:.3f}s'.format(t.interval))
     save_json('data/tconfigs_mixed_bez_400.json', configs_data, indent=4)
 
 
@@ -82,7 +81,7 @@ def multiple_objectives_configs():
         for i, demand in enumerate(sorted(demands_multiplied), start=1):
             best_width_configs[demand] = find_configs_for_demand(
                 demand=demand, n=1, tdata=transponders, method=minimizing_width)
-            print(f'{i / len(demands_multiplied) * 100:.2f}% done')
+            print('{:.2f}% done'.format(i / len(demands_multiplied) * 100))
     # input('Press <return> to start calculations')
 
     with Timer(print_on_exit=True) as t:
@@ -90,7 +89,7 @@ def multiple_objectives_configs():
         for i, demand in enumerate(sorted(demands_multiplied), start=1):
             best_cost_configs[demand] = find_configs_for_demand(
                 demand=demand, n=1, tdata=transponders, method=minimizing_cost)
-            print(f'{i / len(demands_multiplied) * 100:.2f}% done')
+            print('{:.2f}% done'.format(i / len(demands_multiplied) * 100))
     # input('Press <return> to start calculations')
 
     all_configs = merge_cofigs(best_cost_configs, best_width_configs)
@@ -100,7 +99,7 @@ def multiple_objectives_configs():
         for i, demand in enumerate(sorted(demands_multiplied), start=1):
             best_width_low_power_configs[demand] = find_configs_for_demand(
                 demand=demand, n=1, tdata=low_power_transponders, method=minimizing_width)
-            print(f'{i / len(demands_multiplied) * 100:.2f}% done')
+            print('{:.2f}% done'.format(i / len(demands_multiplied) * 100))
     # input('Press <return> to start calculations')
 
     with Timer(print_on_exit=True) as t:
@@ -108,7 +107,7 @@ def multiple_objectives_configs():
         for i, demand in enumerate(sorted(demands_multiplied), start=1):
             best_cost_low_power_configs[demand] = find_configs_for_demand(
                 demand=demand, n=1, tdata=low_power_transponders, method=minimizing_cost)
-            print(f'{i / len(demands_multiplied) * 100:.2f}% done')
+            print('{:.2f}% done'.format(i / len(demands_multiplied) * 100))
     # input('Press <return> to start calculations')
 
     all_low_power_configs = merge_cofigs(best_width_low_power_configs, best_cost_low_power_configs)
@@ -128,7 +127,7 @@ def multiple_objectives_configs():
         'configs': merge_cofigs(all_configs, all_low_power_configs)
     }
     date_string = datetime.now().strftime('%Y-%m-%d-%H_%M_%S')
-    save_json(f'data/transponder_configs_ip_{date_string}.json', configs_data, indent=4)
+    save_json('data/transponder_configs_ip_{}.json'.format(date_string), configs_data, indent=4)
 
 
 if __name__ == '__main__':

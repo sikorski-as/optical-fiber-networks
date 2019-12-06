@@ -53,11 +53,11 @@ def main():
     #     print("{} -> {}".format(individual.chromosome.binary, individual.values))
     # print()
     for individual in population:
-        print(f"{individual.__hash__()} -> {individual.chromosome.binary} {individual.values}")
+        print("{} -> {} {}".format(hash(individual), individual.chromosome.binary, individual.values))
     print()
 
     for individual in pop:
-        print(f"{individual.__hash__()} -> {individual.chromosome.binary} {individual.values}")
+        print("{} -> {} {}".format(hash(individual), individual.chromosome.binary, individual.values))
 
     # for couple in couples:
     #     print("{}".format(couple))

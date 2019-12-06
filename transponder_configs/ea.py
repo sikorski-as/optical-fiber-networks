@@ -21,7 +21,7 @@ class Chromosome:
         return sum([self.configuration[i] * self.transponders[i].transfer for i in range(len(self.transponders))])
 
     def __str__(self):
-        return f"{self.configuration}"
+        return str(self.configuration)
 
     def __eq__(self, other):
         return self.configuration == other.configuration

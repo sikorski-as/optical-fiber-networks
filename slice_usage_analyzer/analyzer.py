@@ -98,7 +98,7 @@ class DataInfo:
 
     def statistics(self):
         for i, j, k in np.ndindex(self.X.shape[0], self.X.shape[1], self.X.shape[3]):
-            print(f'{i}:{j}:{k} -> {self.X[i, j, :, k, :].sum()}')
+            print('{}:{}:{} -> {}'.format(i, j, k, self.X[i, j, :, k, :].sum()))
 
     def upload_path_row(self):
         vertex, path, edge, *row = self.paths_file.readline().split()
@@ -164,7 +164,7 @@ class DataInfo:
                 used_slices = self.X[t, n1, n2, p].sum() * self.transponders[t + 1][1]
                 if used_slices:
                     # print(f't={t}, n={n1}, n\'={n2}, p={p}, used_slices={used_slices}')
-                    print(f'[{t + 1}, {n1 + 1}, {n2 + 1}, {p + 1}, {used_slices}]')
+                    print('[{}, {}, {}, {}, {}]'.format(t + 1, n1 + 1, n2 + 1, p + 1, used_slices))
                 for edge in self.paths_dict[(n2, n1)][p]:
                     slices_in_edges[edge] += used_slices
         return slices_in_edges

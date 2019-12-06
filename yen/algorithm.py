@@ -91,7 +91,7 @@ def ksp(G: nx.Graph, source, target, searching_fun, heuristic_fun=None, k=1, wei
             score, path = list_b.pop()
             list_a.append((score, path))
         elif prev_path:
-            raise ValueError(f"Cannot find {k} paths")
+            raise ValueError("Cannot find {} paths".format(k))
         prev_path = path
 
     return list_a

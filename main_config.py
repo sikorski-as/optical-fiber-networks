@@ -48,15 +48,16 @@ def init(new_net_name, new_dat_source_prefix, new_intensity):
     dat_source_prefix = new_dat_source_prefix
     intensity = new_intensity
 
-    intensity_str = f"{intensity}".replace(".", "")
+    intensity_str = str(intensity).replace(".", "")
     net = sndlib.create_undirected_net(net_name,
                                        calculate_distance=True,
                                        calculate_reinforcement=True,
                                        calculate_ila=True)
-    net.load_demands_from_datfile(f'data/{dat_source_prefix}{intensity_str}.dat')
-    predefined_paths = utils.get_predefined_paths(network_filename=f"data/sndlib/json/{net_name}/{net_name}.json",
-                                                  dat_filename=f"data/{dat_source_prefix}{intensity_str}.dat",
-                                                  npaths=K)
+    net.load_demands_from_datfile('data/{}{}.dat'.format(dat_source_prefix, intensity_str))
+    predefined_paths = utils.get_predefined_paths(
+        network_filename="data/sndlib/json/{}/{}.json".format(net_name, net_name),
+        dat_filename="data/{}{}.dat".format(dat_source_prefix, intensity_str),
+        npaths=K)
 
     demands = {key: math.ceil(value) for key, value in net.demands.items()}
 
@@ -150,9 +151,9 @@ def save_result(best_result: Individual, file_name: str):
         "Chromosome type": best_chromosome.__class__
     }
     print(result)
-    file_name = f"{file_name}_{time.time()}"
+    file_name = "{}_{}".format(file_name, time.time())
 
-    with open(f'results/{file_name}', mode='w') as file:
+    with open('results/{}'.format(file_name), mode='w') as file:
         file.write(jsonpickle.encode(result))
 
 
@@ -213,17 +214,13 @@ class SolutionTracer:
                 'Error': 'No best chromosome set'
             }
         print(result)
-        file_name = f"{self.filename}_{time.time()}"
-        with open(f'resul'
-                  f'ts/{file_name}', mode='w') as file:
+        file_name = "{}_{}".format(self.filename, time.time())
+        with open('results/{}'.format(file_name), mode='w') as file:
             file.write(jsonpickle.encode(result))
 
     def __str__(self):
-        return f'<SolutionTracer' \
-            f'\n\tbest solution: {self.best}' \
-            f'\n\ttime: {self.best_time:.3f}s' \
-            f'\n\tcost: {self.best.value:.3f}' \
-            f'\n>'
+        return '<SolutionTracer' + '\n\tbest solution: {}'.format(self.best) + '\n\ttime: {:.3f}s'.format(
+            self.best_time) + '\n\tcost: {:.3f}'.format(self.best.value) + '\n>'
 
     def print(self):
         print(str(self))

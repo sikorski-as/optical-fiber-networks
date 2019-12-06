@@ -42,7 +42,7 @@ class Ant:
 
     def move(self, edge):
         if self.current_node != edge[0]:
-            raise ValueError(f"Wrong edge used - current edge begin {edge[0]}, current node {self.current_node}")
+            raise ValueError("Wrong edge used - current edge begin {}, current node {}".format(edge[0], self.current_node))
         self.visited_nodes.add(self.current_node)
         self.solution.append(edge)
         self.used_edges.append(edge)
@@ -73,7 +73,7 @@ class Ant:
         return self.assessment_fun(self.solution) < self.assessment_fun(other.solution)
 
     def __str__(self):
-        return f"Ant:{self.total_distance} {self.solution}"
+        return "Ant:{} {}".format(self.total_distance, self.solution)
 
 
 def find_best_ant(ants, assessment_fun):

@@ -96,7 +96,7 @@ class SlicesAnalyzer:
 
     def statistics(self):
         for i, j, k in np.ndindex(self.X.shape[0], self.X.shape[1], self.X.shape[3]):
-            print(f'{i}:{j}:{k} -> {self.X[i, j, :, k, :].sum()}')
+            print('{}:{}:{} -> {}'.format(i, j, k, self.X[i, j, :, k, :].sum()))
 
     def upload_path_row(self):
         vertex, path, edge, *row = self.paths_file.readline().split()
@@ -168,7 +168,7 @@ class SlicesAnalyzer:
 def legend():
     plt.clf()
     ticks = [0.0, 0.25, 0.5, 0.75, 1.0]
-    labels = [f'{int(x * 100)}%' for x in ticks]
+    labels = ['{}%'.format(int(x * 100)) for x in ticks]
 
     # w, h = 1, 1
     # ax = blues_bar.ax
@@ -232,7 +232,7 @@ def main():
     done = {}
 
     for edge in range(1, net.number_of_edges() + 1):
-        raw_one = raw.get(f'Edge {edge}', {})
+        raw_one = raw.get('Edge {}'.format(edge), {})
         done[edge] = {
             1: raw_one.get('Band 1', 0),
             2: raw_one.get('Band 2', 0),

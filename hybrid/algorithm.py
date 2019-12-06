@@ -12,7 +12,7 @@ from utils import Timer
 def run_genetic_with_hill(random_neighbour_function, compare_function, h_n=1, descending=True, pop_size=config.POP_SIZE, g_n=config.GA_ITERATIONS, new_pop_size=config.NEW_POP_SIZE, MPB=config.MPB,
                 CPB=config.CPB):
 
-    file_name = f"{main_config.net_name}_Genetic+Hill_I{main_config.intensity}_GI{config.GA_ITERATIONS}_HI{config.HILL_ITERATIONS}"
+    file_name = "{}_Genetic+Hill_I{}_GI{}_HI{}".format(main_config.net_name, main_config.intensity, config.GA_ITERATIONS, config.HILL_ITERATIONS)
 
     with Timer() as timer, main_config.SolutionTracer(file_name) as solution_tracer:
         print("Hybrid - genetic:\n")
@@ -37,7 +37,7 @@ def run_genetic_with_hill(random_neighbour_function, compare_function, h_n=1, de
             best = tools.select_best(population, 1)
 
             solution_tracer.update(best, timer.elapsed)
-            print(f'Iteration {iteration} ended\n' + str(solution_tracer))
+            print('Iteration {} ended\n'.format(iteration) + str(solution_tracer))
 
         best_result = solution_tracer.best
         iteration = 0
@@ -52,7 +52,7 @@ def run_genetic_with_hill(random_neighbour_function, compare_function, h_n=1, de
                 best_result = neighbour
 
             solution_tracer.update(best_result, timer.elapsed)
-            print(f'Iteration {iteration + g_n} ended\n' + str(solution_tracer))
+            print('Iteration {} ended\n'.format(iteration + g_n) + str(solution_tracer))
             iteration += 1
 
         return solution_tracer.best

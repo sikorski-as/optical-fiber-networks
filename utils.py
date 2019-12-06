@@ -110,7 +110,7 @@ class Timer:
 
     def __exit__(self, *args):
         if self.print_on_exit:
-            print(f'{self._name} took {self.elapsed:.{self._accuracy}f}s')
+            print('{} took {}s'.format(self._name, self.elapsed))
 
     @contextmanager
     def suspend(self):
@@ -125,4 +125,4 @@ class Timer:
         return time.time() - self._start + self._accumulator
 
     def print_elapsed(self):
-        print(f'{self._name} so far: {self.elapsed:.{self._accuracy}f}s')
+        print('{} so far: {}s'.format(self._name, self.elapsed))

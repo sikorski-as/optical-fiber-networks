@@ -16,7 +16,7 @@ def run(initial_values: iter, random_neighbour_function, compare_function, n=1, 
     best_results = initial_values
     iteration = 0
 
-    file_name = f"{main_config.net_name}_Hill_I{main_config.intensity}_SIZE{len(best_results)}_N{n}"
+    file_name = "{}_Hill_I{}_SIZE{}_N{}".format(main_config.net_name, main_config.intensity, len(best_results), n)
     with Timer() as timer, SolutionTracer(file_name) as solution_tracer:
 
         while iteration < n:
@@ -30,7 +30,7 @@ def run(initial_values: iter, random_neighbour_function, compare_function, n=1, 
                     best_results[i] = neighbour
 
             solution_tracer.update(min(best_results), timer.elapsed)
-            print(f'Iteration {iteration} ended\n' + str(solution_tracer))
+            print('Iteration {} ended\n'.format(iteration) + str(solution_tracer))
             iteration += 1
 
     return min(best_results, key=lambda x: compare_function(x)) if descending \

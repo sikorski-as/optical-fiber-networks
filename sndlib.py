@@ -22,7 +22,7 @@ class Node:
         self.y = 0
 
     def __repr__(self):
-        return f"<{self.name}>"
+        return "<{}>".format(self.name)
 
     def __eq__(self, other):
         return other and self.name == other.name
@@ -159,7 +159,7 @@ class _Network:
             else:
                 return (u.long + v.long) / 2, (u.lati + v.lati) / 2
         else:
-            raise ValueError(f'{u.name}-{v.name} edge does not exists')
+            raise ValueError('{}-{} edge does not exists'.format(u.name, v.name))
 
     def add_pixel_coordinates(self, projection):
         for node in self.nodes:
@@ -206,7 +206,7 @@ class NetworkView:
             alpha = max(pheromone / pheromone_all, 0.1)
             draw.line(u.x, u.y, v.x, v.y, marker='o', color=(0.7, 0.0, 0.0, alpha))
             draw.text(
-                sx, sy, f'{pheromone:.2f}',
+                sx, sy, '{:.2f}'.format(pheromone),
                 fontsize=7,
                 color='navy',
                 alpha=max(alpha, 0.3),
@@ -237,7 +237,7 @@ class DirectedNetwork(_Network, nx.DiGraph):
 
 def create_undirected_net(network_name, calculate_distance=False, calculate_reinforcement=False, calculate_ila=False):
     base_path = Path(__file__).parent
-    file_path = (base_path / f'data/sndlib/json/{network_name}/{network_name}.json').resolve()
+    file_path = (base_path / 'data/sndlib/json/{}/{}.json'.format(network_name, network_name)).resolve()
     net = UndirectedNetwork.load_json(file_path)
     if calculate_distance:
         for edge in net.edges:
@@ -257,7 +257,7 @@ def create_undirected_net(network_name, calculate_distance=False, calculate_rein
 
 def create_directed_net(network_name, calculate_distance=False, calculate_reinforcement=False, calculate_ila=False):
     base_path = Path(__file__).parent
-    file_path = (base_path / f'data/sndlib/json/{network_name}/{network_name}.json').resolve()
+    file_path = (base_path / 'data/sndlib/json/{}/{}.json'.format(network_name)).resolve()
     net = DirectedNetwork.load_json(file_path)
     if calculate_distance:
         for edge in net.edges:

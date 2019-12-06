@@ -10,15 +10,7 @@ import main_config
 
 def bee_colony(nscouts=64, m_best=10, e_best=2, n1=20, n2=3, flower_patch_size=5, iterations=100):
     tools = main_config.tools
-    filename = f"{main_config.net_name}" \
-        f"_Bees_I{main_config.intensity}" \
-        f"_NSCOUTS{nscouts}" \
-        f"_M{m_best}" \
-        f"_E{e_best}" \
-        f"_N1{n1}" \
-        f"_N2{n2}" \
-        f"_PATCHSIZE{flower_patch_size}" \
-        f"_N{iterations}"
+    filename = "{}_Bees_I{}_NSCOUTS{}_M{}_E{}_N1{}_N2{}_PATCHSIZE{}_N{}".format(main_config.net_name, main_config.intensity, nscouts, m_best, e_best, n1, n2, flower_patch_size, iterations)
 
     with Timer() as timer, SolutionTracer(filename) as solution_tracer:
         scouts = [create_individual(ChromosomeType=chromosome_type) for _ in range(nscouts)]
@@ -44,7 +36,7 @@ def bee_colony(nscouts=64, m_best=10, e_best=2, n1=20, n2=3, flower_patch_size=5
             tools.calculate_fitness_values(new_scouts, list_of_funcs=[fitness])
 
             solution_tracer.update(scouts[0], timer.elapsed)
-            print(f'Iteration {i} ended\n' + str(solution_tracer))
+            print('Iteration {} ended\n'.format(i) + str(solution_tracer))
 
             scouts.extend(new_scouts)
 

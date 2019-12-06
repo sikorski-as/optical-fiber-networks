@@ -1,5 +1,5 @@
 python3 -m venv venv
-source venv/Scripts/activate
+venv/Scripts/activate.bat
 pip3 install setuptools
 pip3 install -r requirements.txt
 mkdir -p results

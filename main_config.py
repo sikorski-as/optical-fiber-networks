@@ -40,10 +40,13 @@ transponders_config = tconfiger.load_config(t_config_file)
 demands = None
 chromosome_type = structure.MultipleSubgeneChromosome
 
+max_repetitions = 1
 
-def init(new_net_name, new_dat_source_prefix, new_intensity):
-    global net_name, dat_source_prefix, intensity, intensity_str, net, predefined_paths, t_config_file, transponders_config, demands
 
+def init(new_net_name, new_dat_source_prefix, new_intensity, new_max_repetitions):
+    global net_name, dat_source_prefix, intensity, intensity_str, net, predefined_paths, t_config_file, transponders_config, demands, max_repetitions
+
+    max_repetitions = new_max_repetitions
     net_name = new_net_name
     dat_source_prefix = new_dat_source_prefix
     intensity = new_intensity
@@ -158,21 +161,29 @@ def save_result(best_result: Individual, file_name: str):
 
 
 class SolutionTracer:
-    def __init__(self, filename: str, collect_partial: bool = True):
+    def __init__(self, filename: str, collect_partial: bool = True, max_repetitions: int = 1000):
         self.filename = filename
         self.collect_partial = collect_partial
         self.best = None
         self.best_time = math.inf
         self.times = []
         self.scores = []
+        self.repetitions = 0
+        self.max_repetitions = max_repetitions
 
     def update(self, solution, time):
         if self.collect_partial:
+            if len(self.scores) != 0:
+                self.repetitions = self.repetitions + 1 if self.scores[-1] == solution.value else 0
             self.scores.append(solution.value)
             self.times.append(time)
         if self.best is None or solution.value < self.best.value:
             self.best = deepcopy(solution)
             self.best_time = time
+
+    @property
+    def repetitions_exceeded(self):
+        return self.repetitions > self.max_repetitions
 
     def __enter__(self):
         return self

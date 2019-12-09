@@ -39,6 +39,8 @@ def bee_colony(nscouts=64, m_best=10, e_best=2, n1=20, n2=3, flower_patch_size=5
             print('Iteration {} ended\n'.format(i) + str(solution_tracer))
 
             scouts.extend(new_scouts)
+            if solution_tracer.repetitions_exceeded:
+                break
 
     return solution_tracer.best
 

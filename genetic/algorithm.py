@@ -52,6 +52,8 @@ def run_genetic(pop_size=config.POP_SIZE, n=config.GA_ITERATIONS, new_pop_size=c
 
             solution_tracer.update(best, timer.elapsed)
             print('Iteration {} ended\n'.format(iteration) + str(solution_tracer))
+            if solution_tracer.repetitions_exceeded:
+                break
 
         return solution_tracer.best
 

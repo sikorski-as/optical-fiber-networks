@@ -18,14 +18,17 @@ def run(accept_rate, pa_rate, memory_size, n, separate_genes=True):
     :param separate_genes: determining if random choosing each gene or whole structure
     :return: best harmony
     """
-    file_name = "{}_Harmony_I{}_AR{}_PR{}_MS{}_N{}".format(main_config.net_name, main_config.intensity, config.HS_ACCEPT_RATE, config.HS_PA_RATE, config.HS_MEMORY_SIZE, config.HS_ITERATIONS)
+    file_name = "{}_Harmony_I{}_AR{}_PR{}_MS{}_N{}".format(main_config.net_name, main_config.intensity,
+                                                           config.HS_ACCEPT_RATE, config.HS_PA_RATE,
+                                                           config.HS_MEMORY_SIZE, config.HS_ITERATIONS)
 
     harmonies = [structure.create_individual(main_config.chromosome_type) for _ in range(memory_size)]
     main_config.tools.calculate_fitness_values(harmonies, list_of_funcs=[structure.fitness])
     harmony_memory = sortedlist.SortedList(harmonies, key=lambda x: x.values[0])
 
     print("Start harmony search: \n")
-    with Timer() as timer, main_config.SolutionTracer(file_name) as solution_tracer:
+    with Timer() as timer, main_config.SolutionTracer(file_name,
+                                                      max_repetitions=main_config.max_repetitions) as solution_tracer:
 
         iteration = itertools.count()
         while next(iteration) < n:
@@ -58,7 +61,9 @@ def run(accept_rate, pa_rate, memory_size, n, separate_genes=True):
                 harmony_memory.pop()
                 harmony_memory.add(new_harmony)
             solution_tracer.update(harmony_memory[0], timer.elapsed)
-            print('Iteration {} ended\n'.format(iteration) + str(solution_tracer))
+            print('Iteration {} ended {}\n'.format(iteration, solution_tracer.repetitions) + str(solution_tracer))
+            if solution_tracer.repetitions_exceeded:
+                break
 
         return solution_tracer.best
 
@@ -79,7 +84,7 @@ def choose_gene_from_hm(hm: sortedlist.SortedList, key):
 
 def main():
     return run(accept_rate=config.HS_ACCEPT_RATE, pa_rate=config.HS_PA_RATE, memory_size=config.HS_MEMORY_SIZE,
-                      n=config.HS_ITERATIONS, separate_genes=True)
+               n=config.HS_ITERATIONS, separate_genes=True)
 
 
 if __name__ == "__main__":

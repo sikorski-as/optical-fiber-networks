@@ -38,6 +38,8 @@ def run_genetic_with_hill(random_neighbour_function, compare_function, h_n=1, de
 
             solution_tracer.update(best, timer.elapsed)
             print('Iteration {} ended\n'.format(iteration) + str(solution_tracer))
+            if solution_tracer.repetitions_exceeded:
+                break
 
         best_result = solution_tracer.best
         iteration = 0
@@ -54,6 +56,8 @@ def run_genetic_with_hill(random_neighbour_function, compare_function, h_n=1, de
             solution_tracer.update(best_result, timer.elapsed)
             print('Iteration {} ended\n'.format(iteration + g_n) + str(solution_tracer))
             iteration += 1
+            if solution_tracer.repetitions_exceeded:
+                break
 
         return solution_tracer.best
 

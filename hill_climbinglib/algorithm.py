@@ -32,6 +32,8 @@ def run(initial_values: iter, random_neighbour_function, compare_function, n=1, 
             solution_tracer.update(min(best_results), timer.elapsed)
             print('Iteration {} ended\n'.format(iteration) + str(solution_tracer))
             iteration += 1
+            if solution_tracer.repetitions_exceeded:
+                break
 
     return min(best_results, key=lambda x: compare_function(x)) if descending \
         else max(best_results, key=lambda x: compare_function(x))

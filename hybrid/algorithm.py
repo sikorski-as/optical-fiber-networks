@@ -12,7 +12,7 @@ from utils import Timer
 def run_genetic_with_hill(random_neighbour_function, compare_function, h_n=1, descending=True, pop_size=config.POP_SIZE, g_n=config.GA_ITERATIONS, new_pop_size=config.NEW_POP_SIZE, MPB=config.MPB,
                 CPB=config.CPB):
 
-    file_name = "{}_Genetic+Hill_I{}_GI{}_HI{}".format(main_config.net_name, main_config.intensity, config.GA_ITERATIONS, config.HILL_ITERATIONS)
+    file_name = "{}_Hybrid_I{}_GI{}_HI{}".format(main_config.net_name, main_config.intensity, config.GA_ITERATIONS, config.HILL_ITERATIONS)
 
     with Timer() as timer, main_config.SolutionTracer(file_name) as solution_tracer:
         print("Hybrid - genetic:\n")

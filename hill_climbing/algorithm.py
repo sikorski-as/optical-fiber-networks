@@ -1,4 +1,3 @@
-from pprint import pprint
 import main_config
 import hill_climbinglib as hc
 import structure

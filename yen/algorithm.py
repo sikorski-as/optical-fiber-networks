@@ -2,29 +2,42 @@ import copy
 import itertools
 import heapq
 import networkx as nx
-
 import sndlib
 
 
 def ksp_all_nodes(G, searching_fun, heuristic_fun=None, k=1, weight=None):
+    """
+    Performing ksp algorithm for each pair of nodes.
+    :param G:  graph
+    :param searching_fun: searching function
+    :param heuristic_fun: heuristic function
+    :param k: amount of paths to find
+    :param weight: edge attribute name used to calculate length
+    :return: dictionary where keys are pairs of nodes and values are paths between them
+    """
     paths_dict = {}
     net = copy.deepcopy(G)
     for node in G.nodes:
-        # paths_dict[node] = {}
         for another_node in G.nodes:
             if node != another_node:
                 paths_dict[node, another_node] = ksp(net, node, another_node, searching_fun, heuristic_fun, k, weight)
     return paths_dict
 
 
-"""
-    https://en.wikipedia.org/wiki/Yen%27s_algorithm
-    nie dziala dla skierowanego gdy krawedz (1, 2, ...) i (2, 1, ...) mają różne atrybuty
-"""
-
-
 def ksp(G: nx.Graph, source, target, searching_fun, heuristic_fun=None, k=1, weight=None):
-    info_graph = copy.deepcopy(G) # during ksp graph is changing, info_graph stores whole info all the time
+    """
+    Finding k-shorest paths between two nodes
+    Based on https://networkx.github.io/documentation/networkx-1.10/index.html
+    :param G: graph
+    :param source: start node
+    :param target: end node
+    :param searching_fun: searching function
+    :param heuristic_fun: heuristic function
+    :param k: amount of paths to find
+    :param weight: edge attribute name used to calculate length
+    :return: list of paths
+    """
+    info_graph = copy.deepcopy(G)  # during ksp graph is changing, info_graph stores whole info all the time
     if weight is None:
         length_func = len
     else:
@@ -75,7 +88,7 @@ def ksp(G: nx.Graph, source, target, searching_fun, heuristic_fun=None, k=1, wei
                         spur = searching_fun(G, root[-1], target, heuristic_fun, weight=weight)
                     else:
                         _, spur = searching_fun(G, root[-1], target, weight=weight)
-                    spur_score = length_func(spur) - 1  #one node in root and spur!
+                    spur_score = length_func(spur) - 1  # one node in root and spur!
                     potential_best_path = root[:-1] + spur
                     list_b.push(root_score + spur_score, potential_best_path)
                 except nx.NetworkXNoPath:

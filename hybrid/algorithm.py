@@ -1,8 +1,7 @@
 import random
-
 from genetic.algorithm import crossing, mutating
 from hybrid import config
-from main_config import tools, SolutionTracer
+from main_config import tools
 import main_config
 import structure
 from structure import random_neighbour, compare
@@ -11,8 +10,20 @@ from utils import Timer
 
 def run_genetic_with_hill(random_neighbour_function, compare_function, h_n=1, descending=True, pop_size=config.POP_SIZE, g_n=config.GA_ITERATIONS, new_pop_size=config.NEW_POP_SIZE, MPB=config.MPB,
                 CPB=config.CPB):
+    """
 
-    file_name = "{}_Hybrid_I{}_GI{}_HI{}".format(main_config.net_name, main_config.intensity, config.GA_ITERATIONS, config.HILL_ITERATIONS)
+    :param random_neighbour_function: function generating random neighbour when individual given
+    :param compare_function: compare function
+    :param h_n: number of iterations in hill climbing
+    :param descending: determines if we are looking for min or max value
+    :param pop_size: population size
+    :param g_n: number of iterations in genetic algorithm
+    :param new_pop_size: size of randomly created population in every iteration
+    :param MPB: mutation probability
+    :param CPB: crossover probability
+    :return: best individual
+    """
+    file_name = "{}_Genetic+Hill_I{}_GI{}_HI{}".format(main_config.net_name, main_config.intensity, config.GA_ITERATIONS, config.HILL_ITERATIONS)
 
     with Timer() as timer, main_config.SolutionTracer(file_name) as solution_tracer:
         print("Hybrid - genetic:\n")
@@ -20,6 +31,7 @@ def run_genetic_with_hill(random_neighbour_function, compare_function, h_n=1, de
         main_config.tools.calculate_fitness_values(population, list_of_funcs=[structure.fitness])
 
         iteration = 0
+
         while iteration < g_n:
             iteration += 1
             couples = tools.create_couples(population, 2, int(pop_size / 2))
@@ -40,8 +52,8 @@ def run_genetic_with_hill(random_neighbour_function, compare_function, h_n=1, de
             print('Iteration {} ended\n'.format(iteration) + str(solution_tracer))
             if solution_tracer.repetitions_exceeded:
                 break
-
         best_result = solution_tracer.best
+
         iteration = 0
         print("Hybrid - hill:\n")
         while iteration < h_n:

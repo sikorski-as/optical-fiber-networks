@@ -21,9 +21,4 @@ class Creator:
             Returns:
                list of objects created using arguments
         """
-        # print(n, end=" ")
-        # print(*args, end=" ")
-        # for key, val in kwargs.items():
-        #     print("{} {}".format(key, val), end=" ")
-        # print()
         return [self.chromosome(*args, **kwargs) for _ in range(0, n)]

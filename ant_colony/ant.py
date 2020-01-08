@@ -5,6 +5,11 @@ import sortedcontainers
 
 class Ant:
     def __init__(self, world, assessment_fun):
+        """
+
+        :param world: world where ant is going to travel
+        :param assessment_fun: assessment function
+        """
         self.solution = []
         self.used_edges = []
         self.current_node = None

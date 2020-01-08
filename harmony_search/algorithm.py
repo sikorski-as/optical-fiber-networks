@@ -11,9 +11,9 @@ def run(accept_rate, pa_rate, memory_size, n, separate_genes=True):
     """
     rpa best (0.1-0.5)
     r_accept (0.7-0.95)
-    :param accept_rate:
-    :param pa_rate:
-    :param memory_size:
+    :param accept_rate: probability of creating harmony from memory
+    :param pa_rate: probability of mutating harmony
+    :param memory_size: memory size
     :param n: number of iterations
     :param separate_genes: determining if random choosing each gene or whole structure
     :return: best harmony
@@ -32,7 +32,6 @@ def run(accept_rate, pa_rate, memory_size, n, separate_genes=True):
 
         iteration = itertools.count()
         while next(iteration) < n:
-            # print(iteration)
             new_harmony = structure.create_individual(main_config.chromosome_type)
             new_harmony.chromosome.clear_structure()
             harmony_structure = {}
@@ -56,7 +55,6 @@ def run(accept_rate, pa_rate, memory_size, n, separate_genes=True):
                     harmony_structure = new_harmony.chromosome._create_structure()
             new_harmony.chromosome.set_structure(harmony_structure)
             main_config.tools.calculate_fitness_values([new_harmony], list_of_funcs=[structure.fitness])
-            # print(new_harmony)
             if harmony_memory[-1].values[0] > new_harmony.values[0]:
                 harmony_memory.pop()
                 harmony_memory.add(new_harmony)

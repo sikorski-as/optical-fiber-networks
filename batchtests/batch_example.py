@@ -7,17 +7,17 @@ import main_config
 
 
 # algorithms = [
-#     harmony_search.algorithm.main,
-#     hybrid.algorithm.main,
-#     hill_climbing.algorithm.main,
-#     genetic.algorithm.main,
-#     bees.algorithm.main,
-# ]
-# nets = {
-#     ('polska', 'pol'): [0.25, 1, 2, 5, 10, 20, 30],
-#     ('abilene', 'abilene'): [0.01, 0.02],
-#     ('germany50', 'germany'): [10, 20, 30],
-#     ('janos-us', 'janos-us'): [1, 2],
+#         harmony_search.algorithm.main,
+#         hybrid.algorithm.main,
+#         hill_climbing.algorithm.main,
+#         genetic.algorithm.main,
+#         bees.algorithm.main,
+#     ]
+#     nets = {
+#         ('polska', 'pol'): [0.25, 1, 2, 5, 10, 20, 30],
+#         ('abilene', 'abilene'): [0.01, 0.02],
+#         ('germany50', 'germany'): [10, 20, 30],
+#     }
 # }
 
 
@@ -33,7 +33,6 @@ def main():
         ('polska', 'pol'): [0.25, 1, 2, 5, 10, 20, 30],
         ('abilene', 'abilene'): [0.01, 0.02],
         ('germany50', 'germany'): [10, 20, 30],
-        ('janos-us', 'janos-us'): [1, 2],
     }
 
     max_repetitions = {

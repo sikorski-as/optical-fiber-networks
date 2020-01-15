@@ -100,10 +100,10 @@ class _Network:
                 network.node_by_name[n['id']] = node
                 network.add_node(node)
                 network.node_by_id[i] = node
-            for e in model['links']:
+            for link_id, e in enumerate(model['links'], start=1):
                 s, t = e['source'], e['target']
                 s, t = network.node_by_name[s], network.node_by_name[t]
-                network.add_edge(s, t)
+                network.add_edge(s, t, edge_id=link_id)
             for demand in model['demands']:
                 s, t = demand['source'], demand['target']
                 s, t = network.node_by_name[s], network.node_by_name[t]

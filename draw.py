@@ -17,6 +17,15 @@ def prepare(background_image_filename, draw=True):
     plt.ylim([image.shape[0], 0])
 
 
+def prepare_empty(width, height, dpi=100):
+    plt.close(plt.gcf())
+    plt.figure(figsize=(width / dpi, height / dpi))
+    plt.subplots_adjust(top=1, bottom=0, right=1, left=0, hspace=0, wspace=0)
+    plt.axis("off")
+    plt.xlim([0, width])
+    plt.ylim([height, 0])
+
+
 def point(*args, **kwargs):
     plt.scatter(*args, **kwargs)
 

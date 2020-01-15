@@ -248,7 +248,7 @@ def plot_one_cumulative(folder_name, setup=default_setup):
 
 if __name__ == '__main__':
     class cumulative_pol(default_setup):
-        output_path = default_setup.output_path + 'experiments/'
+        output_path = default_setup.output_path + '/'
         save = True
         cumulate_plots = True
         cumulative_output_name = 'pol5_cumulative'
@@ -258,12 +258,12 @@ if __name__ == '__main__':
 
 
     class cumulative_ger(default_setup):
-        output_path = default_setup.output_path + 'experiments/'
+        output_path = default_setup.output_path + '/'
         save = True
         cumulate_plots = True
-        cumulative_output_name = 'ger20_cumulative'
+        cumulative_output_name = 'ger10_cumulative'
         filters = [
-            lambda folder_name: folder_name.endswith('_20')
+            lambda folder_name: folder_name.endswith('_10')
         ]
 
 
@@ -276,13 +276,14 @@ if __name__ == '__main__':
 
 
     class setup_ger(default_setup):
-        output_path = default_setup.output_path + 'ger20/'
+        output_path = default_setup.output_path + 'ger10/'
         save = True
         filters = [
-            lambda folder_name: folder_name.endswith('_20')
+            lambda folder_name: folder_name.endswith('_10')
         ]
 
-
+    data_loading('pol')
+    data_loading('ger')
     plot_cumulative('pol', plot_one_cumulative, cumulative_pol)
     plot_cumulative('ger', plot_one_cumulative, cumulative_ger)
     plot_many('pol', plot_one, setup_pol)

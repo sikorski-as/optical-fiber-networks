@@ -17,7 +17,7 @@ def run(initial_values: iter, random_neighbour_function, compare_function, n=1, 
     iteration = 0
 
     file_name = "{}_Hill_I{}_SIZE{}_N{}".format(main_config.net_name, main_config.intensity, len(best_results), n)
-    with Timer() as timer, SolutionTracer(file_name) as solution_tracer:
+    with Timer() as timer, SolutionTracer(file_name, max_repetitions=main_config.max_repetitions) as solution_tracer:
 
         while iteration < n:
             for i, best_result in enumerate(best_results):

@@ -25,7 +25,7 @@ def run_genetic_with_hill(random_neighbour_function, compare_function, h_n=1, de
     """
     file_name = "{}_Genetic+Hill_I{}_GI{}_HI{}".format(main_config.net_name, main_config.intensity, config.GA_ITERATIONS, config.HILL_ITERATIONS)
 
-    with Timer() as timer, main_config.SolutionTracer(file_name) as solution_tracer:
+    with Timer() as timer, main_config.SolutionTracer(file_name, max_repetitions=main_config.max_repetitions) as solution_tracer:
         print("Hybrid - genetic:\n")
         population = [structure.create_individual(main_config.chromosome_type) for _ in range(pop_size)]
         main_config.tools.calculate_fitness_values(population, list_of_funcs=[structure.fitness])

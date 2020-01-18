@@ -12,7 +12,7 @@ def bee_colony(nscouts=64, m_best=10, e_best=2, n1=20, n2=3, flower_patch_size=5
     tools = main_config.tools
     filename = "{}_Bees_I{}_NSCOUTS{}_M{}_E{}_N1{}_N2{}_PATCHSIZE{}_N{}".format(main_config.net_name, main_config.intensity, nscouts, m_best, e_best, n1, n2, flower_patch_size, iterations)
 
-    with Timer() as timer, SolutionTracer(filename) as solution_tracer:
+    with Timer() as timer, SolutionTracer(filename, max_repetitions=main_config.max_repetitions) as solution_tracer:
         scouts = [create_individual(ChromosomeType=chromosome_type) for _ in range(nscouts)]
         tools.calculate_fitness_values(scouts, list_of_funcs=[fitness])
 

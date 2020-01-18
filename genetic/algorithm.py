@@ -29,7 +29,7 @@ def run_genetic(pop_size=config.POP_SIZE, n=config.GA_ITERATIONS, new_pop_size=c
                 CPB=config.CPB):
     file_name = "{}_Genetic_I{}_PS{}_CPB{}_MPB{}_N{}".format(main_config.net_name, main_config.intensity, config.POP_SIZE, config.GSPB, config.CPPB, config.GA_ITERATIONS)
     print("Start genetic:")
-    with Timer() as timer, main_config.SolutionTracer(file_name) as solution_tracer:
+    with Timer() as timer, main_config.SolutionTracer(file_name, max_repetitions=main_config.max_repetitions) as solution_tracer:
         population = [structure.create_individual(main_config.chromosome_type) for _ in range(pop_size)]
         tools.calculate_fitness_values(population, list_of_funcs=[structure.fitness])
 

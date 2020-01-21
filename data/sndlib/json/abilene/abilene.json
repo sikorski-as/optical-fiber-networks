@@ -1,0 +1,1362 @@
+{
+    "meta": {
+        "granularity": "6month",
+        "time": "2004",
+        "unit": "MBITPERSEC",
+        "origin": [
+            "Yin Zhang",
+            "http://userweb.cs.utexas.edu/~yzhang/research/AbileneTM",
+            "scaled directed peak matrix",
+            "period:6 month",
+            "total demand 3Tbps"
+        ]
+    },
+    "nodes": [
+        {
+            "id": "ATLAM5",
+            "longitude": -84.3833,
+            "latitude": 33.75
+        },
+        {
+            "id": "ATLAng",
+            "longitude": -85.5,
+            "latitude": 34.5
+        },
+        {
+            "id": "CHINng",
+            "longitude": -87.6167,
+            "latitude": 41.8333
+        },
+        {
+            "id": "DNVRng",
+            "longitude": -105.0,
+            "latitude": 40.75
+        },
+        {
+            "id": "HSTNng",
+            "longitude": -95.517364,
+            "latitude": 29.770031
+        },
+        {
+            "id": "IPLSng",
+            "longitude": -86.159535,
+            "latitude": 39.780622
+        },
+        {
+            "id": "KSCYng",
+            "longitude": -96.596704,
+            "latitude": 38.961694
+        },
+        {
+            "id": "LOSAng",
+            "longitude": -118.25,
+            "latitude": 34.05
+        },
+        {
+            "id": "NYCMng",
+            "longitude": -73.9667,
+            "latitude": 40.7833
+        },
+        {
+            "id": "SNVAng",
+            "longitude": -122.02553,
+            "latitude": 37.38575
+        },
+        {
+            "id": "STTLng",
+            "longitude": -122.3,
+            "latitude": 47.6
+        },
+        {
+            "id": "WASHng",
+            "longitude": -77.026842,
+            "latitude": 38.897303
+        }
+    ],
+    "links": [
+        {
+            "id": "ATLAM5_ATLAng",
+            "source": "ATLAng",
+            "target": "ATLAM5",
+            "pre_installed_capacity": 9920.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 40000.0,
+                    "module_cost": 133.0
+                }
+            ]
+        },
+        {
+            "id": "ATLAng_HSTNng",
+            "source": "HSTNng",
+            "target": "ATLAng",
+            "pre_installed_capacity": 9920.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 40000.0,
+                    "module_cost": 1081.0
+                }
+            ]
+        },
+        {
+            "id": "ATLAng_IPLSng",
+            "source": "IPLSng",
+            "target": "ATLAng",
+            "pre_installed_capacity": 2480.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 40000.0,
+                    "module_cost": 591.0
+                }
+            ]
+        },
+        {
+            "id": "ATLAng_WASHng",
+            "source": "WASHng",
+            "target": "ATLAng",
+            "pre_installed_capacity": 9920.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 40000.0,
+                    "module_cost": 901.0
+                }
+            ]
+        },
+        {
+            "id": "CHINng_IPLSng",
+            "source": "IPLSng",
+            "target": "CHINng",
+            "pre_installed_capacity": 9920.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 40000.0,
+                    "module_cost": 260.0
+                }
+            ]
+        },
+        {
+            "id": "CHINng_NYCMng",
+            "source": "NYCMng",
+            "target": "CHINng",
+            "pre_installed_capacity": 9920.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 40000.0,
+                    "module_cost": 1147.0
+                }
+            ]
+        },
+        {
+            "id": "DNVRng_KSCYng",
+            "source": "KSCYng",
+            "target": "DNVRng",
+            "pre_installed_capacity": 9920.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 40000.0,
+                    "module_cost": 745.0
+                }
+            ]
+        },
+        {
+            "id": "DNVRng_SNVAng",
+            "source": "SNVAng",
+            "target": "DNVRng",
+            "pre_installed_capacity": 9920.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 40000.0,
+                    "module_cost": 1516.0
+                }
+            ]
+        },
+        {
+            "id": "DNVRng_STTLng",
+            "source": "STTLng",
+            "target": "DNVRng",
+            "pre_installed_capacity": 9920.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 40000.0,
+                    "module_cost": 1573.0
+                }
+            ]
+        },
+        {
+            "id": "HSTNng_KSCYng",
+            "source": "KSCYng",
+            "target": "HSTNng",
+            "pre_installed_capacity": 9920.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 40000.0,
+                    "module_cost": 1028.0
+                }
+            ]
+        },
+        {
+            "id": "HSTNng_LOSAng",
+            "source": "LOSAng",
+            "target": "HSTNng",
+            "pre_installed_capacity": 9920.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 40000.0,
+                    "module_cost": 2196.0
+                }
+            ]
+        },
+        {
+            "id": "IPLSng_KSCYng",
+            "source": "KSCYng",
+            "target": "IPLSng",
+            "pre_installed_capacity": 9920.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 40000.0,
+                    "module_cost": 903.0
+                }
+            ]
+        },
+        {
+            "id": "LOSAng_SNVAng",
+            "source": "SNVAng",
+            "target": "LOSAng",
+            "pre_installed_capacity": 9920.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 40000.0,
+                    "module_cost": 505.0
+                }
+            ]
+        },
+        {
+            "id": "NYCMng_WASHng",
+            "source": "WASHng",
+            "target": "NYCMng",
+            "pre_installed_capacity": 9920.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 40000.0,
+                    "module_cost": 336.0
+                }
+            ]
+        },
+        {
+            "id": "SNVAng_STTLng",
+            "source": "STTLng",
+            "target": "SNVAng",
+            "pre_installed_capacity": 9920.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 40000.0,
+                    "module_cost": 1138.0
+                }
+            ]
+        }
+    ],
+    "demands": [
+        {
+            "id": "IPLSng_STTLng",
+            "source": "IPLSng",
+            "target": "STTLng",
+            "routing_unit": 1,
+            "demand_value": 3580.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "CHINng_ATLAM5",
+            "source": "CHINng",
+            "target": "ATLAM5",
+            "routing_unit": 1,
+            "demand_value": 2770.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "HSTNng_STTLng",
+            "source": "HSTNng",
+            "target": "STTLng",
+            "routing_unit": 1,
+            "demand_value": 1745.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "LOSAng_KSCYng",
+            "source": "LOSAng",
+            "target": "KSCYng",
+            "routing_unit": 1,
+            "demand_value": 2766.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "LOSAng_NYCMng",
+            "source": "LOSAng",
+            "target": "NYCMng",
+            "routing_unit": 1,
+            "demand_value": 11969.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "HSTNng_LOSAng",
+            "source": "HSTNng",
+            "target": "LOSAng",
+            "routing_unit": 1,
+            "demand_value": 16437.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "IPLSng_CHINng",
+            "source": "IPLSng",
+            "target": "CHINng",
+            "routing_unit": 1,
+            "demand_value": 27187.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "LOSAng_STTLng",
+            "source": "LOSAng",
+            "target": "STTLng",
+            "routing_unit": 1,
+            "demand_value": 9684.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "LOSAng_SNVAng",
+            "source": "LOSAng",
+            "target": "SNVAng",
+            "routing_unit": 1,
+            "demand_value": 22906.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DNVRng_ATLAM5",
+            "source": "DNVRng",
+            "target": "ATLAM5",
+            "routing_unit": 1,
+            "demand_value": 1642.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "HSTNng_ATLAM5",
+            "source": "HSTNng",
+            "target": "ATLAM5",
+            "routing_unit": 1,
+            "demand_value": 832.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "ATLAM5_KSCYng",
+            "source": "ATLAM5",
+            "target": "KSCYng",
+            "routing_unit": 1,
+            "demand_value": 630.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "CHINng_DNVRng",
+            "source": "CHINng",
+            "target": "DNVRng",
+            "routing_unit": 1,
+            "demand_value": 31363.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "KSCYng_NYCMng",
+            "source": "KSCYng",
+            "target": "NYCMng",
+            "routing_unit": 1,
+            "demand_value": 3823.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "HSTNng_IPLSng",
+            "source": "HSTNng",
+            "target": "IPLSng",
+            "routing_unit": 1,
+            "demand_value": 3337.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DNVRng_IPLSng",
+            "source": "DNVRng",
+            "target": "IPLSng",
+            "routing_unit": 1,
+            "demand_value": 7694.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "WASHng_NYCMng",
+            "source": "WASHng",
+            "target": "NYCMng",
+            "routing_unit": 1,
+            "demand_value": 40069.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "KSCYng_WASHng",
+            "source": "KSCYng",
+            "target": "WASHng",
+            "routing_unit": 1,
+            "demand_value": 4507.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "SNVAng_NYCMng",
+            "source": "SNVAng",
+            "target": "NYCMng",
+            "routing_unit": 1,
+            "demand_value": 5447.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "WASHng_DNVRng",
+            "source": "WASHng",
+            "target": "DNVRng",
+            "routing_unit": 1,
+            "demand_value": 16062.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "KSCYng_STTLng",
+            "source": "KSCYng",
+            "target": "STTLng",
+            "routing_unit": 1,
+            "demand_value": 1946.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DNVRng_KSCYng",
+            "source": "DNVRng",
+            "target": "KSCYng",
+            "routing_unit": 1,
+            "demand_value": 4165.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "IPLSng_NYCMng",
+            "source": "IPLSng",
+            "target": "NYCMng",
+            "routing_unit": 1,
+            "demand_value": 18695.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "ATLAM5_IPLSng",
+            "source": "ATLAM5",
+            "target": "IPLSng",
+            "routing_unit": 1,
+            "demand_value": 789.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "NYCMng_SNVAng",
+            "source": "NYCMng",
+            "target": "SNVAng",
+            "routing_unit": 1,
+            "demand_value": 5169.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "ATLAng_NYCMng",
+            "source": "ATLAng",
+            "target": "NYCMng",
+            "routing_unit": 1,
+            "demand_value": 8783.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "ATLAM5_SNVAng",
+            "source": "ATLAM5",
+            "target": "SNVAng",
+            "routing_unit": 1,
+            "demand_value": 233.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "SNVAng_DNVRng",
+            "source": "SNVAng",
+            "target": "DNVRng",
+            "routing_unit": 1,
+            "demand_value": 5128.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "WASHng_KSCYng",
+            "source": "WASHng",
+            "target": "KSCYng",
+            "routing_unit": 1,
+            "demand_value": 10130.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "ATLAng_WASHng",
+            "source": "ATLAng",
+            "target": "WASHng",
+            "routing_unit": 1,
+            "demand_value": 37150.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "KSCYng_LOSAng",
+            "source": "KSCYng",
+            "target": "LOSAng",
+            "routing_unit": 1,
+            "demand_value": 2783.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "KSCYng_HSTNng",
+            "source": "KSCYng",
+            "target": "HSTNng",
+            "routing_unit": 1,
+            "demand_value": 2893.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "NYCMng_LOSAng",
+            "source": "NYCMng",
+            "target": "LOSAng",
+            "routing_unit": 1,
+            "demand_value": 34167.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "NYCMng_CHINng",
+            "source": "NYCMng",
+            "target": "CHINng",
+            "routing_unit": 1,
+            "demand_value": 122327.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "STTLng_HSTNng",
+            "source": "STTLng",
+            "target": "HSTNng",
+            "routing_unit": 1,
+            "demand_value": 7754.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "KSCYng_DNVRng",
+            "source": "KSCYng",
+            "target": "DNVRng",
+            "routing_unit": 1,
+            "demand_value": 3962.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "IPLSng_KSCYng",
+            "source": "IPLSng",
+            "target": "KSCYng",
+            "routing_unit": 1,
+            "demand_value": 4841.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "ATLAM5_WASHng",
+            "source": "ATLAM5",
+            "target": "WASHng",
+            "routing_unit": 1,
+            "demand_value": 5538.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "CHINng_STTLng",
+            "source": "CHINng",
+            "target": "STTLng",
+            "routing_unit": 1,
+            "demand_value": 5082.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "CHINng_NYCMng",
+            "source": "CHINng",
+            "target": "NYCMng",
+            "routing_unit": 1,
+            "demand_value": 23882.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "STTLng_NYCMng",
+            "source": "STTLng",
+            "target": "NYCMng",
+            "routing_unit": 1,
+            "demand_value": 12889.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "KSCYng_SNVAng",
+            "source": "KSCYng",
+            "target": "SNVAng",
+            "routing_unit": 1,
+            "demand_value": 1213.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "NYCMng_KSCYng",
+            "source": "NYCMng",
+            "target": "KSCYng",
+            "routing_unit": 1,
+            "demand_value": 6894.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "STTLng_DNVRng",
+            "source": "STTLng",
+            "target": "DNVRng",
+            "routing_unit": 1,
+            "demand_value": 7469.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "SNVAng_CHINng",
+            "source": "SNVAng",
+            "target": "CHINng",
+            "routing_unit": 1,
+            "demand_value": 6961.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "SNVAng_ATLAM5",
+            "source": "SNVAng",
+            "target": "ATLAM5",
+            "routing_unit": 1,
+            "demand_value": 646.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "STTLng_CHINng",
+            "source": "STTLng",
+            "target": "CHINng",
+            "routing_unit": 1,
+            "demand_value": 24371.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "IPLSng_WASHng",
+            "source": "IPLSng",
+            "target": "WASHng",
+            "routing_unit": 1,
+            "demand_value": 13342.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "WASHng_LOSAng",
+            "source": "WASHng",
+            "target": "LOSAng",
+            "routing_unit": 1,
+            "demand_value": 44119.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "LOSAng_ATLAM5",
+            "source": "LOSAng",
+            "target": "ATLAM5",
+            "routing_unit": 1,
+            "demand_value": 1337.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "LOSAng_IPLSng",
+            "source": "LOSAng",
+            "target": "IPLSng",
+            "routing_unit": 1,
+            "demand_value": 11906.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "IPLSng_DNVRng",
+            "source": "IPLSng",
+            "target": "DNVRng",
+            "routing_unit": 1,
+            "demand_value": 10771.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "WASHng_IPLSng",
+            "source": "WASHng",
+            "target": "IPLSng",
+            "routing_unit": 1,
+            "demand_value": 10055.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "SNVAng_HSTNng",
+            "source": "SNVAng",
+            "target": "HSTNng",
+            "routing_unit": 1,
+            "demand_value": 2883.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "ATLAng_HSTNng",
+            "source": "ATLAng",
+            "target": "HSTNng",
+            "routing_unit": 1,
+            "demand_value": 56067.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "NYCMng_ATLAng",
+            "source": "NYCMng",
+            "target": "ATLAng",
+            "routing_unit": 1,
+            "demand_value": 17991.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "HSTNng_DNVRng",
+            "source": "HSTNng",
+            "target": "DNVRng",
+            "routing_unit": 1,
+            "demand_value": 1454.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "ATLAM5_CHINng",
+            "source": "ATLAM5",
+            "target": "CHINng",
+            "routing_unit": 1,
+            "demand_value": 3128.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "ATLAng_LOSAng",
+            "source": "ATLAng",
+            "target": "LOSAng",
+            "routing_unit": 1,
+            "demand_value": 69016.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "LOSAng_HSTNng",
+            "source": "LOSAng",
+            "target": "HSTNng",
+            "routing_unit": 1,
+            "demand_value": 161581.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DNVRng_WASHng",
+            "source": "DNVRng",
+            "target": "WASHng",
+            "routing_unit": 1,
+            "demand_value": 10290.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "CHINng_ATLAng",
+            "source": "CHINng",
+            "target": "ATLAng",
+            "routing_unit": 1,
+            "demand_value": 36737.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "IPLSng_ATLAM5",
+            "source": "IPLSng",
+            "target": "ATLAM5",
+            "routing_unit": 1,
+            "demand_value": 1992.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "KSCYng_ATLAng",
+            "source": "KSCYng",
+            "target": "ATLAng",
+            "routing_unit": 1,
+            "demand_value": 2001.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "HSTNng_WASHng",
+            "source": "HSTNng",
+            "target": "WASHng",
+            "routing_unit": 1,
+            "demand_value": 15095.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "WASHng_STTLng",
+            "source": "WASHng",
+            "target": "STTLng",
+            "routing_unit": 1,
+            "demand_value": 7930.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "WASHng_ATLAng",
+            "source": "WASHng",
+            "target": "ATLAng",
+            "routing_unit": 1,
+            "demand_value": 25503.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "ATLAng_CHINng",
+            "source": "ATLAng",
+            "target": "CHINng",
+            "routing_unit": 1,
+            "demand_value": 6142.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "IPLSng_LOSAng",
+            "source": "IPLSng",
+            "target": "LOSAng",
+            "routing_unit": 1,
+            "demand_value": 22366.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "HSTNng_ATLAng",
+            "source": "HSTNng",
+            "target": "ATLAng",
+            "routing_unit": 1,
+            "demand_value": 26089.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "SNVAng_LOSAng",
+            "source": "SNVAng",
+            "target": "LOSAng",
+            "routing_unit": 1,
+            "demand_value": 9589.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "NYCMng_ATLAM5",
+            "source": "NYCMng",
+            "target": "ATLAM5",
+            "routing_unit": 1,
+            "demand_value": 1076.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "ATLAng_IPLSng",
+            "source": "ATLAng",
+            "target": "IPLSng",
+            "routing_unit": 1,
+            "demand_value": 9094.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DNVRng_CHINng",
+            "source": "DNVRng",
+            "target": "CHINng",
+            "routing_unit": 1,
+            "demand_value": 14012.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "CHINng_IPLSng",
+            "source": "CHINng",
+            "target": "IPLSng",
+            "routing_unit": 1,
+            "demand_value": 14471.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "WASHng_HSTNng",
+            "source": "WASHng",
+            "target": "HSTNng",
+            "routing_unit": 1,
+            "demand_value": 26779.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "STTLng_SNVAng",
+            "source": "STTLng",
+            "target": "SNVAng",
+            "routing_unit": 1,
+            "demand_value": 26143.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "NYCMng_STTLng",
+            "source": "NYCMng",
+            "target": "STTLng",
+            "routing_unit": 1,
+            "demand_value": 8686.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "LOSAng_CHINng",
+            "source": "LOSAng",
+            "target": "CHINng",
+            "routing_unit": 1,
+            "demand_value": 424969.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "STTLng_WASHng",
+            "source": "STTLng",
+            "target": "WASHng",
+            "routing_unit": 1,
+            "demand_value": 16178.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DNVRng_ATLAng",
+            "source": "DNVRng",
+            "target": "ATLAng",
+            "routing_unit": 1,
+            "demand_value": 3424.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "SNVAng_WASHng",
+            "source": "SNVAng",
+            "target": "WASHng",
+            "routing_unit": 1,
+            "demand_value": 3962.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "SNVAng_IPLSng",
+            "source": "SNVAng",
+            "target": "IPLSng",
+            "routing_unit": 1,
+            "demand_value": 3338.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DNVRng_LOSAng",
+            "source": "DNVRng",
+            "target": "LOSAng",
+            "routing_unit": 1,
+            "demand_value": 7652.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "STTLng_KSCYng",
+            "source": "STTLng",
+            "target": "KSCYng",
+            "routing_unit": 1,
+            "demand_value": 13517.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "WASHng_SNVAng",
+            "source": "WASHng",
+            "target": "SNVAng",
+            "routing_unit": 1,
+            "demand_value": 6207.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "ATLAng_STTLng",
+            "source": "ATLAng",
+            "target": "STTLng",
+            "routing_unit": 1,
+            "demand_value": 2604.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "ATLAng_ATLAM5",
+            "source": "ATLAng",
+            "target": "ATLAM5",
+            "routing_unit": 1,
+            "demand_value": 2146.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "LOSAng_DNVRng",
+            "source": "LOSAng",
+            "target": "DNVRng",
+            "routing_unit": 1,
+            "demand_value": 6459.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "CHINng_KSCYng",
+            "source": "CHINng",
+            "target": "KSCYng",
+            "routing_unit": 1,
+            "demand_value": 33734.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "CHINng_HSTNng",
+            "source": "CHINng",
+            "target": "HSTNng",
+            "routing_unit": 1,
+            "demand_value": 329673.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "STTLng_ATLAng",
+            "source": "STTLng",
+            "target": "ATLAng",
+            "routing_unit": 1,
+            "demand_value": 41339.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "ATLAM5_LOSAng",
+            "source": "ATLAM5",
+            "target": "LOSAng",
+            "routing_unit": 1,
+            "demand_value": 1016.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "WASHng_ATLAM5",
+            "source": "WASHng",
+            "target": "ATLAM5",
+            "routing_unit": 1,
+            "demand_value": 1982.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "CHINng_SNVAng",
+            "source": "CHINng",
+            "target": "SNVAng",
+            "routing_unit": 1,
+            "demand_value": 3602.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "STTLng_ATLAM5",
+            "source": "STTLng",
+            "target": "ATLAM5",
+            "routing_unit": 1,
+            "demand_value": 932.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "ATLAM5_HSTNng",
+            "source": "ATLAM5",
+            "target": "HSTNng",
+            "routing_unit": 1,
+            "demand_value": 1754.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "IPLSng_ATLAng",
+            "source": "IPLSng",
+            "target": "ATLAng",
+            "routing_unit": 1,
+            "demand_value": 8016.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "ATLAng_SNVAng",
+            "source": "ATLAng",
+            "target": "SNVAng",
+            "routing_unit": 1,
+            "demand_value": 2174.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "ATLAM5_STTLng",
+            "source": "ATLAM5",
+            "target": "STTLng",
+            "routing_unit": 1,
+            "demand_value": 249.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DNVRng_HSTNng",
+            "source": "DNVRng",
+            "target": "HSTNng",
+            "routing_unit": 1,
+            "demand_value": 7649.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "KSCYng_IPLSng",
+            "source": "KSCYng",
+            "target": "IPLSng",
+            "routing_unit": 1,
+            "demand_value": 3800.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "ATLAM5_ATLAng",
+            "source": "ATLAM5",
+            "target": "ATLAng",
+            "routing_unit": 1,
+            "demand_value": 1140.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "CHINng_WASHng",
+            "source": "CHINng",
+            "target": "WASHng",
+            "routing_unit": 1,
+            "demand_value": 21896.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "SNVAng_KSCYng",
+            "source": "SNVAng",
+            "target": "KSCYng",
+            "routing_unit": 1,
+            "demand_value": 2006.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DNVRng_SNVAng",
+            "source": "DNVRng",
+            "target": "SNVAng",
+            "routing_unit": 1,
+            "demand_value": 22050.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "HSTNng_SNVAng",
+            "source": "HSTNng",
+            "target": "SNVAng",
+            "routing_unit": 1,
+            "demand_value": 630.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "HSTNng_NYCMng",
+            "source": "HSTNng",
+            "target": "NYCMng",
+            "routing_unit": 1,
+            "demand_value": 6840.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "HSTNng_CHINng",
+            "source": "HSTNng",
+            "target": "CHINng",
+            "routing_unit": 1,
+            "demand_value": 12913.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "IPLSng_HSTNng",
+            "source": "IPLSng",
+            "target": "HSTNng",
+            "routing_unit": 1,
+            "demand_value": 14702.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "HSTNng_KSCYng",
+            "source": "HSTNng",
+            "target": "KSCYng",
+            "routing_unit": 1,
+            "demand_value": 2026.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "LOSAng_ATLAng",
+            "source": "LOSAng",
+            "target": "ATLAng",
+            "routing_unit": 1,
+            "demand_value": 44484.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "LOSAng_WASHng",
+            "source": "LOSAng",
+            "target": "WASHng",
+            "routing_unit": 1,
+            "demand_value": 71197.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DNVRng_STTLng",
+            "source": "DNVRng",
+            "target": "STTLng",
+            "routing_unit": 1,
+            "demand_value": 6470.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "STTLng_LOSAng",
+            "source": "STTLng",
+            "target": "LOSAng",
+            "routing_unit": 1,
+            "demand_value": 36468.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "ATLAng_DNVRng",
+            "source": "ATLAng",
+            "target": "DNVRng",
+            "routing_unit": 1,
+            "demand_value": 3360.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "ATLAng_KSCYng",
+            "source": "ATLAng",
+            "target": "KSCYng",
+            "routing_unit": 1,
+            "demand_value": 2429.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "STTLng_IPLSng",
+            "source": "STTLng",
+            "target": "IPLSng",
+            "routing_unit": 1,
+            "demand_value": 29555.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "NYCMng_WASHng",
+            "source": "NYCMng",
+            "target": "WASHng",
+            "routing_unit": 1,
+            "demand_value": 47980.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "SNVAng_ATLAng",
+            "source": "SNVAng",
+            "target": "ATLAng",
+            "routing_unit": 1,
+            "demand_value": 955.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "NYCMng_HSTNng",
+            "source": "NYCMng",
+            "target": "HSTNng",
+            "routing_unit": 1,
+            "demand_value": 32998.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "ATLAM5_NYCMng",
+            "source": "ATLAM5",
+            "target": "NYCMng",
+            "routing_unit": 1,
+            "demand_value": 1149.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "WASHng_CHINng",
+            "source": "WASHng",
+            "target": "CHINng",
+            "routing_unit": 1,
+            "demand_value": 34597.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "KSCYng_CHINng",
+            "source": "KSCYng",
+            "target": "CHINng",
+            "routing_unit": 1,
+            "demand_value": 7815.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "IPLSng_SNVAng",
+            "source": "IPLSng",
+            "target": "SNVAng",
+            "routing_unit": 1,
+            "demand_value": 2094.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "ATLAM5_DNVRng",
+            "source": "ATLAM5",
+            "target": "DNVRng",
+            "routing_unit": 1,
+            "demand_value": 415.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "CHINng_LOSAng",
+            "source": "CHINng",
+            "target": "LOSAng",
+            "routing_unit": 1,
+            "demand_value": 385991.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "NYCMng_IPLSng",
+            "source": "NYCMng",
+            "target": "IPLSng",
+            "routing_unit": 1,
+            "demand_value": 8773.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DNVRng_NYCMng",
+            "source": "DNVRng",
+            "target": "NYCMng",
+            "routing_unit": 1,
+            "demand_value": 6177.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "KSCYng_ATLAM5",
+            "source": "KSCYng",
+            "target": "ATLAM5",
+            "routing_unit": 1,
+            "demand_value": 745.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "SNVAng_STTLng",
+            "source": "SNVAng",
+            "target": "STTLng",
+            "routing_unit": 1,
+            "demand_value": 6139.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "NYCMng_DNVRng",
+            "source": "NYCMng",
+            "target": "DNVRng",
+            "routing_unit": 1,
+            "demand_value": 11677.0,
+            "max_path_length": "UNLIMITED"
+        }
+    ],
+    "admissible_paths": []
+}

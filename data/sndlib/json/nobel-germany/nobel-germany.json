@@ -1,0 +1,5508 @@
+{
+    "nodes": [
+        {
+            "id": "Hannover",
+            "longitude": 9.8,
+            "latitude": 52.39
+        },
+        {
+            "id": "Frankfurt",
+            "longitude": 8.66,
+            "latitude": 50.14
+        },
+        {
+            "id": "Hamburg",
+            "longitude": 10.08,
+            "latitude": 53.55
+        },
+        {
+            "id": "Norden",
+            "longitude": 7.21,
+            "latitude": 53.6
+        },
+        {
+            "id": "Bremen",
+            "longitude": 8.8,
+            "latitude": 53.08
+        },
+        {
+            "id": "Berlin",
+            "longitude": 13.48,
+            "latitude": 52.52
+        },
+        {
+            "id": "Muenchen",
+            "longitude": 11.55,
+            "latitude": 48.15
+        },
+        {
+            "id": "Ulm",
+            "longitude": 9.99,
+            "latitude": 48.4
+        },
+        {
+            "id": "Nuernberg",
+            "longitude": 11.08,
+            "latitude": 49.45
+        },
+        {
+            "id": "Stuttgart",
+            "longitude": 9.12,
+            "latitude": 48.73
+        },
+        {
+            "id": "Karlsruhe",
+            "longitude": 8.41,
+            "latitude": 49.01
+        },
+        {
+            "id": "Mannheim",
+            "longitude": 8.49,
+            "latitude": 49.49
+        },
+        {
+            "id": "Essen",
+            "longitude": 7.0,
+            "latitude": 51.44
+        },
+        {
+            "id": "Dortmund",
+            "longitude": 7.48,
+            "latitude": 51.51
+        },
+        {
+            "id": "Duesseldorf",
+            "longitude": 6.78,
+            "latitude": 51.22
+        },
+        {
+            "id": "Koeln",
+            "longitude": 7.01,
+            "latitude": 50.92
+        },
+        {
+            "id": "Leipzig",
+            "longitude": 12.38,
+            "latitude": 51.34
+        }
+    ],
+    "links": [
+        {
+            "id": "L1",
+            "source": "Berlin",
+            "target": "Hamburg",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 20.0,
+                    "module_cost": 3580.0
+                },
+                {
+                    "module_capacity": 40.0,
+                    "module_cost": 4580.0
+                },
+                {
+                    "module_capacity": 60.0,
+                    "module_cost": 8160.0
+                },
+                {
+                    "module_capacity": 80.0,
+                    "module_cost": 9160.0
+                },
+                {
+                    "module_capacity": 100.0,
+                    "module_cost": 12740.0
+                },
+                {
+                    "module_capacity": 120.0,
+                    "module_cost": 13740.0
+                },
+                {
+                    "module_capacity": 140.0,
+                    "module_cost": 17320.0
+                },
+                {
+                    "module_capacity": 160.0,
+                    "module_cost": 18320.0
+                },
+                {
+                    "module_capacity": 180.0,
+                    "module_cost": 21900.0
+                },
+                {
+                    "module_capacity": 200.0,
+                    "module_cost": 22900.0
+                },
+                {
+                    "module_capacity": 220.0,
+                    "module_cost": 26480.0
+                },
+                {
+                    "module_capacity": 240.0,
+                    "module_cost": 27480.0
+                },
+                {
+                    "module_capacity": 260.0,
+                    "module_cost": 31060.0
+                },
+                {
+                    "module_capacity": 280.0,
+                    "module_cost": 32060.0
+                },
+                {
+                    "module_capacity": 300.0,
+                    "module_cost": 35640.0
+                },
+                {
+                    "module_capacity": 320.0,
+                    "module_cost": 36640.0
+                },
+                {
+                    "module_capacity": 340.0,
+                    "module_cost": 40220.0
+                },
+                {
+                    "module_capacity": 360.0,
+                    "module_cost": 41220.0
+                },
+                {
+                    "module_capacity": 380.0,
+                    "module_cost": 44800.0
+                },
+                {
+                    "module_capacity": 400.0,
+                    "module_cost": 45800.0
+                },
+                {
+                    "module_capacity": 420.0,
+                    "module_cost": 49380.0
+                },
+                {
+                    "module_capacity": 440.0,
+                    "module_cost": 50380.0
+                },
+                {
+                    "module_capacity": 460.0,
+                    "module_cost": 53960.0
+                },
+                {
+                    "module_capacity": 480.0,
+                    "module_cost": 54960.0
+                },
+                {
+                    "module_capacity": 500.0,
+                    "module_cost": 58540.0
+                },
+                {
+                    "module_capacity": 520.0,
+                    "module_cost": 59540.0
+                },
+                {
+                    "module_capacity": 540.0,
+                    "module_cost": 63120.0
+                },
+                {
+                    "module_capacity": 560.0,
+                    "module_cost": 64120.0
+                },
+                {
+                    "module_capacity": 580.0,
+                    "module_cost": 67700.0
+                },
+                {
+                    "module_capacity": 600.0,
+                    "module_cost": 68700.0
+                },
+                {
+                    "module_capacity": 620.0,
+                    "module_cost": 72280.0
+                },
+                {
+                    "module_capacity": 640.0,
+                    "module_cost": 73280.0
+                },
+                {
+                    "module_capacity": 660.0,
+                    "module_cost": 76860.0
+                },
+                {
+                    "module_capacity": 680.0,
+                    "module_cost": 77860.0
+                },
+                {
+                    "module_capacity": 700.0,
+                    "module_cost": 81440.0
+                },
+                {
+                    "module_capacity": 720.0,
+                    "module_cost": 82440.0
+                },
+                {
+                    "module_capacity": 740.0,
+                    "module_cost": 86020.0
+                },
+                {
+                    "module_capacity": 760.0,
+                    "module_cost": 87020.0
+                },
+                {
+                    "module_capacity": 780.0,
+                    "module_cost": 90600.0
+                },
+                {
+                    "module_capacity": 800.0,
+                    "module_cost": 91600.0
+                }
+            ]
+        },
+        {
+            "id": "L2",
+            "source": "Berlin",
+            "target": "Hannover",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 20.0,
+                    "module_cost": 3580.0
+                },
+                {
+                    "module_capacity": 40.0,
+                    "module_cost": 4580.0
+                },
+                {
+                    "module_capacity": 60.0,
+                    "module_cost": 8160.0
+                },
+                {
+                    "module_capacity": 80.0,
+                    "module_cost": 9160.0
+                },
+                {
+                    "module_capacity": 100.0,
+                    "module_cost": 12740.0
+                },
+                {
+                    "module_capacity": 120.0,
+                    "module_cost": 13740.0
+                },
+                {
+                    "module_capacity": 140.0,
+                    "module_cost": 17320.0
+                },
+                {
+                    "module_capacity": 160.0,
+                    "module_cost": 18320.0
+                },
+                {
+                    "module_capacity": 180.0,
+                    "module_cost": 21900.0
+                },
+                {
+                    "module_capacity": 200.0,
+                    "module_cost": 22900.0
+                },
+                {
+                    "module_capacity": 220.0,
+                    "module_cost": 26480.0
+                },
+                {
+                    "module_capacity": 240.0,
+                    "module_cost": 27480.0
+                },
+                {
+                    "module_capacity": 260.0,
+                    "module_cost": 31060.0
+                },
+                {
+                    "module_capacity": 280.0,
+                    "module_cost": 32060.0
+                },
+                {
+                    "module_capacity": 300.0,
+                    "module_cost": 35640.0
+                },
+                {
+                    "module_capacity": 320.0,
+                    "module_cost": 36640.0
+                },
+                {
+                    "module_capacity": 340.0,
+                    "module_cost": 40220.0
+                },
+                {
+                    "module_capacity": 360.0,
+                    "module_cost": 41220.0
+                },
+                {
+                    "module_capacity": 380.0,
+                    "module_cost": 44800.0
+                },
+                {
+                    "module_capacity": 400.0,
+                    "module_cost": 45800.0
+                },
+                {
+                    "module_capacity": 420.0,
+                    "module_cost": 49380.0
+                },
+                {
+                    "module_capacity": 440.0,
+                    "module_cost": 50380.0
+                },
+                {
+                    "module_capacity": 460.0,
+                    "module_cost": 53960.0
+                },
+                {
+                    "module_capacity": 480.0,
+                    "module_cost": 54960.0
+                },
+                {
+                    "module_capacity": 500.0,
+                    "module_cost": 58540.0
+                },
+                {
+                    "module_capacity": 520.0,
+                    "module_cost": 59540.0
+                },
+                {
+                    "module_capacity": 540.0,
+                    "module_cost": 63120.0
+                },
+                {
+                    "module_capacity": 560.0,
+                    "module_cost": 64120.0
+                },
+                {
+                    "module_capacity": 580.0,
+                    "module_cost": 67700.0
+                },
+                {
+                    "module_capacity": 600.0,
+                    "module_cost": 68700.0
+                },
+                {
+                    "module_capacity": 620.0,
+                    "module_cost": 72280.0
+                },
+                {
+                    "module_capacity": 640.0,
+                    "module_cost": 73280.0
+                },
+                {
+                    "module_capacity": 660.0,
+                    "module_cost": 76860.0
+                },
+                {
+                    "module_capacity": 680.0,
+                    "module_cost": 77860.0
+                },
+                {
+                    "module_capacity": 700.0,
+                    "module_cost": 81440.0
+                },
+                {
+                    "module_capacity": 720.0,
+                    "module_cost": 82440.0
+                },
+                {
+                    "module_capacity": 740.0,
+                    "module_cost": 86020.0
+                },
+                {
+                    "module_capacity": 760.0,
+                    "module_cost": 87020.0
+                },
+                {
+                    "module_capacity": 780.0,
+                    "module_cost": 90600.0
+                },
+                {
+                    "module_capacity": 800.0,
+                    "module_cost": 91600.0
+                }
+            ]
+        },
+        {
+            "id": "L3",
+            "source": "Berlin",
+            "target": "Leipzig",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 20.0,
+                    "module_cost": 3150.0
+                },
+                {
+                    "module_capacity": 40.0,
+                    "module_cost": 4150.0
+                },
+                {
+                    "module_capacity": 60.0,
+                    "module_cost": 7300.0
+                },
+                {
+                    "module_capacity": 80.0,
+                    "module_cost": 8300.0
+                },
+                {
+                    "module_capacity": 100.0,
+                    "module_cost": 11450.0
+                },
+                {
+                    "module_capacity": 120.0,
+                    "module_cost": 12450.0
+                },
+                {
+                    "module_capacity": 140.0,
+                    "module_cost": 15600.0
+                },
+                {
+                    "module_capacity": 160.0,
+                    "module_cost": 16600.0
+                },
+                {
+                    "module_capacity": 180.0,
+                    "module_cost": 19750.0
+                },
+                {
+                    "module_capacity": 200.0,
+                    "module_cost": 20750.0
+                },
+                {
+                    "module_capacity": 220.0,
+                    "module_cost": 23900.0
+                },
+                {
+                    "module_capacity": 240.0,
+                    "module_cost": 24900.0
+                },
+                {
+                    "module_capacity": 260.0,
+                    "module_cost": 28050.0
+                },
+                {
+                    "module_capacity": 280.0,
+                    "module_cost": 29050.0
+                },
+                {
+                    "module_capacity": 300.0,
+                    "module_cost": 32200.0
+                },
+                {
+                    "module_capacity": 320.0,
+                    "module_cost": 33200.0
+                },
+                {
+                    "module_capacity": 340.0,
+                    "module_cost": 36350.0
+                },
+                {
+                    "module_capacity": 360.0,
+                    "module_cost": 37350.0
+                },
+                {
+                    "module_capacity": 380.0,
+                    "module_cost": 40500.0
+                },
+                {
+                    "module_capacity": 400.0,
+                    "module_cost": 41500.0
+                },
+                {
+                    "module_capacity": 420.0,
+                    "module_cost": 44650.0
+                },
+                {
+                    "module_capacity": 440.0,
+                    "module_cost": 45650.0
+                },
+                {
+                    "module_capacity": 460.0,
+                    "module_cost": 48800.0
+                },
+                {
+                    "module_capacity": 480.0,
+                    "module_cost": 49800.0
+                },
+                {
+                    "module_capacity": 500.0,
+                    "module_cost": 52950.0
+                },
+                {
+                    "module_capacity": 520.0,
+                    "module_cost": 53950.0
+                },
+                {
+                    "module_capacity": 540.0,
+                    "module_cost": 57100.0
+                },
+                {
+                    "module_capacity": 560.0,
+                    "module_cost": 58100.0
+                },
+                {
+                    "module_capacity": 580.0,
+                    "module_cost": 61250.0
+                },
+                {
+                    "module_capacity": 600.0,
+                    "module_cost": 62250.0
+                },
+                {
+                    "module_capacity": 620.0,
+                    "module_cost": 65400.0
+                },
+                {
+                    "module_capacity": 640.0,
+                    "module_cost": 66400.0
+                },
+                {
+                    "module_capacity": 660.0,
+                    "module_cost": 69550.0
+                },
+                {
+                    "module_capacity": 680.0,
+                    "module_cost": 70550.0
+                },
+                {
+                    "module_capacity": 700.0,
+                    "module_cost": 73700.0
+                },
+                {
+                    "module_capacity": 720.0,
+                    "module_cost": 74700.0
+                },
+                {
+                    "module_capacity": 740.0,
+                    "module_cost": 77850.0
+                },
+                {
+                    "module_capacity": 760.0,
+                    "module_cost": 78850.0
+                },
+                {
+                    "module_capacity": 780.0,
+                    "module_cost": 82000.0
+                },
+                {
+                    "module_capacity": 800.0,
+                    "module_cost": 83000.0
+                }
+            ]
+        },
+        {
+            "id": "L4",
+            "source": "Bremen",
+            "target": "Hamburg",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 20.0,
+                    "module_cost": 2720.0
+                },
+                {
+                    "module_capacity": 40.0,
+                    "module_cost": 3720.0
+                },
+                {
+                    "module_capacity": 60.0,
+                    "module_cost": 6440.0
+                },
+                {
+                    "module_capacity": 80.0,
+                    "module_cost": 7440.0
+                },
+                {
+                    "module_capacity": 100.0,
+                    "module_cost": 10160.0
+                },
+                {
+                    "module_capacity": 120.0,
+                    "module_cost": 11160.0
+                },
+                {
+                    "module_capacity": 140.0,
+                    "module_cost": 13880.0
+                },
+                {
+                    "module_capacity": 160.0,
+                    "module_cost": 14880.0
+                },
+                {
+                    "module_capacity": 180.0,
+                    "module_cost": 17600.0
+                },
+                {
+                    "module_capacity": 200.0,
+                    "module_cost": 18600.0
+                },
+                {
+                    "module_capacity": 220.0,
+                    "module_cost": 21320.0
+                },
+                {
+                    "module_capacity": 240.0,
+                    "module_cost": 22320.0
+                },
+                {
+                    "module_capacity": 260.0,
+                    "module_cost": 25040.0
+                },
+                {
+                    "module_capacity": 280.0,
+                    "module_cost": 26040.0
+                },
+                {
+                    "module_capacity": 300.0,
+                    "module_cost": 28760.0
+                },
+                {
+                    "module_capacity": 320.0,
+                    "module_cost": 29760.0
+                },
+                {
+                    "module_capacity": 340.0,
+                    "module_cost": 32480.0
+                },
+                {
+                    "module_capacity": 360.0,
+                    "module_cost": 33480.0
+                },
+                {
+                    "module_capacity": 380.0,
+                    "module_cost": 36200.0
+                },
+                {
+                    "module_capacity": 400.0,
+                    "module_cost": 37200.0
+                },
+                {
+                    "module_capacity": 420.0,
+                    "module_cost": 39920.0
+                },
+                {
+                    "module_capacity": 440.0,
+                    "module_cost": 40920.0
+                },
+                {
+                    "module_capacity": 460.0,
+                    "module_cost": 43640.0
+                },
+                {
+                    "module_capacity": 480.0,
+                    "module_cost": 44640.0
+                },
+                {
+                    "module_capacity": 500.0,
+                    "module_cost": 47360.0
+                },
+                {
+                    "module_capacity": 520.0,
+                    "module_cost": 48360.0
+                },
+                {
+                    "module_capacity": 540.0,
+                    "module_cost": 51080.0
+                },
+                {
+                    "module_capacity": 560.0,
+                    "module_cost": 52080.0
+                },
+                {
+                    "module_capacity": 580.0,
+                    "module_cost": 54800.0
+                },
+                {
+                    "module_capacity": 600.0,
+                    "module_cost": 55800.0
+                },
+                {
+                    "module_capacity": 620.0,
+                    "module_cost": 58520.0
+                },
+                {
+                    "module_capacity": 640.0,
+                    "module_cost": 59520.0
+                },
+                {
+                    "module_capacity": 660.0,
+                    "module_cost": 62240.0
+                },
+                {
+                    "module_capacity": 680.0,
+                    "module_cost": 63240.0
+                },
+                {
+                    "module_capacity": 700.0,
+                    "module_cost": 65960.0
+                },
+                {
+                    "module_capacity": 720.0,
+                    "module_cost": 66960.0
+                },
+                {
+                    "module_capacity": 740.0,
+                    "module_cost": 69680.0
+                },
+                {
+                    "module_capacity": 760.0,
+                    "module_cost": 70680.0
+                },
+                {
+                    "module_capacity": 780.0,
+                    "module_cost": 73400.0
+                },
+                {
+                    "module_capacity": 800.0,
+                    "module_cost": 74400.0
+                }
+            ]
+        },
+        {
+            "id": "L5",
+            "source": "Bremen",
+            "target": "Hannover",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 20.0,
+                    "module_cost": 2720.0
+                },
+                {
+                    "module_capacity": 40.0,
+                    "module_cost": 3720.0
+                },
+                {
+                    "module_capacity": 60.0,
+                    "module_cost": 6440.0
+                },
+                {
+                    "module_capacity": 80.0,
+                    "module_cost": 7440.0
+                },
+                {
+                    "module_capacity": 100.0,
+                    "module_cost": 10160.0
+                },
+                {
+                    "module_capacity": 120.0,
+                    "module_cost": 11160.0
+                },
+                {
+                    "module_capacity": 140.0,
+                    "module_cost": 13880.0
+                },
+                {
+                    "module_capacity": 160.0,
+                    "module_cost": 14880.0
+                },
+                {
+                    "module_capacity": 180.0,
+                    "module_cost": 17600.0
+                },
+                {
+                    "module_capacity": 200.0,
+                    "module_cost": 18600.0
+                },
+                {
+                    "module_capacity": 220.0,
+                    "module_cost": 21320.0
+                },
+                {
+                    "module_capacity": 240.0,
+                    "module_cost": 22320.0
+                },
+                {
+                    "module_capacity": 260.0,
+                    "module_cost": 25040.0
+                },
+                {
+                    "module_capacity": 280.0,
+                    "module_cost": 26040.0
+                },
+                {
+                    "module_capacity": 300.0,
+                    "module_cost": 28760.0
+                },
+                {
+                    "module_capacity": 320.0,
+                    "module_cost": 29760.0
+                },
+                {
+                    "module_capacity": 340.0,
+                    "module_cost": 32480.0
+                },
+                {
+                    "module_capacity": 360.0,
+                    "module_cost": 33480.0
+                },
+                {
+                    "module_capacity": 380.0,
+                    "module_cost": 36200.0
+                },
+                {
+                    "module_capacity": 400.0,
+                    "module_cost": 37200.0
+                },
+                {
+                    "module_capacity": 420.0,
+                    "module_cost": 39920.0
+                },
+                {
+                    "module_capacity": 440.0,
+                    "module_cost": 40920.0
+                },
+                {
+                    "module_capacity": 460.0,
+                    "module_cost": 43640.0
+                },
+                {
+                    "module_capacity": 480.0,
+                    "module_cost": 44640.0
+                },
+                {
+                    "module_capacity": 500.0,
+                    "module_cost": 47360.0
+                },
+                {
+                    "module_capacity": 520.0,
+                    "module_cost": 48360.0
+                },
+                {
+                    "module_capacity": 540.0,
+                    "module_cost": 51080.0
+                },
+                {
+                    "module_capacity": 560.0,
+                    "module_cost": 52080.0
+                },
+                {
+                    "module_capacity": 580.0,
+                    "module_cost": 54800.0
+                },
+                {
+                    "module_capacity": 600.0,
+                    "module_cost": 55800.0
+                },
+                {
+                    "module_capacity": 620.0,
+                    "module_cost": 58520.0
+                },
+                {
+                    "module_capacity": 640.0,
+                    "module_cost": 59520.0
+                },
+                {
+                    "module_capacity": 660.0,
+                    "module_cost": 62240.0
+                },
+                {
+                    "module_capacity": 680.0,
+                    "module_cost": 63240.0
+                },
+                {
+                    "module_capacity": 700.0,
+                    "module_cost": 65960.0
+                },
+                {
+                    "module_capacity": 720.0,
+                    "module_cost": 66960.0
+                },
+                {
+                    "module_capacity": 740.0,
+                    "module_cost": 69680.0
+                },
+                {
+                    "module_capacity": 760.0,
+                    "module_cost": 70680.0
+                },
+                {
+                    "module_capacity": 780.0,
+                    "module_cost": 73400.0
+                },
+                {
+                    "module_capacity": 800.0,
+                    "module_cost": 74400.0
+                }
+            ]
+        },
+        {
+            "id": "L6",
+            "source": "Bremen",
+            "target": "Norden",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 20.0,
+                    "module_cost": 2720.0
+                },
+                {
+                    "module_capacity": 40.0,
+                    "module_cost": 3720.0
+                },
+                {
+                    "module_capacity": 60.0,
+                    "module_cost": 6440.0
+                },
+                {
+                    "module_capacity": 80.0,
+                    "module_cost": 7440.0
+                },
+                {
+                    "module_capacity": 100.0,
+                    "module_cost": 10160.0
+                },
+                {
+                    "module_capacity": 120.0,
+                    "module_cost": 11160.0
+                },
+                {
+                    "module_capacity": 140.0,
+                    "module_cost": 13880.0
+                },
+                {
+                    "module_capacity": 160.0,
+                    "module_cost": 14880.0
+                },
+                {
+                    "module_capacity": 180.0,
+                    "module_cost": 17600.0
+                },
+                {
+                    "module_capacity": 200.0,
+                    "module_cost": 18600.0
+                },
+                {
+                    "module_capacity": 220.0,
+                    "module_cost": 21320.0
+                },
+                {
+                    "module_capacity": 240.0,
+                    "module_cost": 22320.0
+                },
+                {
+                    "module_capacity": 260.0,
+                    "module_cost": 25040.0
+                },
+                {
+                    "module_capacity": 280.0,
+                    "module_cost": 26040.0
+                },
+                {
+                    "module_capacity": 300.0,
+                    "module_cost": 28760.0
+                },
+                {
+                    "module_capacity": 320.0,
+                    "module_cost": 29760.0
+                },
+                {
+                    "module_capacity": 340.0,
+                    "module_cost": 32480.0
+                },
+                {
+                    "module_capacity": 360.0,
+                    "module_cost": 33480.0
+                },
+                {
+                    "module_capacity": 380.0,
+                    "module_cost": 36200.0
+                },
+                {
+                    "module_capacity": 400.0,
+                    "module_cost": 37200.0
+                },
+                {
+                    "module_capacity": 420.0,
+                    "module_cost": 39920.0
+                },
+                {
+                    "module_capacity": 440.0,
+                    "module_cost": 40920.0
+                },
+                {
+                    "module_capacity": 460.0,
+                    "module_cost": 43640.0
+                },
+                {
+                    "module_capacity": 480.0,
+                    "module_cost": 44640.0
+                },
+                {
+                    "module_capacity": 500.0,
+                    "module_cost": 47360.0
+                },
+                {
+                    "module_capacity": 520.0,
+                    "module_cost": 48360.0
+                },
+                {
+                    "module_capacity": 540.0,
+                    "module_cost": 51080.0
+                },
+                {
+                    "module_capacity": 560.0,
+                    "module_cost": 52080.0
+                },
+                {
+                    "module_capacity": 580.0,
+                    "module_cost": 54800.0
+                },
+                {
+                    "module_capacity": 600.0,
+                    "module_cost": 55800.0
+                },
+                {
+                    "module_capacity": 620.0,
+                    "module_cost": 58520.0
+                },
+                {
+                    "module_capacity": 640.0,
+                    "module_cost": 59520.0
+                },
+                {
+                    "module_capacity": 660.0,
+                    "module_cost": 62240.0
+                },
+                {
+                    "module_capacity": 680.0,
+                    "module_cost": 63240.0
+                },
+                {
+                    "module_capacity": 700.0,
+                    "module_cost": 65960.0
+                },
+                {
+                    "module_capacity": 720.0,
+                    "module_cost": 66960.0
+                },
+                {
+                    "module_capacity": 740.0,
+                    "module_cost": 69680.0
+                },
+                {
+                    "module_capacity": 760.0,
+                    "module_cost": 70680.0
+                },
+                {
+                    "module_capacity": 780.0,
+                    "module_cost": 73400.0
+                },
+                {
+                    "module_capacity": 800.0,
+                    "module_cost": 74400.0
+                }
+            ]
+        },
+        {
+            "id": "L7",
+            "source": "Dortmund",
+            "target": "Essen",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 20.0,
+                    "module_cost": 2290.0
+                },
+                {
+                    "module_capacity": 40.0,
+                    "module_cost": 3290.0
+                },
+                {
+                    "module_capacity": 60.0,
+                    "module_cost": 5580.0
+                },
+                {
+                    "module_capacity": 80.0,
+                    "module_cost": 6580.0
+                },
+                {
+                    "module_capacity": 100.0,
+                    "module_cost": 8870.0
+                },
+                {
+                    "module_capacity": 120.0,
+                    "module_cost": 9870.0
+                },
+                {
+                    "module_capacity": 140.0,
+                    "module_cost": 12160.0
+                },
+                {
+                    "module_capacity": 160.0,
+                    "module_cost": 13160.0
+                },
+                {
+                    "module_capacity": 180.0,
+                    "module_cost": 15450.0
+                },
+                {
+                    "module_capacity": 200.0,
+                    "module_cost": 16450.0
+                },
+                {
+                    "module_capacity": 220.0,
+                    "module_cost": 18740.0
+                },
+                {
+                    "module_capacity": 240.0,
+                    "module_cost": 19740.0
+                },
+                {
+                    "module_capacity": 260.0,
+                    "module_cost": 22030.0
+                },
+                {
+                    "module_capacity": 280.0,
+                    "module_cost": 23030.0
+                },
+                {
+                    "module_capacity": 300.0,
+                    "module_cost": 25320.0
+                },
+                {
+                    "module_capacity": 320.0,
+                    "module_cost": 26320.0
+                },
+                {
+                    "module_capacity": 340.0,
+                    "module_cost": 28610.0
+                },
+                {
+                    "module_capacity": 360.0,
+                    "module_cost": 29610.0
+                },
+                {
+                    "module_capacity": 380.0,
+                    "module_cost": 31900.0
+                },
+                {
+                    "module_capacity": 400.0,
+                    "module_cost": 32900.0
+                },
+                {
+                    "module_capacity": 420.0,
+                    "module_cost": 35190.0
+                },
+                {
+                    "module_capacity": 440.0,
+                    "module_cost": 36190.0
+                },
+                {
+                    "module_capacity": 460.0,
+                    "module_cost": 38480.0
+                },
+                {
+                    "module_capacity": 480.0,
+                    "module_cost": 39480.0
+                },
+                {
+                    "module_capacity": 500.0,
+                    "module_cost": 41770.0
+                },
+                {
+                    "module_capacity": 520.0,
+                    "module_cost": 42770.0
+                },
+                {
+                    "module_capacity": 540.0,
+                    "module_cost": 45060.0
+                },
+                {
+                    "module_capacity": 560.0,
+                    "module_cost": 46060.0
+                },
+                {
+                    "module_capacity": 580.0,
+                    "module_cost": 48350.0
+                },
+                {
+                    "module_capacity": 600.0,
+                    "module_cost": 49350.0
+                },
+                {
+                    "module_capacity": 620.0,
+                    "module_cost": 51640.0
+                },
+                {
+                    "module_capacity": 640.0,
+                    "module_cost": 52640.0
+                },
+                {
+                    "module_capacity": 660.0,
+                    "module_cost": 54930.0
+                },
+                {
+                    "module_capacity": 680.0,
+                    "module_cost": 55930.0
+                },
+                {
+                    "module_capacity": 700.0,
+                    "module_cost": 58220.0
+                },
+                {
+                    "module_capacity": 720.0,
+                    "module_cost": 59220.0
+                },
+                {
+                    "module_capacity": 740.0,
+                    "module_cost": 61510.0
+                },
+                {
+                    "module_capacity": 760.0,
+                    "module_cost": 62510.0
+                },
+                {
+                    "module_capacity": 780.0,
+                    "module_cost": 64800.0
+                },
+                {
+                    "module_capacity": 800.0,
+                    "module_cost": 65800.0
+                }
+            ]
+        },
+        {
+            "id": "L8",
+            "source": "Dortmund",
+            "target": "Hannover",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 20.0,
+                    "module_cost": 3150.0
+                },
+                {
+                    "module_capacity": 40.0,
+                    "module_cost": 4150.0
+                },
+                {
+                    "module_capacity": 60.0,
+                    "module_cost": 7300.0
+                },
+                {
+                    "module_capacity": 80.0,
+                    "module_cost": 8300.0
+                },
+                {
+                    "module_capacity": 100.0,
+                    "module_cost": 11450.0
+                },
+                {
+                    "module_capacity": 120.0,
+                    "module_cost": 12450.0
+                },
+                {
+                    "module_capacity": 140.0,
+                    "module_cost": 15600.0
+                },
+                {
+                    "module_capacity": 160.0,
+                    "module_cost": 16600.0
+                },
+                {
+                    "module_capacity": 180.0,
+                    "module_cost": 19750.0
+                },
+                {
+                    "module_capacity": 200.0,
+                    "module_cost": 20750.0
+                },
+                {
+                    "module_capacity": 220.0,
+                    "module_cost": 23900.0
+                },
+                {
+                    "module_capacity": 240.0,
+                    "module_cost": 24900.0
+                },
+                {
+                    "module_capacity": 260.0,
+                    "module_cost": 28050.0
+                },
+                {
+                    "module_capacity": 280.0,
+                    "module_cost": 29050.0
+                },
+                {
+                    "module_capacity": 300.0,
+                    "module_cost": 32200.0
+                },
+                {
+                    "module_capacity": 320.0,
+                    "module_cost": 33200.0
+                },
+                {
+                    "module_capacity": 340.0,
+                    "module_cost": 36350.0
+                },
+                {
+                    "module_capacity": 360.0,
+                    "module_cost": 37350.0
+                },
+                {
+                    "module_capacity": 380.0,
+                    "module_cost": 40500.0
+                },
+                {
+                    "module_capacity": 400.0,
+                    "module_cost": 41500.0
+                },
+                {
+                    "module_capacity": 420.0,
+                    "module_cost": 44650.0
+                },
+                {
+                    "module_capacity": 440.0,
+                    "module_cost": 45650.0
+                },
+                {
+                    "module_capacity": 460.0,
+                    "module_cost": 48800.0
+                },
+                {
+                    "module_capacity": 480.0,
+                    "module_cost": 49800.0
+                },
+                {
+                    "module_capacity": 500.0,
+                    "module_cost": 52950.0
+                },
+                {
+                    "module_capacity": 520.0,
+                    "module_cost": 53950.0
+                },
+                {
+                    "module_capacity": 540.0,
+                    "module_cost": 57100.0
+                },
+                {
+                    "module_capacity": 560.0,
+                    "module_cost": 58100.0
+                },
+                {
+                    "module_capacity": 580.0,
+                    "module_cost": 61250.0
+                },
+                {
+                    "module_capacity": 600.0,
+                    "module_cost": 62250.0
+                },
+                {
+                    "module_capacity": 620.0,
+                    "module_cost": 65400.0
+                },
+                {
+                    "module_capacity": 640.0,
+                    "module_cost": 66400.0
+                },
+                {
+                    "module_capacity": 660.0,
+                    "module_cost": 69550.0
+                },
+                {
+                    "module_capacity": 680.0,
+                    "module_cost": 70550.0
+                },
+                {
+                    "module_capacity": 700.0,
+                    "module_cost": 73700.0
+                },
+                {
+                    "module_capacity": 720.0,
+                    "module_cost": 74700.0
+                },
+                {
+                    "module_capacity": 740.0,
+                    "module_cost": 77850.0
+                },
+                {
+                    "module_capacity": 760.0,
+                    "module_cost": 78850.0
+                },
+                {
+                    "module_capacity": 780.0,
+                    "module_cost": 82000.0
+                },
+                {
+                    "module_capacity": 800.0,
+                    "module_cost": 83000.0
+                }
+            ]
+        },
+        {
+            "id": "L9",
+            "source": "Dortmund",
+            "target": "Koeln",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 20.0,
+                    "module_cost": 2720.0
+                },
+                {
+                    "module_capacity": 40.0,
+                    "module_cost": 3720.0
+                },
+                {
+                    "module_capacity": 60.0,
+                    "module_cost": 6440.0
+                },
+                {
+                    "module_capacity": 80.0,
+                    "module_cost": 7440.0
+                },
+                {
+                    "module_capacity": 100.0,
+                    "module_cost": 10160.0
+                },
+                {
+                    "module_capacity": 120.0,
+                    "module_cost": 11160.0
+                },
+                {
+                    "module_capacity": 140.0,
+                    "module_cost": 13880.0
+                },
+                {
+                    "module_capacity": 160.0,
+                    "module_cost": 14880.0
+                },
+                {
+                    "module_capacity": 180.0,
+                    "module_cost": 17600.0
+                },
+                {
+                    "module_capacity": 200.0,
+                    "module_cost": 18600.0
+                },
+                {
+                    "module_capacity": 220.0,
+                    "module_cost": 21320.0
+                },
+                {
+                    "module_capacity": 240.0,
+                    "module_cost": 22320.0
+                },
+                {
+                    "module_capacity": 260.0,
+                    "module_cost": 25040.0
+                },
+                {
+                    "module_capacity": 280.0,
+                    "module_cost": 26040.0
+                },
+                {
+                    "module_capacity": 300.0,
+                    "module_cost": 28760.0
+                },
+                {
+                    "module_capacity": 320.0,
+                    "module_cost": 29760.0
+                },
+                {
+                    "module_capacity": 340.0,
+                    "module_cost": 32480.0
+                },
+                {
+                    "module_capacity": 360.0,
+                    "module_cost": 33480.0
+                },
+                {
+                    "module_capacity": 380.0,
+                    "module_cost": 36200.0
+                },
+                {
+                    "module_capacity": 400.0,
+                    "module_cost": 37200.0
+                },
+                {
+                    "module_capacity": 420.0,
+                    "module_cost": 39920.0
+                },
+                {
+                    "module_capacity": 440.0,
+                    "module_cost": 40920.0
+                },
+                {
+                    "module_capacity": 460.0,
+                    "module_cost": 43640.0
+                },
+                {
+                    "module_capacity": 480.0,
+                    "module_cost": 44640.0
+                },
+                {
+                    "module_capacity": 500.0,
+                    "module_cost": 47360.0
+                },
+                {
+                    "module_capacity": 520.0,
+                    "module_cost": 48360.0
+                },
+                {
+                    "module_capacity": 540.0,
+                    "module_cost": 51080.0
+                },
+                {
+                    "module_capacity": 560.0,
+                    "module_cost": 52080.0
+                },
+                {
+                    "module_capacity": 580.0,
+                    "module_cost": 54800.0
+                },
+                {
+                    "module_capacity": 600.0,
+                    "module_cost": 55800.0
+                },
+                {
+                    "module_capacity": 620.0,
+                    "module_cost": 58520.0
+                },
+                {
+                    "module_capacity": 640.0,
+                    "module_cost": 59520.0
+                },
+                {
+                    "module_capacity": 660.0,
+                    "module_cost": 62240.0
+                },
+                {
+                    "module_capacity": 680.0,
+                    "module_cost": 63240.0
+                },
+                {
+                    "module_capacity": 700.0,
+                    "module_cost": 65960.0
+                },
+                {
+                    "module_capacity": 720.0,
+                    "module_cost": 66960.0
+                },
+                {
+                    "module_capacity": 740.0,
+                    "module_cost": 69680.0
+                },
+                {
+                    "module_capacity": 760.0,
+                    "module_cost": 70680.0
+                },
+                {
+                    "module_capacity": 780.0,
+                    "module_cost": 73400.0
+                },
+                {
+                    "module_capacity": 800.0,
+                    "module_cost": 74400.0
+                }
+            ]
+        },
+        {
+            "id": "L10",
+            "source": "Dortmund",
+            "target": "Norden",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 20.0,
+                    "module_cost": 3580.0
+                },
+                {
+                    "module_capacity": 40.0,
+                    "module_cost": 4580.0
+                },
+                {
+                    "module_capacity": 60.0,
+                    "module_cost": 8160.0
+                },
+                {
+                    "module_capacity": 80.0,
+                    "module_cost": 9160.0
+                },
+                {
+                    "module_capacity": 100.0,
+                    "module_cost": 12740.0
+                },
+                {
+                    "module_capacity": 120.0,
+                    "module_cost": 13740.0
+                },
+                {
+                    "module_capacity": 140.0,
+                    "module_cost": 17320.0
+                },
+                {
+                    "module_capacity": 160.0,
+                    "module_cost": 18320.0
+                },
+                {
+                    "module_capacity": 180.0,
+                    "module_cost": 21900.0
+                },
+                {
+                    "module_capacity": 200.0,
+                    "module_cost": 22900.0
+                },
+                {
+                    "module_capacity": 220.0,
+                    "module_cost": 26480.0
+                },
+                {
+                    "module_capacity": 240.0,
+                    "module_cost": 27480.0
+                },
+                {
+                    "module_capacity": 260.0,
+                    "module_cost": 31060.0
+                },
+                {
+                    "module_capacity": 280.0,
+                    "module_cost": 32060.0
+                },
+                {
+                    "module_capacity": 300.0,
+                    "module_cost": 35640.0
+                },
+                {
+                    "module_capacity": 320.0,
+                    "module_cost": 36640.0
+                },
+                {
+                    "module_capacity": 340.0,
+                    "module_cost": 40220.0
+                },
+                {
+                    "module_capacity": 360.0,
+                    "module_cost": 41220.0
+                },
+                {
+                    "module_capacity": 380.0,
+                    "module_cost": 44800.0
+                },
+                {
+                    "module_capacity": 400.0,
+                    "module_cost": 45800.0
+                },
+                {
+                    "module_capacity": 420.0,
+                    "module_cost": 49380.0
+                },
+                {
+                    "module_capacity": 440.0,
+                    "module_cost": 50380.0
+                },
+                {
+                    "module_capacity": 460.0,
+                    "module_cost": 53960.0
+                },
+                {
+                    "module_capacity": 480.0,
+                    "module_cost": 54960.0
+                },
+                {
+                    "module_capacity": 500.0,
+                    "module_cost": 58540.0
+                },
+                {
+                    "module_capacity": 520.0,
+                    "module_cost": 59540.0
+                },
+                {
+                    "module_capacity": 540.0,
+                    "module_cost": 63120.0
+                },
+                {
+                    "module_capacity": 560.0,
+                    "module_cost": 64120.0
+                },
+                {
+                    "module_capacity": 580.0,
+                    "module_cost": 67700.0
+                },
+                {
+                    "module_capacity": 600.0,
+                    "module_cost": 68700.0
+                },
+                {
+                    "module_capacity": 620.0,
+                    "module_cost": 72280.0
+                },
+                {
+                    "module_capacity": 640.0,
+                    "module_cost": 73280.0
+                },
+                {
+                    "module_capacity": 660.0,
+                    "module_cost": 76860.0
+                },
+                {
+                    "module_capacity": 680.0,
+                    "module_cost": 77860.0
+                },
+                {
+                    "module_capacity": 700.0,
+                    "module_cost": 81440.0
+                },
+                {
+                    "module_capacity": 720.0,
+                    "module_cost": 82440.0
+                },
+                {
+                    "module_capacity": 740.0,
+                    "module_cost": 86020.0
+                },
+                {
+                    "module_capacity": 760.0,
+                    "module_cost": 87020.0
+                },
+                {
+                    "module_capacity": 780.0,
+                    "module_cost": 90600.0
+                },
+                {
+                    "module_capacity": 800.0,
+                    "module_cost": 91600.0
+                }
+            ]
+        },
+        {
+            "id": "L11",
+            "source": "Duesseldorf",
+            "target": "Essen",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 20.0,
+                    "module_cost": 2290.0
+                },
+                {
+                    "module_capacity": 40.0,
+                    "module_cost": 3290.0
+                },
+                {
+                    "module_capacity": 60.0,
+                    "module_cost": 5580.0
+                },
+                {
+                    "module_capacity": 80.0,
+                    "module_cost": 6580.0
+                },
+                {
+                    "module_capacity": 100.0,
+                    "module_cost": 8870.0
+                },
+                {
+                    "module_capacity": 120.0,
+                    "module_cost": 9870.0
+                },
+                {
+                    "module_capacity": 140.0,
+                    "module_cost": 12160.0
+                },
+                {
+                    "module_capacity": 160.0,
+                    "module_cost": 13160.0
+                },
+                {
+                    "module_capacity": 180.0,
+                    "module_cost": 15450.0
+                },
+                {
+                    "module_capacity": 200.0,
+                    "module_cost": 16450.0
+                },
+                {
+                    "module_capacity": 220.0,
+                    "module_cost": 18740.0
+                },
+                {
+                    "module_capacity": 240.0,
+                    "module_cost": 19740.0
+                },
+                {
+                    "module_capacity": 260.0,
+                    "module_cost": 22030.0
+                },
+                {
+                    "module_capacity": 280.0,
+                    "module_cost": 23030.0
+                },
+                {
+                    "module_capacity": 300.0,
+                    "module_cost": 25320.0
+                },
+                {
+                    "module_capacity": 320.0,
+                    "module_cost": 26320.0
+                },
+                {
+                    "module_capacity": 340.0,
+                    "module_cost": 28610.0
+                },
+                {
+                    "module_capacity": 360.0,
+                    "module_cost": 29610.0
+                },
+                {
+                    "module_capacity": 380.0,
+                    "module_cost": 31900.0
+                },
+                {
+                    "module_capacity": 400.0,
+                    "module_cost": 32900.0
+                },
+                {
+                    "module_capacity": 420.0,
+                    "module_cost": 35190.0
+                },
+                {
+                    "module_capacity": 440.0,
+                    "module_cost": 36190.0
+                },
+                {
+                    "module_capacity": 460.0,
+                    "module_cost": 38480.0
+                },
+                {
+                    "module_capacity": 480.0,
+                    "module_cost": 39480.0
+                },
+                {
+                    "module_capacity": 500.0,
+                    "module_cost": 41770.0
+                },
+                {
+                    "module_capacity": 520.0,
+                    "module_cost": 42770.0
+                },
+                {
+                    "module_capacity": 540.0,
+                    "module_cost": 45060.0
+                },
+                {
+                    "module_capacity": 560.0,
+                    "module_cost": 46060.0
+                },
+                {
+                    "module_capacity": 580.0,
+                    "module_cost": 48350.0
+                },
+                {
+                    "module_capacity": 600.0,
+                    "module_cost": 49350.0
+                },
+                {
+                    "module_capacity": 620.0,
+                    "module_cost": 51640.0
+                },
+                {
+                    "module_capacity": 640.0,
+                    "module_cost": 52640.0
+                },
+                {
+                    "module_capacity": 660.0,
+                    "module_cost": 54930.0
+                },
+                {
+                    "module_capacity": 680.0,
+                    "module_cost": 55930.0
+                },
+                {
+                    "module_capacity": 700.0,
+                    "module_cost": 58220.0
+                },
+                {
+                    "module_capacity": 720.0,
+                    "module_cost": 59220.0
+                },
+                {
+                    "module_capacity": 740.0,
+                    "module_cost": 61510.0
+                },
+                {
+                    "module_capacity": 760.0,
+                    "module_cost": 62510.0
+                },
+                {
+                    "module_capacity": 780.0,
+                    "module_cost": 64800.0
+                },
+                {
+                    "module_capacity": 800.0,
+                    "module_cost": 65800.0
+                }
+            ]
+        },
+        {
+            "id": "L12",
+            "source": "Duesseldorf",
+            "target": "Koeln",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 20.0,
+                    "module_cost": 2290.0
+                },
+                {
+                    "module_capacity": 40.0,
+                    "module_cost": 3290.0
+                },
+                {
+                    "module_capacity": 60.0,
+                    "module_cost": 5580.0
+                },
+                {
+                    "module_capacity": 80.0,
+                    "module_cost": 6580.0
+                },
+                {
+                    "module_capacity": 100.0,
+                    "module_cost": 8870.0
+                },
+                {
+                    "module_capacity": 120.0,
+                    "module_cost": 9870.0
+                },
+                {
+                    "module_capacity": 140.0,
+                    "module_cost": 12160.0
+                },
+                {
+                    "module_capacity": 160.0,
+                    "module_cost": 13160.0
+                },
+                {
+                    "module_capacity": 180.0,
+                    "module_cost": 15450.0
+                },
+                {
+                    "module_capacity": 200.0,
+                    "module_cost": 16450.0
+                },
+                {
+                    "module_capacity": 220.0,
+                    "module_cost": 18740.0
+                },
+                {
+                    "module_capacity": 240.0,
+                    "module_cost": 19740.0
+                },
+                {
+                    "module_capacity": 260.0,
+                    "module_cost": 22030.0
+                },
+                {
+                    "module_capacity": 280.0,
+                    "module_cost": 23030.0
+                },
+                {
+                    "module_capacity": 300.0,
+                    "module_cost": 25320.0
+                },
+                {
+                    "module_capacity": 320.0,
+                    "module_cost": 26320.0
+                },
+                {
+                    "module_capacity": 340.0,
+                    "module_cost": 28610.0
+                },
+                {
+                    "module_capacity": 360.0,
+                    "module_cost": 29610.0
+                },
+                {
+                    "module_capacity": 380.0,
+                    "module_cost": 31900.0
+                },
+                {
+                    "module_capacity": 400.0,
+                    "module_cost": 32900.0
+                },
+                {
+                    "module_capacity": 420.0,
+                    "module_cost": 35190.0
+                },
+                {
+                    "module_capacity": 440.0,
+                    "module_cost": 36190.0
+                },
+                {
+                    "module_capacity": 460.0,
+                    "module_cost": 38480.0
+                },
+                {
+                    "module_capacity": 480.0,
+                    "module_cost": 39480.0
+                },
+                {
+                    "module_capacity": 500.0,
+                    "module_cost": 41770.0
+                },
+                {
+                    "module_capacity": 520.0,
+                    "module_cost": 42770.0
+                },
+                {
+                    "module_capacity": 540.0,
+                    "module_cost": 45060.0
+                },
+                {
+                    "module_capacity": 560.0,
+                    "module_cost": 46060.0
+                },
+                {
+                    "module_capacity": 580.0,
+                    "module_cost": 48350.0
+                },
+                {
+                    "module_capacity": 600.0,
+                    "module_cost": 49350.0
+                },
+                {
+                    "module_capacity": 620.0,
+                    "module_cost": 51640.0
+                },
+                {
+                    "module_capacity": 640.0,
+                    "module_cost": 52640.0
+                },
+                {
+                    "module_capacity": 660.0,
+                    "module_cost": 54930.0
+                },
+                {
+                    "module_capacity": 680.0,
+                    "module_cost": 55930.0
+                },
+                {
+                    "module_capacity": 700.0,
+                    "module_cost": 58220.0
+                },
+                {
+                    "module_capacity": 720.0,
+                    "module_cost": 59220.0
+                },
+                {
+                    "module_capacity": 740.0,
+                    "module_cost": 61510.0
+                },
+                {
+                    "module_capacity": 760.0,
+                    "module_cost": 62510.0
+                },
+                {
+                    "module_capacity": 780.0,
+                    "module_cost": 64800.0
+                },
+                {
+                    "module_capacity": 800.0,
+                    "module_cost": 65800.0
+                }
+            ]
+        },
+        {
+            "id": "L13",
+            "source": "Frankfurt",
+            "target": "Hannover",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 20.0,
+                    "module_cost": 3580.0
+                },
+                {
+                    "module_capacity": 40.0,
+                    "module_cost": 4580.0
+                },
+                {
+                    "module_capacity": 60.0,
+                    "module_cost": 8160.0
+                },
+                {
+                    "module_capacity": 80.0,
+                    "module_cost": 9160.0
+                },
+                {
+                    "module_capacity": 100.0,
+                    "module_cost": 12740.0
+                },
+                {
+                    "module_capacity": 120.0,
+                    "module_cost": 13740.0
+                },
+                {
+                    "module_capacity": 140.0,
+                    "module_cost": 17320.0
+                },
+                {
+                    "module_capacity": 160.0,
+                    "module_cost": 18320.0
+                },
+                {
+                    "module_capacity": 180.0,
+                    "module_cost": 21900.0
+                },
+                {
+                    "module_capacity": 200.0,
+                    "module_cost": 22900.0
+                },
+                {
+                    "module_capacity": 220.0,
+                    "module_cost": 26480.0
+                },
+                {
+                    "module_capacity": 240.0,
+                    "module_cost": 27480.0
+                },
+                {
+                    "module_capacity": 260.0,
+                    "module_cost": 31060.0
+                },
+                {
+                    "module_capacity": 280.0,
+                    "module_cost": 32060.0
+                },
+                {
+                    "module_capacity": 300.0,
+                    "module_cost": 35640.0
+                },
+                {
+                    "module_capacity": 320.0,
+                    "module_cost": 36640.0
+                },
+                {
+                    "module_capacity": 340.0,
+                    "module_cost": 40220.0
+                },
+                {
+                    "module_capacity": 360.0,
+                    "module_cost": 41220.0
+                },
+                {
+                    "module_capacity": 380.0,
+                    "module_cost": 44800.0
+                },
+                {
+                    "module_capacity": 400.0,
+                    "module_cost": 45800.0
+                },
+                {
+                    "module_capacity": 420.0,
+                    "module_cost": 49380.0
+                },
+                {
+                    "module_capacity": 440.0,
+                    "module_cost": 50380.0
+                },
+                {
+                    "module_capacity": 460.0,
+                    "module_cost": 53960.0
+                },
+                {
+                    "module_capacity": 480.0,
+                    "module_cost": 54960.0
+                },
+                {
+                    "module_capacity": 500.0,
+                    "module_cost": 58540.0
+                },
+                {
+                    "module_capacity": 520.0,
+                    "module_cost": 59540.0
+                },
+                {
+                    "module_capacity": 540.0,
+                    "module_cost": 63120.0
+                },
+                {
+                    "module_capacity": 560.0,
+                    "module_cost": 64120.0
+                },
+                {
+                    "module_capacity": 580.0,
+                    "module_cost": 67700.0
+                },
+                {
+                    "module_capacity": 600.0,
+                    "module_cost": 68700.0
+                },
+                {
+                    "module_capacity": 620.0,
+                    "module_cost": 72280.0
+                },
+                {
+                    "module_capacity": 640.0,
+                    "module_cost": 73280.0
+                },
+                {
+                    "module_capacity": 660.0,
+                    "module_cost": 76860.0
+                },
+                {
+                    "module_capacity": 680.0,
+                    "module_cost": 77860.0
+                },
+                {
+                    "module_capacity": 700.0,
+                    "module_cost": 81440.0
+                },
+                {
+                    "module_capacity": 720.0,
+                    "module_cost": 82440.0
+                },
+                {
+                    "module_capacity": 740.0,
+                    "module_cost": 86020.0
+                },
+                {
+                    "module_capacity": 760.0,
+                    "module_cost": 87020.0
+                },
+                {
+                    "module_capacity": 780.0,
+                    "module_cost": 90600.0
+                },
+                {
+                    "module_capacity": 800.0,
+                    "module_cost": 91600.0
+                }
+            ]
+        },
+        {
+            "id": "L14",
+            "source": "Frankfurt",
+            "target": "Koeln",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 20.0,
+                    "module_cost": 3150.0
+                },
+                {
+                    "module_capacity": 40.0,
+                    "module_cost": 4150.0
+                },
+                {
+                    "module_capacity": 60.0,
+                    "module_cost": 7300.0
+                },
+                {
+                    "module_capacity": 80.0,
+                    "module_cost": 8300.0
+                },
+                {
+                    "module_capacity": 100.0,
+                    "module_cost": 11450.0
+                },
+                {
+                    "module_capacity": 120.0,
+                    "module_cost": 12450.0
+                },
+                {
+                    "module_capacity": 140.0,
+                    "module_cost": 15600.0
+                },
+                {
+                    "module_capacity": 160.0,
+                    "module_cost": 16600.0
+                },
+                {
+                    "module_capacity": 180.0,
+                    "module_cost": 19750.0
+                },
+                {
+                    "module_capacity": 200.0,
+                    "module_cost": 20750.0
+                },
+                {
+                    "module_capacity": 220.0,
+                    "module_cost": 23900.0
+                },
+                {
+                    "module_capacity": 240.0,
+                    "module_cost": 24900.0
+                },
+                {
+                    "module_capacity": 260.0,
+                    "module_cost": 28050.0
+                },
+                {
+                    "module_capacity": 280.0,
+                    "module_cost": 29050.0
+                },
+                {
+                    "module_capacity": 300.0,
+                    "module_cost": 32200.0
+                },
+                {
+                    "module_capacity": 320.0,
+                    "module_cost": 33200.0
+                },
+                {
+                    "module_capacity": 340.0,
+                    "module_cost": 36350.0
+                },
+                {
+                    "module_capacity": 360.0,
+                    "module_cost": 37350.0
+                },
+                {
+                    "module_capacity": 380.0,
+                    "module_cost": 40500.0
+                },
+                {
+                    "module_capacity": 400.0,
+                    "module_cost": 41500.0
+                },
+                {
+                    "module_capacity": 420.0,
+                    "module_cost": 44650.0
+                },
+                {
+                    "module_capacity": 440.0,
+                    "module_cost": 45650.0
+                },
+                {
+                    "module_capacity": 460.0,
+                    "module_cost": 48800.0
+                },
+                {
+                    "module_capacity": 480.0,
+                    "module_cost": 49800.0
+                },
+                {
+                    "module_capacity": 500.0,
+                    "module_cost": 52950.0
+                },
+                {
+                    "module_capacity": 520.0,
+                    "module_cost": 53950.0
+                },
+                {
+                    "module_capacity": 540.0,
+                    "module_cost": 57100.0
+                },
+                {
+                    "module_capacity": 560.0,
+                    "module_cost": 58100.0
+                },
+                {
+                    "module_capacity": 580.0,
+                    "module_cost": 61250.0
+                },
+                {
+                    "module_capacity": 600.0,
+                    "module_cost": 62250.0
+                },
+                {
+                    "module_capacity": 620.0,
+                    "module_cost": 65400.0
+                },
+                {
+                    "module_capacity": 640.0,
+                    "module_cost": 66400.0
+                },
+                {
+                    "module_capacity": 660.0,
+                    "module_cost": 69550.0
+                },
+                {
+                    "module_capacity": 680.0,
+                    "module_cost": 70550.0
+                },
+                {
+                    "module_capacity": 700.0,
+                    "module_cost": 73700.0
+                },
+                {
+                    "module_capacity": 720.0,
+                    "module_cost": 74700.0
+                },
+                {
+                    "module_capacity": 740.0,
+                    "module_cost": 77850.0
+                },
+                {
+                    "module_capacity": 760.0,
+                    "module_cost": 78850.0
+                },
+                {
+                    "module_capacity": 780.0,
+                    "module_cost": 82000.0
+                },
+                {
+                    "module_capacity": 800.0,
+                    "module_cost": 83000.0
+                }
+            ]
+        },
+        {
+            "id": "L15",
+            "source": "Frankfurt",
+            "target": "Leipzig",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 20.0,
+                    "module_cost": 4010.0
+                },
+                {
+                    "module_capacity": 40.0,
+                    "module_cost": 5010.0
+                },
+                {
+                    "module_capacity": 60.0,
+                    "module_cost": 9020.0
+                },
+                {
+                    "module_capacity": 80.0,
+                    "module_cost": 10020.0
+                },
+                {
+                    "module_capacity": 100.0,
+                    "module_cost": 14030.0
+                },
+                {
+                    "module_capacity": 120.0,
+                    "module_cost": 15030.0
+                },
+                {
+                    "module_capacity": 140.0,
+                    "module_cost": 19040.0
+                },
+                {
+                    "module_capacity": 160.0,
+                    "module_cost": 20040.0
+                },
+                {
+                    "module_capacity": 180.0,
+                    "module_cost": 24050.0
+                },
+                {
+                    "module_capacity": 200.0,
+                    "module_cost": 25050.0
+                },
+                {
+                    "module_capacity": 220.0,
+                    "module_cost": 29060.0
+                },
+                {
+                    "module_capacity": 240.0,
+                    "module_cost": 30060.0
+                },
+                {
+                    "module_capacity": 260.0,
+                    "module_cost": 34070.0
+                },
+                {
+                    "module_capacity": 280.0,
+                    "module_cost": 35070.0
+                },
+                {
+                    "module_capacity": 300.0,
+                    "module_cost": 39080.0
+                },
+                {
+                    "module_capacity": 320.0,
+                    "module_cost": 40080.0
+                },
+                {
+                    "module_capacity": 340.0,
+                    "module_cost": 44090.0
+                },
+                {
+                    "module_capacity": 360.0,
+                    "module_cost": 45090.0
+                },
+                {
+                    "module_capacity": 380.0,
+                    "module_cost": 49100.0
+                },
+                {
+                    "module_capacity": 400.0,
+                    "module_cost": 50100.0
+                },
+                {
+                    "module_capacity": 420.0,
+                    "module_cost": 54110.0
+                },
+                {
+                    "module_capacity": 440.0,
+                    "module_cost": 55110.0
+                },
+                {
+                    "module_capacity": 460.0,
+                    "module_cost": 59120.0
+                },
+                {
+                    "module_capacity": 480.0,
+                    "module_cost": 60120.0
+                },
+                {
+                    "module_capacity": 500.0,
+                    "module_cost": 64130.0
+                },
+                {
+                    "module_capacity": 520.0,
+                    "module_cost": 65130.0
+                },
+                {
+                    "module_capacity": 540.0,
+                    "module_cost": 69140.0
+                },
+                {
+                    "module_capacity": 560.0,
+                    "module_cost": 70140.0
+                },
+                {
+                    "module_capacity": 580.0,
+                    "module_cost": 74150.0
+                },
+                {
+                    "module_capacity": 600.0,
+                    "module_cost": 75150.0
+                },
+                {
+                    "module_capacity": 620.0,
+                    "module_cost": 79160.0
+                },
+                {
+                    "module_capacity": 640.0,
+                    "module_cost": 80160.0
+                },
+                {
+                    "module_capacity": 660.0,
+                    "module_cost": 84170.0
+                },
+                {
+                    "module_capacity": 680.0,
+                    "module_cost": 85170.0
+                },
+                {
+                    "module_capacity": 700.0,
+                    "module_cost": 89180.0
+                },
+                {
+                    "module_capacity": 720.0,
+                    "module_cost": 90180.0
+                },
+                {
+                    "module_capacity": 740.0,
+                    "module_cost": 94190.0
+                },
+                {
+                    "module_capacity": 760.0,
+                    "module_cost": 95190.0
+                },
+                {
+                    "module_capacity": 780.0,
+                    "module_cost": 99200.0
+                },
+                {
+                    "module_capacity": 800.0,
+                    "module_cost": 100200.0
+                }
+            ]
+        },
+        {
+            "id": "L16",
+            "source": "Frankfurt",
+            "target": "Mannheim",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 20.0,
+                    "module_cost": 2720.0
+                },
+                {
+                    "module_capacity": 40.0,
+                    "module_cost": 3720.0
+                },
+                {
+                    "module_capacity": 60.0,
+                    "module_cost": 6440.0
+                },
+                {
+                    "module_capacity": 80.0,
+                    "module_cost": 7440.0
+                },
+                {
+                    "module_capacity": 100.0,
+                    "module_cost": 10160.0
+                },
+                {
+                    "module_capacity": 120.0,
+                    "module_cost": 11160.0
+                },
+                {
+                    "module_capacity": 140.0,
+                    "module_cost": 13880.0
+                },
+                {
+                    "module_capacity": 160.0,
+                    "module_cost": 14880.0
+                },
+                {
+                    "module_capacity": 180.0,
+                    "module_cost": 17600.0
+                },
+                {
+                    "module_capacity": 200.0,
+                    "module_cost": 18600.0
+                },
+                {
+                    "module_capacity": 220.0,
+                    "module_cost": 21320.0
+                },
+                {
+                    "module_capacity": 240.0,
+                    "module_cost": 22320.0
+                },
+                {
+                    "module_capacity": 260.0,
+                    "module_cost": 25040.0
+                },
+                {
+                    "module_capacity": 280.0,
+                    "module_cost": 26040.0
+                },
+                {
+                    "module_capacity": 300.0,
+                    "module_cost": 28760.0
+                },
+                {
+                    "module_capacity": 320.0,
+                    "module_cost": 29760.0
+                },
+                {
+                    "module_capacity": 340.0,
+                    "module_cost": 32480.0
+                },
+                {
+                    "module_capacity": 360.0,
+                    "module_cost": 33480.0
+                },
+                {
+                    "module_capacity": 380.0,
+                    "module_cost": 36200.0
+                },
+                {
+                    "module_capacity": 400.0,
+                    "module_cost": 37200.0
+                },
+                {
+                    "module_capacity": 420.0,
+                    "module_cost": 39920.0
+                },
+                {
+                    "module_capacity": 440.0,
+                    "module_cost": 40920.0
+                },
+                {
+                    "module_capacity": 460.0,
+                    "module_cost": 43640.0
+                },
+                {
+                    "module_capacity": 480.0,
+                    "module_cost": 44640.0
+                },
+                {
+                    "module_capacity": 500.0,
+                    "module_cost": 47360.0
+                },
+                {
+                    "module_capacity": 520.0,
+                    "module_cost": 48360.0
+                },
+                {
+                    "module_capacity": 540.0,
+                    "module_cost": 51080.0
+                },
+                {
+                    "module_capacity": 560.0,
+                    "module_cost": 52080.0
+                },
+                {
+                    "module_capacity": 580.0,
+                    "module_cost": 54800.0
+                },
+                {
+                    "module_capacity": 600.0,
+                    "module_cost": 55800.0
+                },
+                {
+                    "module_capacity": 620.0,
+                    "module_cost": 58520.0
+                },
+                {
+                    "module_capacity": 640.0,
+                    "module_cost": 59520.0
+                },
+                {
+                    "module_capacity": 660.0,
+                    "module_cost": 62240.0
+                },
+                {
+                    "module_capacity": 680.0,
+                    "module_cost": 63240.0
+                },
+                {
+                    "module_capacity": 700.0,
+                    "module_cost": 65960.0
+                },
+                {
+                    "module_capacity": 720.0,
+                    "module_cost": 66960.0
+                },
+                {
+                    "module_capacity": 740.0,
+                    "module_cost": 69680.0
+                },
+                {
+                    "module_capacity": 760.0,
+                    "module_cost": 70680.0
+                },
+                {
+                    "module_capacity": 780.0,
+                    "module_cost": 73400.0
+                },
+                {
+                    "module_capacity": 800.0,
+                    "module_cost": 74400.0
+                }
+            ]
+        },
+        {
+            "id": "L17",
+            "source": "Frankfurt",
+            "target": "Nuernberg",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 20.0,
+                    "module_cost": 3150.0
+                },
+                {
+                    "module_capacity": 40.0,
+                    "module_cost": 4150.0
+                },
+                {
+                    "module_capacity": 60.0,
+                    "module_cost": 7300.0
+                },
+                {
+                    "module_capacity": 80.0,
+                    "module_cost": 8300.0
+                },
+                {
+                    "module_capacity": 100.0,
+                    "module_cost": 11450.0
+                },
+                {
+                    "module_capacity": 120.0,
+                    "module_cost": 12450.0
+                },
+                {
+                    "module_capacity": 140.0,
+                    "module_cost": 15600.0
+                },
+                {
+                    "module_capacity": 160.0,
+                    "module_cost": 16600.0
+                },
+                {
+                    "module_capacity": 180.0,
+                    "module_cost": 19750.0
+                },
+                {
+                    "module_capacity": 200.0,
+                    "module_cost": 20750.0
+                },
+                {
+                    "module_capacity": 220.0,
+                    "module_cost": 23900.0
+                },
+                {
+                    "module_capacity": 240.0,
+                    "module_cost": 24900.0
+                },
+                {
+                    "module_capacity": 260.0,
+                    "module_cost": 28050.0
+                },
+                {
+                    "module_capacity": 280.0,
+                    "module_cost": 29050.0
+                },
+                {
+                    "module_capacity": 300.0,
+                    "module_cost": 32200.0
+                },
+                {
+                    "module_capacity": 320.0,
+                    "module_cost": 33200.0
+                },
+                {
+                    "module_capacity": 340.0,
+                    "module_cost": 36350.0
+                },
+                {
+                    "module_capacity": 360.0,
+                    "module_cost": 37350.0
+                },
+                {
+                    "module_capacity": 380.0,
+                    "module_cost": 40500.0
+                },
+                {
+                    "module_capacity": 400.0,
+                    "module_cost": 41500.0
+                },
+                {
+                    "module_capacity": 420.0,
+                    "module_cost": 44650.0
+                },
+                {
+                    "module_capacity": 440.0,
+                    "module_cost": 45650.0
+                },
+                {
+                    "module_capacity": 460.0,
+                    "module_cost": 48800.0
+                },
+                {
+                    "module_capacity": 480.0,
+                    "module_cost": 49800.0
+                },
+                {
+                    "module_capacity": 500.0,
+                    "module_cost": 52950.0
+                },
+                {
+                    "module_capacity": 520.0,
+                    "module_cost": 53950.0
+                },
+                {
+                    "module_capacity": 540.0,
+                    "module_cost": 57100.0
+                },
+                {
+                    "module_capacity": 560.0,
+                    "module_cost": 58100.0
+                },
+                {
+                    "module_capacity": 580.0,
+                    "module_cost": 61250.0
+                },
+                {
+                    "module_capacity": 600.0,
+                    "module_cost": 62250.0
+                },
+                {
+                    "module_capacity": 620.0,
+                    "module_cost": 65400.0
+                },
+                {
+                    "module_capacity": 640.0,
+                    "module_cost": 66400.0
+                },
+                {
+                    "module_capacity": 660.0,
+                    "module_cost": 69550.0
+                },
+                {
+                    "module_capacity": 680.0,
+                    "module_cost": 70550.0
+                },
+                {
+                    "module_capacity": 700.0,
+                    "module_cost": 73700.0
+                },
+                {
+                    "module_capacity": 720.0,
+                    "module_cost": 74700.0
+                },
+                {
+                    "module_capacity": 740.0,
+                    "module_cost": 77850.0
+                },
+                {
+                    "module_capacity": 760.0,
+                    "module_cost": 78850.0
+                },
+                {
+                    "module_capacity": 780.0,
+                    "module_cost": 82000.0
+                },
+                {
+                    "module_capacity": 800.0,
+                    "module_cost": 83000.0
+                }
+            ]
+        },
+        {
+            "id": "L18",
+            "source": "Hamburg",
+            "target": "Hannover",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 20.0,
+                    "module_cost": 2720.0
+                },
+                {
+                    "module_capacity": 40.0,
+                    "module_cost": 3720.0
+                },
+                {
+                    "module_capacity": 60.0,
+                    "module_cost": 6440.0
+                },
+                {
+                    "module_capacity": 80.0,
+                    "module_cost": 7440.0
+                },
+                {
+                    "module_capacity": 100.0,
+                    "module_cost": 10160.0
+                },
+                {
+                    "module_capacity": 120.0,
+                    "module_cost": 11160.0
+                },
+                {
+                    "module_capacity": 140.0,
+                    "module_cost": 13880.0
+                },
+                {
+                    "module_capacity": 160.0,
+                    "module_cost": 14880.0
+                },
+                {
+                    "module_capacity": 180.0,
+                    "module_cost": 17600.0
+                },
+                {
+                    "module_capacity": 200.0,
+                    "module_cost": 18600.0
+                },
+                {
+                    "module_capacity": 220.0,
+                    "module_cost": 21320.0
+                },
+                {
+                    "module_capacity": 240.0,
+                    "module_cost": 22320.0
+                },
+                {
+                    "module_capacity": 260.0,
+                    "module_cost": 25040.0
+                },
+                {
+                    "module_capacity": 280.0,
+                    "module_cost": 26040.0
+                },
+                {
+                    "module_capacity": 300.0,
+                    "module_cost": 28760.0
+                },
+                {
+                    "module_capacity": 320.0,
+                    "module_cost": 29760.0
+                },
+                {
+                    "module_capacity": 340.0,
+                    "module_cost": 32480.0
+                },
+                {
+                    "module_capacity": 360.0,
+                    "module_cost": 33480.0
+                },
+                {
+                    "module_capacity": 380.0,
+                    "module_cost": 36200.0
+                },
+                {
+                    "module_capacity": 400.0,
+                    "module_cost": 37200.0
+                },
+                {
+                    "module_capacity": 420.0,
+                    "module_cost": 39920.0
+                },
+                {
+                    "module_capacity": 440.0,
+                    "module_cost": 40920.0
+                },
+                {
+                    "module_capacity": 460.0,
+                    "module_cost": 43640.0
+                },
+                {
+                    "module_capacity": 480.0,
+                    "module_cost": 44640.0
+                },
+                {
+                    "module_capacity": 500.0,
+                    "module_cost": 47360.0
+                },
+                {
+                    "module_capacity": 520.0,
+                    "module_cost": 48360.0
+                },
+                {
+                    "module_capacity": 540.0,
+                    "module_cost": 51080.0
+                },
+                {
+                    "module_capacity": 560.0,
+                    "module_cost": 52080.0
+                },
+                {
+                    "module_capacity": 580.0,
+                    "module_cost": 54800.0
+                },
+                {
+                    "module_capacity": 600.0,
+                    "module_cost": 55800.0
+                },
+                {
+                    "module_capacity": 620.0,
+                    "module_cost": 58520.0
+                },
+                {
+                    "module_capacity": 640.0,
+                    "module_cost": 59520.0
+                },
+                {
+                    "module_capacity": 660.0,
+                    "module_cost": 62240.0
+                },
+                {
+                    "module_capacity": 680.0,
+                    "module_cost": 63240.0
+                },
+                {
+                    "module_capacity": 700.0,
+                    "module_cost": 65960.0
+                },
+                {
+                    "module_capacity": 720.0,
+                    "module_cost": 66960.0
+                },
+                {
+                    "module_capacity": 740.0,
+                    "module_cost": 69680.0
+                },
+                {
+                    "module_capacity": 760.0,
+                    "module_cost": 70680.0
+                },
+                {
+                    "module_capacity": 780.0,
+                    "module_cost": 73400.0
+                },
+                {
+                    "module_capacity": 800.0,
+                    "module_cost": 74400.0
+                }
+            ]
+        },
+        {
+            "id": "L19",
+            "source": "Hannover",
+            "target": "Leipzig",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 20.0,
+                    "module_cost": 3580.0
+                },
+                {
+                    "module_capacity": 40.0,
+                    "module_cost": 4580.0
+                },
+                {
+                    "module_capacity": 60.0,
+                    "module_cost": 8160.0
+                },
+                {
+                    "module_capacity": 80.0,
+                    "module_cost": 9160.0
+                },
+                {
+                    "module_capacity": 100.0,
+                    "module_cost": 12740.0
+                },
+                {
+                    "module_capacity": 120.0,
+                    "module_cost": 13740.0
+                },
+                {
+                    "module_capacity": 140.0,
+                    "module_cost": 17320.0
+                },
+                {
+                    "module_capacity": 160.0,
+                    "module_cost": 18320.0
+                },
+                {
+                    "module_capacity": 180.0,
+                    "module_cost": 21900.0
+                },
+                {
+                    "module_capacity": 200.0,
+                    "module_cost": 22900.0
+                },
+                {
+                    "module_capacity": 220.0,
+                    "module_cost": 26480.0
+                },
+                {
+                    "module_capacity": 240.0,
+                    "module_cost": 27480.0
+                },
+                {
+                    "module_capacity": 260.0,
+                    "module_cost": 31060.0
+                },
+                {
+                    "module_capacity": 280.0,
+                    "module_cost": 32060.0
+                },
+                {
+                    "module_capacity": 300.0,
+                    "module_cost": 35640.0
+                },
+                {
+                    "module_capacity": 320.0,
+                    "module_cost": 36640.0
+                },
+                {
+                    "module_capacity": 340.0,
+                    "module_cost": 40220.0
+                },
+                {
+                    "module_capacity": 360.0,
+                    "module_cost": 41220.0
+                },
+                {
+                    "module_capacity": 380.0,
+                    "module_cost": 44800.0
+                },
+                {
+                    "module_capacity": 400.0,
+                    "module_cost": 45800.0
+                },
+                {
+                    "module_capacity": 420.0,
+                    "module_cost": 49380.0
+                },
+                {
+                    "module_capacity": 440.0,
+                    "module_cost": 50380.0
+                },
+                {
+                    "module_capacity": 460.0,
+                    "module_cost": 53960.0
+                },
+                {
+                    "module_capacity": 480.0,
+                    "module_cost": 54960.0
+                },
+                {
+                    "module_capacity": 500.0,
+                    "module_cost": 58540.0
+                },
+                {
+                    "module_capacity": 520.0,
+                    "module_cost": 59540.0
+                },
+                {
+                    "module_capacity": 540.0,
+                    "module_cost": 63120.0
+                },
+                {
+                    "module_capacity": 560.0,
+                    "module_cost": 64120.0
+                },
+                {
+                    "module_capacity": 580.0,
+                    "module_cost": 67700.0
+                },
+                {
+                    "module_capacity": 600.0,
+                    "module_cost": 68700.0
+                },
+                {
+                    "module_capacity": 620.0,
+                    "module_cost": 72280.0
+                },
+                {
+                    "module_capacity": 640.0,
+                    "module_cost": 73280.0
+                },
+                {
+                    "module_capacity": 660.0,
+                    "module_cost": 76860.0
+                },
+                {
+                    "module_capacity": 680.0,
+                    "module_cost": 77860.0
+                },
+                {
+                    "module_capacity": 700.0,
+                    "module_cost": 81440.0
+                },
+                {
+                    "module_capacity": 720.0,
+                    "module_cost": 82440.0
+                },
+                {
+                    "module_capacity": 740.0,
+                    "module_cost": 86020.0
+                },
+                {
+                    "module_capacity": 760.0,
+                    "module_cost": 87020.0
+                },
+                {
+                    "module_capacity": 780.0,
+                    "module_cost": 90600.0
+                },
+                {
+                    "module_capacity": 800.0,
+                    "module_cost": 91600.0
+                }
+            ]
+        },
+        {
+            "id": "L20",
+            "source": "Karlsruhe",
+            "target": "Mannheim",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 20.0,
+                    "module_cost": 2290.0
+                },
+                {
+                    "module_capacity": 40.0,
+                    "module_cost": 3290.0
+                },
+                {
+                    "module_capacity": 60.0,
+                    "module_cost": 5580.0
+                },
+                {
+                    "module_capacity": 80.0,
+                    "module_cost": 6580.0
+                },
+                {
+                    "module_capacity": 100.0,
+                    "module_cost": 8870.0
+                },
+                {
+                    "module_capacity": 120.0,
+                    "module_cost": 9870.0
+                },
+                {
+                    "module_capacity": 140.0,
+                    "module_cost": 12160.0
+                },
+                {
+                    "module_capacity": 160.0,
+                    "module_cost": 13160.0
+                },
+                {
+                    "module_capacity": 180.0,
+                    "module_cost": 15450.0
+                },
+                {
+                    "module_capacity": 200.0,
+                    "module_cost": 16450.0
+                },
+                {
+                    "module_capacity": 220.0,
+                    "module_cost": 18740.0
+                },
+                {
+                    "module_capacity": 240.0,
+                    "module_cost": 19740.0
+                },
+                {
+                    "module_capacity": 260.0,
+                    "module_cost": 22030.0
+                },
+                {
+                    "module_capacity": 280.0,
+                    "module_cost": 23030.0
+                },
+                {
+                    "module_capacity": 300.0,
+                    "module_cost": 25320.0
+                },
+                {
+                    "module_capacity": 320.0,
+                    "module_cost": 26320.0
+                },
+                {
+                    "module_capacity": 340.0,
+                    "module_cost": 28610.0
+                },
+                {
+                    "module_capacity": 360.0,
+                    "module_cost": 29610.0
+                },
+                {
+                    "module_capacity": 380.0,
+                    "module_cost": 31900.0
+                },
+                {
+                    "module_capacity": 400.0,
+                    "module_cost": 32900.0
+                },
+                {
+                    "module_capacity": 420.0,
+                    "module_cost": 35190.0
+                },
+                {
+                    "module_capacity": 440.0,
+                    "module_cost": 36190.0
+                },
+                {
+                    "module_capacity": 460.0,
+                    "module_cost": 38480.0
+                },
+                {
+                    "module_capacity": 480.0,
+                    "module_cost": 39480.0
+                },
+                {
+                    "module_capacity": 500.0,
+                    "module_cost": 41770.0
+                },
+                {
+                    "module_capacity": 520.0,
+                    "module_cost": 42770.0
+                },
+                {
+                    "module_capacity": 540.0,
+                    "module_cost": 45060.0
+                },
+                {
+                    "module_capacity": 560.0,
+                    "module_cost": 46060.0
+                },
+                {
+                    "module_capacity": 580.0,
+                    "module_cost": 48350.0
+                },
+                {
+                    "module_capacity": 600.0,
+                    "module_cost": 49350.0
+                },
+                {
+                    "module_capacity": 620.0,
+                    "module_cost": 51640.0
+                },
+                {
+                    "module_capacity": 640.0,
+                    "module_cost": 52640.0
+                },
+                {
+                    "module_capacity": 660.0,
+                    "module_cost": 54930.0
+                },
+                {
+                    "module_capacity": 680.0,
+                    "module_cost": 55930.0
+                },
+                {
+                    "module_capacity": 700.0,
+                    "module_cost": 58220.0
+                },
+                {
+                    "module_capacity": 720.0,
+                    "module_cost": 59220.0
+                },
+                {
+                    "module_capacity": 740.0,
+                    "module_cost": 61510.0
+                },
+                {
+                    "module_capacity": 760.0,
+                    "module_cost": 62510.0
+                },
+                {
+                    "module_capacity": 780.0,
+                    "module_cost": 64800.0
+                },
+                {
+                    "module_capacity": 800.0,
+                    "module_cost": 65800.0
+                }
+            ]
+        },
+        {
+            "id": "L21",
+            "source": "Karlsruhe",
+            "target": "Stuttgart",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 20.0,
+                    "module_cost": 2290.0
+                },
+                {
+                    "module_capacity": 40.0,
+                    "module_cost": 3290.0
+                },
+                {
+                    "module_capacity": 60.0,
+                    "module_cost": 5580.0
+                },
+                {
+                    "module_capacity": 80.0,
+                    "module_cost": 6580.0
+                },
+                {
+                    "module_capacity": 100.0,
+                    "module_cost": 8870.0
+                },
+                {
+                    "module_capacity": 120.0,
+                    "module_cost": 9870.0
+                },
+                {
+                    "module_capacity": 140.0,
+                    "module_cost": 12160.0
+                },
+                {
+                    "module_capacity": 160.0,
+                    "module_cost": 13160.0
+                },
+                {
+                    "module_capacity": 180.0,
+                    "module_cost": 15450.0
+                },
+                {
+                    "module_capacity": 200.0,
+                    "module_cost": 16450.0
+                },
+                {
+                    "module_capacity": 220.0,
+                    "module_cost": 18740.0
+                },
+                {
+                    "module_capacity": 240.0,
+                    "module_cost": 19740.0
+                },
+                {
+                    "module_capacity": 260.0,
+                    "module_cost": 22030.0
+                },
+                {
+                    "module_capacity": 280.0,
+                    "module_cost": 23030.0
+                },
+                {
+                    "module_capacity": 300.0,
+                    "module_cost": 25320.0
+                },
+                {
+                    "module_capacity": 320.0,
+                    "module_cost": 26320.0
+                },
+                {
+                    "module_capacity": 340.0,
+                    "module_cost": 28610.0
+                },
+                {
+                    "module_capacity": 360.0,
+                    "module_cost": 29610.0
+                },
+                {
+                    "module_capacity": 380.0,
+                    "module_cost": 31900.0
+                },
+                {
+                    "module_capacity": 400.0,
+                    "module_cost": 32900.0
+                },
+                {
+                    "module_capacity": 420.0,
+                    "module_cost": 35190.0
+                },
+                {
+                    "module_capacity": 440.0,
+                    "module_cost": 36190.0
+                },
+                {
+                    "module_capacity": 460.0,
+                    "module_cost": 38480.0
+                },
+                {
+                    "module_capacity": 480.0,
+                    "module_cost": 39480.0
+                },
+                {
+                    "module_capacity": 500.0,
+                    "module_cost": 41770.0
+                },
+                {
+                    "module_capacity": 520.0,
+                    "module_cost": 42770.0
+                },
+                {
+                    "module_capacity": 540.0,
+                    "module_cost": 45060.0
+                },
+                {
+                    "module_capacity": 560.0,
+                    "module_cost": 46060.0
+                },
+                {
+                    "module_capacity": 580.0,
+                    "module_cost": 48350.0
+                },
+                {
+                    "module_capacity": 600.0,
+                    "module_cost": 49350.0
+                },
+                {
+                    "module_capacity": 620.0,
+                    "module_cost": 51640.0
+                },
+                {
+                    "module_capacity": 640.0,
+                    "module_cost": 52640.0
+                },
+                {
+                    "module_capacity": 660.0,
+                    "module_cost": 54930.0
+                },
+                {
+                    "module_capacity": 680.0,
+                    "module_cost": 55930.0
+                },
+                {
+                    "module_capacity": 700.0,
+                    "module_cost": 58220.0
+                },
+                {
+                    "module_capacity": 720.0,
+                    "module_cost": 59220.0
+                },
+                {
+                    "module_capacity": 740.0,
+                    "module_cost": 61510.0
+                },
+                {
+                    "module_capacity": 760.0,
+                    "module_cost": 62510.0
+                },
+                {
+                    "module_capacity": 780.0,
+                    "module_cost": 64800.0
+                },
+                {
+                    "module_capacity": 800.0,
+                    "module_cost": 65800.0
+                }
+            ]
+        },
+        {
+            "id": "L22",
+            "source": "Leipzig",
+            "target": "Nuernberg",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 20.0,
+                    "module_cost": 3580.0
+                },
+                {
+                    "module_capacity": 40.0,
+                    "module_cost": 4580.0
+                },
+                {
+                    "module_capacity": 60.0,
+                    "module_cost": 8160.0
+                },
+                {
+                    "module_capacity": 80.0,
+                    "module_cost": 9160.0
+                },
+                {
+                    "module_capacity": 100.0,
+                    "module_cost": 12740.0
+                },
+                {
+                    "module_capacity": 120.0,
+                    "module_cost": 13740.0
+                },
+                {
+                    "module_capacity": 140.0,
+                    "module_cost": 17320.0
+                },
+                {
+                    "module_capacity": 160.0,
+                    "module_cost": 18320.0
+                },
+                {
+                    "module_capacity": 180.0,
+                    "module_cost": 21900.0
+                },
+                {
+                    "module_capacity": 200.0,
+                    "module_cost": 22900.0
+                },
+                {
+                    "module_capacity": 220.0,
+                    "module_cost": 26480.0
+                },
+                {
+                    "module_capacity": 240.0,
+                    "module_cost": 27480.0
+                },
+                {
+                    "module_capacity": 260.0,
+                    "module_cost": 31060.0
+                },
+                {
+                    "module_capacity": 280.0,
+                    "module_cost": 32060.0
+                },
+                {
+                    "module_capacity": 300.0,
+                    "module_cost": 35640.0
+                },
+                {
+                    "module_capacity": 320.0,
+                    "module_cost": 36640.0
+                },
+                {
+                    "module_capacity": 340.0,
+                    "module_cost": 40220.0
+                },
+                {
+                    "module_capacity": 360.0,
+                    "module_cost": 41220.0
+                },
+                {
+                    "module_capacity": 380.0,
+                    "module_cost": 44800.0
+                },
+                {
+                    "module_capacity": 400.0,
+                    "module_cost": 45800.0
+                },
+                {
+                    "module_capacity": 420.0,
+                    "module_cost": 49380.0
+                },
+                {
+                    "module_capacity": 440.0,
+                    "module_cost": 50380.0
+                },
+                {
+                    "module_capacity": 460.0,
+                    "module_cost": 53960.0
+                },
+                {
+                    "module_capacity": 480.0,
+                    "module_cost": 54960.0
+                },
+                {
+                    "module_capacity": 500.0,
+                    "module_cost": 58540.0
+                },
+                {
+                    "module_capacity": 520.0,
+                    "module_cost": 59540.0
+                },
+                {
+                    "module_capacity": 540.0,
+                    "module_cost": 63120.0
+                },
+                {
+                    "module_capacity": 560.0,
+                    "module_cost": 64120.0
+                },
+                {
+                    "module_capacity": 580.0,
+                    "module_cost": 67700.0
+                },
+                {
+                    "module_capacity": 600.0,
+                    "module_cost": 68700.0
+                },
+                {
+                    "module_capacity": 620.0,
+                    "module_cost": 72280.0
+                },
+                {
+                    "module_capacity": 640.0,
+                    "module_cost": 73280.0
+                },
+                {
+                    "module_capacity": 660.0,
+                    "module_cost": 76860.0
+                },
+                {
+                    "module_capacity": 680.0,
+                    "module_cost": 77860.0
+                },
+                {
+                    "module_capacity": 700.0,
+                    "module_cost": 81440.0
+                },
+                {
+                    "module_capacity": 720.0,
+                    "module_cost": 82440.0
+                },
+                {
+                    "module_capacity": 740.0,
+                    "module_cost": 86020.0
+                },
+                {
+                    "module_capacity": 760.0,
+                    "module_cost": 87020.0
+                },
+                {
+                    "module_capacity": 780.0,
+                    "module_cost": 90600.0
+                },
+                {
+                    "module_capacity": 800.0,
+                    "module_cost": 91600.0
+                }
+            ]
+        },
+        {
+            "id": "L23",
+            "source": "Muenchen",
+            "target": "Nuernberg",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 20.0,
+                    "module_cost": 3150.0
+                },
+                {
+                    "module_capacity": 40.0,
+                    "module_cost": 4150.0
+                },
+                {
+                    "module_capacity": 60.0,
+                    "module_cost": 7300.0
+                },
+                {
+                    "module_capacity": 80.0,
+                    "module_cost": 8300.0
+                },
+                {
+                    "module_capacity": 100.0,
+                    "module_cost": 11450.0
+                },
+                {
+                    "module_capacity": 120.0,
+                    "module_cost": 12450.0
+                },
+                {
+                    "module_capacity": 140.0,
+                    "module_cost": 15600.0
+                },
+                {
+                    "module_capacity": 160.0,
+                    "module_cost": 16600.0
+                },
+                {
+                    "module_capacity": 180.0,
+                    "module_cost": 19750.0
+                },
+                {
+                    "module_capacity": 200.0,
+                    "module_cost": 20750.0
+                },
+                {
+                    "module_capacity": 220.0,
+                    "module_cost": 23900.0
+                },
+                {
+                    "module_capacity": 240.0,
+                    "module_cost": 24900.0
+                },
+                {
+                    "module_capacity": 260.0,
+                    "module_cost": 28050.0
+                },
+                {
+                    "module_capacity": 280.0,
+                    "module_cost": 29050.0
+                },
+                {
+                    "module_capacity": 300.0,
+                    "module_cost": 32200.0
+                },
+                {
+                    "module_capacity": 320.0,
+                    "module_cost": 33200.0
+                },
+                {
+                    "module_capacity": 340.0,
+                    "module_cost": 36350.0
+                },
+                {
+                    "module_capacity": 360.0,
+                    "module_cost": 37350.0
+                },
+                {
+                    "module_capacity": 380.0,
+                    "module_cost": 40500.0
+                },
+                {
+                    "module_capacity": 400.0,
+                    "module_cost": 41500.0
+                },
+                {
+                    "module_capacity": 420.0,
+                    "module_cost": 44650.0
+                },
+                {
+                    "module_capacity": 440.0,
+                    "module_cost": 45650.0
+                },
+                {
+                    "module_capacity": 460.0,
+                    "module_cost": 48800.0
+                },
+                {
+                    "module_capacity": 480.0,
+                    "module_cost": 49800.0
+                },
+                {
+                    "module_capacity": 500.0,
+                    "module_cost": 52950.0
+                },
+                {
+                    "module_capacity": 520.0,
+                    "module_cost": 53950.0
+                },
+                {
+                    "module_capacity": 540.0,
+                    "module_cost": 57100.0
+                },
+                {
+                    "module_capacity": 560.0,
+                    "module_cost": 58100.0
+                },
+                {
+                    "module_capacity": 580.0,
+                    "module_cost": 61250.0
+                },
+                {
+                    "module_capacity": 600.0,
+                    "module_cost": 62250.0
+                },
+                {
+                    "module_capacity": 620.0,
+                    "module_cost": 65400.0
+                },
+                {
+                    "module_capacity": 640.0,
+                    "module_cost": 66400.0
+                },
+                {
+                    "module_capacity": 660.0,
+                    "module_cost": 69550.0
+                },
+                {
+                    "module_capacity": 680.0,
+                    "module_cost": 70550.0
+                },
+                {
+                    "module_capacity": 700.0,
+                    "module_cost": 73700.0
+                },
+                {
+                    "module_capacity": 720.0,
+                    "module_cost": 74700.0
+                },
+                {
+                    "module_capacity": 740.0,
+                    "module_cost": 77850.0
+                },
+                {
+                    "module_capacity": 760.0,
+                    "module_cost": 78850.0
+                },
+                {
+                    "module_capacity": 780.0,
+                    "module_cost": 82000.0
+                },
+                {
+                    "module_capacity": 800.0,
+                    "module_cost": 83000.0
+                }
+            ]
+        },
+        {
+            "id": "L24",
+            "source": "Muenchen",
+            "target": "Ulm",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 20.0,
+                    "module_cost": 2720.0
+                },
+                {
+                    "module_capacity": 40.0,
+                    "module_cost": 3720.0
+                },
+                {
+                    "module_capacity": 60.0,
+                    "module_cost": 6440.0
+                },
+                {
+                    "module_capacity": 80.0,
+                    "module_cost": 7440.0
+                },
+                {
+                    "module_capacity": 100.0,
+                    "module_cost": 10160.0
+                },
+                {
+                    "module_capacity": 120.0,
+                    "module_cost": 11160.0
+                },
+                {
+                    "module_capacity": 140.0,
+                    "module_cost": 13880.0
+                },
+                {
+                    "module_capacity": 160.0,
+                    "module_cost": 14880.0
+                },
+                {
+                    "module_capacity": 180.0,
+                    "module_cost": 17600.0
+                },
+                {
+                    "module_capacity": 200.0,
+                    "module_cost": 18600.0
+                },
+                {
+                    "module_capacity": 220.0,
+                    "module_cost": 21320.0
+                },
+                {
+                    "module_capacity": 240.0,
+                    "module_cost": 22320.0
+                },
+                {
+                    "module_capacity": 260.0,
+                    "module_cost": 25040.0
+                },
+                {
+                    "module_capacity": 280.0,
+                    "module_cost": 26040.0
+                },
+                {
+                    "module_capacity": 300.0,
+                    "module_cost": 28760.0
+                },
+                {
+                    "module_capacity": 320.0,
+                    "module_cost": 29760.0
+                },
+                {
+                    "module_capacity": 340.0,
+                    "module_cost": 32480.0
+                },
+                {
+                    "module_capacity": 360.0,
+                    "module_cost": 33480.0
+                },
+                {
+                    "module_capacity": 380.0,
+                    "module_cost": 36200.0
+                },
+                {
+                    "module_capacity": 400.0,
+                    "module_cost": 37200.0
+                },
+                {
+                    "module_capacity": 420.0,
+                    "module_cost": 39920.0
+                },
+                {
+                    "module_capacity": 440.0,
+                    "module_cost": 40920.0
+                },
+                {
+                    "module_capacity": 460.0,
+                    "module_cost": 43640.0
+                },
+                {
+                    "module_capacity": 480.0,
+                    "module_cost": 44640.0
+                },
+                {
+                    "module_capacity": 500.0,
+                    "module_cost": 47360.0
+                },
+                {
+                    "module_capacity": 520.0,
+                    "module_cost": 48360.0
+                },
+                {
+                    "module_capacity": 540.0,
+                    "module_cost": 51080.0
+                },
+                {
+                    "module_capacity": 560.0,
+                    "module_cost": 52080.0
+                },
+                {
+                    "module_capacity": 580.0,
+                    "module_cost": 54800.0
+                },
+                {
+                    "module_capacity": 600.0,
+                    "module_cost": 55800.0
+                },
+                {
+                    "module_capacity": 620.0,
+                    "module_cost": 58520.0
+                },
+                {
+                    "module_capacity": 640.0,
+                    "module_cost": 59520.0
+                },
+                {
+                    "module_capacity": 660.0,
+                    "module_cost": 62240.0
+                },
+                {
+                    "module_capacity": 680.0,
+                    "module_cost": 63240.0
+                },
+                {
+                    "module_capacity": 700.0,
+                    "module_cost": 65960.0
+                },
+                {
+                    "module_capacity": 720.0,
+                    "module_cost": 66960.0
+                },
+                {
+                    "module_capacity": 740.0,
+                    "module_cost": 69680.0
+                },
+                {
+                    "module_capacity": 760.0,
+                    "module_cost": 70680.0
+                },
+                {
+                    "module_capacity": 780.0,
+                    "module_cost": 73400.0
+                },
+                {
+                    "module_capacity": 800.0,
+                    "module_cost": 74400.0
+                }
+            ]
+        },
+        {
+            "id": "L25",
+            "source": "Nuernberg",
+            "target": "Stuttgart",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 20.0,
+                    "module_cost": 3150.0
+                },
+                {
+                    "module_capacity": 40.0,
+                    "module_cost": 4150.0
+                },
+                {
+                    "module_capacity": 60.0,
+                    "module_cost": 7300.0
+                },
+                {
+                    "module_capacity": 80.0,
+                    "module_cost": 8300.0
+                },
+                {
+                    "module_capacity": 100.0,
+                    "module_cost": 11450.0
+                },
+                {
+                    "module_capacity": 120.0,
+                    "module_cost": 12450.0
+                },
+                {
+                    "module_capacity": 140.0,
+                    "module_cost": 15600.0
+                },
+                {
+                    "module_capacity": 160.0,
+                    "module_cost": 16600.0
+                },
+                {
+                    "module_capacity": 180.0,
+                    "module_cost": 19750.0
+                },
+                {
+                    "module_capacity": 200.0,
+                    "module_cost": 20750.0
+                },
+                {
+                    "module_capacity": 220.0,
+                    "module_cost": 23900.0
+                },
+                {
+                    "module_capacity": 240.0,
+                    "module_cost": 24900.0
+                },
+                {
+                    "module_capacity": 260.0,
+                    "module_cost": 28050.0
+                },
+                {
+                    "module_capacity": 280.0,
+                    "module_cost": 29050.0
+                },
+                {
+                    "module_capacity": 300.0,
+                    "module_cost": 32200.0
+                },
+                {
+                    "module_capacity": 320.0,
+                    "module_cost": 33200.0
+                },
+                {
+                    "module_capacity": 340.0,
+                    "module_cost": 36350.0
+                },
+                {
+                    "module_capacity": 360.0,
+                    "module_cost": 37350.0
+                },
+                {
+                    "module_capacity": 380.0,
+                    "module_cost": 40500.0
+                },
+                {
+                    "module_capacity": 400.0,
+                    "module_cost": 41500.0
+                },
+                {
+                    "module_capacity": 420.0,
+                    "module_cost": 44650.0
+                },
+                {
+                    "module_capacity": 440.0,
+                    "module_cost": 45650.0
+                },
+                {
+                    "module_capacity": 460.0,
+                    "module_cost": 48800.0
+                },
+                {
+                    "module_capacity": 480.0,
+                    "module_cost": 49800.0
+                },
+                {
+                    "module_capacity": 500.0,
+                    "module_cost": 52950.0
+                },
+                {
+                    "module_capacity": 520.0,
+                    "module_cost": 53950.0
+                },
+                {
+                    "module_capacity": 540.0,
+                    "module_cost": 57100.0
+                },
+                {
+                    "module_capacity": 560.0,
+                    "module_cost": 58100.0
+                },
+                {
+                    "module_capacity": 580.0,
+                    "module_cost": 61250.0
+                },
+                {
+                    "module_capacity": 600.0,
+                    "module_cost": 62250.0
+                },
+                {
+                    "module_capacity": 620.0,
+                    "module_cost": 65400.0
+                },
+                {
+                    "module_capacity": 640.0,
+                    "module_cost": 66400.0
+                },
+                {
+                    "module_capacity": 660.0,
+                    "module_cost": 69550.0
+                },
+                {
+                    "module_capacity": 680.0,
+                    "module_cost": 70550.0
+                },
+                {
+                    "module_capacity": 700.0,
+                    "module_cost": 73700.0
+                },
+                {
+                    "module_capacity": 720.0,
+                    "module_cost": 74700.0
+                },
+                {
+                    "module_capacity": 740.0,
+                    "module_cost": 77850.0
+                },
+                {
+                    "module_capacity": 760.0,
+                    "module_cost": 78850.0
+                },
+                {
+                    "module_capacity": 780.0,
+                    "module_cost": 82000.0
+                },
+                {
+                    "module_capacity": 800.0,
+                    "module_cost": 83000.0
+                }
+            ]
+        },
+        {
+            "id": "L26",
+            "source": "Stuttgart",
+            "target": "Ulm",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 20.0,
+                    "module_cost": 2720.0
+                },
+                {
+                    "module_capacity": 40.0,
+                    "module_cost": 3720.0
+                },
+                {
+                    "module_capacity": 60.0,
+                    "module_cost": 6440.0
+                },
+                {
+                    "module_capacity": 80.0,
+                    "module_cost": 7440.0
+                },
+                {
+                    "module_capacity": 100.0,
+                    "module_cost": 10160.0
+                },
+                {
+                    "module_capacity": 120.0,
+                    "module_cost": 11160.0
+                },
+                {
+                    "module_capacity": 140.0,
+                    "module_cost": 13880.0
+                },
+                {
+                    "module_capacity": 160.0,
+                    "module_cost": 14880.0
+                },
+                {
+                    "module_capacity": 180.0,
+                    "module_cost": 17600.0
+                },
+                {
+                    "module_capacity": 200.0,
+                    "module_cost": 18600.0
+                },
+                {
+                    "module_capacity": 220.0,
+                    "module_cost": 21320.0
+                },
+                {
+                    "module_capacity": 240.0,
+                    "module_cost": 22320.0
+                },
+                {
+                    "module_capacity": 260.0,
+                    "module_cost": 25040.0
+                },
+                {
+                    "module_capacity": 280.0,
+                    "module_cost": 26040.0
+                },
+                {
+                    "module_capacity": 300.0,
+                    "module_cost": 28760.0
+                },
+                {
+                    "module_capacity": 320.0,
+                    "module_cost": 29760.0
+                },
+                {
+                    "module_capacity": 340.0,
+                    "module_cost": 32480.0
+                },
+                {
+                    "module_capacity": 360.0,
+                    "module_cost": 33480.0
+                },
+                {
+                    "module_capacity": 380.0,
+                    "module_cost": 36200.0
+                },
+                {
+                    "module_capacity": 400.0,
+                    "module_cost": 37200.0
+                },
+                {
+                    "module_capacity": 420.0,
+                    "module_cost": 39920.0
+                },
+                {
+                    "module_capacity": 440.0,
+                    "module_cost": 40920.0
+                },
+                {
+                    "module_capacity": 460.0,
+                    "module_cost": 43640.0
+                },
+                {
+                    "module_capacity": 480.0,
+                    "module_cost": 44640.0
+                },
+                {
+                    "module_capacity": 500.0,
+                    "module_cost": 47360.0
+                },
+                {
+                    "module_capacity": 520.0,
+                    "module_cost": 48360.0
+                },
+                {
+                    "module_capacity": 540.0,
+                    "module_cost": 51080.0
+                },
+                {
+                    "module_capacity": 560.0,
+                    "module_cost": 52080.0
+                },
+                {
+                    "module_capacity": 580.0,
+                    "module_cost": 54800.0
+                },
+                {
+                    "module_capacity": 600.0,
+                    "module_cost": 55800.0
+                },
+                {
+                    "module_capacity": 620.0,
+                    "module_cost": 58520.0
+                },
+                {
+                    "module_capacity": 640.0,
+                    "module_cost": 59520.0
+                },
+                {
+                    "module_capacity": 660.0,
+                    "module_cost": 62240.0
+                },
+                {
+                    "module_capacity": 680.0,
+                    "module_cost": 63240.0
+                },
+                {
+                    "module_capacity": 700.0,
+                    "module_cost": 65960.0
+                },
+                {
+                    "module_capacity": 720.0,
+                    "module_cost": 66960.0
+                },
+                {
+                    "module_capacity": 740.0,
+                    "module_cost": 69680.0
+                },
+                {
+                    "module_capacity": 760.0,
+                    "module_cost": 70680.0
+                },
+                {
+                    "module_capacity": 780.0,
+                    "module_cost": 73400.0
+                },
+                {
+                    "module_capacity": 800.0,
+                    "module_cost": 74400.0
+                }
+            ]
+        }
+    ],
+    "demands": [
+        {
+            "id": "BerlinBremen",
+            "source": "Berlin",
+            "target": "Bremen",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "BerlinDortmund",
+            "source": "Berlin",
+            "target": "Dortmund",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "BerlinDuesseldorf",
+            "source": "Berlin",
+            "target": "Duesseldorf",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "BerlinEssen",
+            "source": "Berlin",
+            "target": "Essen",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "BerlinFrankfurt",
+            "source": "Berlin",
+            "target": "Frankfurt",
+            "routing_unit": 1,
+            "demand_value": 12.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "BerlinHamburg",
+            "source": "Berlin",
+            "target": "Hamburg",
+            "routing_unit": 1,
+            "demand_value": 8.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "BerlinHannover",
+            "source": "Berlin",
+            "target": "Hannover",
+            "routing_unit": 1,
+            "demand_value": 8.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "BerlinKarlsruhe",
+            "source": "Berlin",
+            "target": "Karlsruhe",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "BerlinKoeln",
+            "source": "Berlin",
+            "target": "Koeln",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "BerlinLeipzig",
+            "source": "Berlin",
+            "target": "Leipzig",
+            "routing_unit": 1,
+            "demand_value": 14.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "BerlinMannheim",
+            "source": "Berlin",
+            "target": "Mannheim",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "BerlinMuenchen",
+            "source": "Berlin",
+            "target": "Muenchen",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "BerlinNuernberg",
+            "source": "Berlin",
+            "target": "Nuernberg",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "BerlinStuttgart",
+            "source": "Berlin",
+            "target": "Stuttgart",
+            "routing_unit": 1,
+            "demand_value": 6.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "BerlinUlm",
+            "source": "Berlin",
+            "target": "Ulm",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "BremenDortmund",
+            "source": "Bremen",
+            "target": "Dortmund",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "BremenDuesseldorf",
+            "source": "Bremen",
+            "target": "Duesseldorf",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "BremenEssen",
+            "source": "Bremen",
+            "target": "Essen",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "BremenFrankfurt",
+            "source": "Bremen",
+            "target": "Frankfurt",
+            "routing_unit": 1,
+            "demand_value": 6.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "BremenHamburg",
+            "source": "Bremen",
+            "target": "Hamburg",
+            "routing_unit": 1,
+            "demand_value": 6.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "BremenHannover",
+            "source": "Bremen",
+            "target": "Hannover",
+            "routing_unit": 1,
+            "demand_value": 6.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "BremenKarlsruhe",
+            "source": "Bremen",
+            "target": "Karlsruhe",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "BremenKoeln",
+            "source": "Bremen",
+            "target": "Koeln",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "BremenLeipzig",
+            "source": "Bremen",
+            "target": "Leipzig",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "BremenMannheim",
+            "source": "Bremen",
+            "target": "Mannheim",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "BremenMuenchen",
+            "source": "Bremen",
+            "target": "Muenchen",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "BremenNuernberg",
+            "source": "Bremen",
+            "target": "Nuernberg",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "BremenStuttgart",
+            "source": "Bremen",
+            "target": "Stuttgart",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "BremenUlm",
+            "source": "Bremen",
+            "target": "Ulm",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DortmundDuesseldorf",
+            "source": "Dortmund",
+            "target": "Duesseldorf",
+            "routing_unit": 1,
+            "demand_value": 8.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DortmundEssen",
+            "source": "Dortmund",
+            "target": "Essen",
+            "routing_unit": 1,
+            "demand_value": 8.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DortmundFrankfurt",
+            "source": "Dortmund",
+            "target": "Frankfurt",
+            "routing_unit": 1,
+            "demand_value": 10.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DortmundHamburg",
+            "source": "Dortmund",
+            "target": "Hamburg",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DortmundHannover",
+            "source": "Dortmund",
+            "target": "Hannover",
+            "routing_unit": 1,
+            "demand_value": 6.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DortmundKarlsruhe",
+            "source": "Dortmund",
+            "target": "Karlsruhe",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DortmundKoeln",
+            "source": "Dortmund",
+            "target": "Koeln",
+            "routing_unit": 1,
+            "demand_value": 6.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DortmundLeipzig",
+            "source": "Dortmund",
+            "target": "Leipzig",
+            "routing_unit": 1,
+            "demand_value": 6.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DortmundMannheim",
+            "source": "Dortmund",
+            "target": "Mannheim",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DortmundMuenchen",
+            "source": "Dortmund",
+            "target": "Muenchen",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DortmundNuernberg",
+            "source": "Dortmund",
+            "target": "Nuernberg",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DortmundStuttgart",
+            "source": "Dortmund",
+            "target": "Stuttgart",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DortmundUlm",
+            "source": "Dortmund",
+            "target": "Ulm",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DuesseldorfEssen",
+            "source": "Duesseldorf",
+            "target": "Essen",
+            "routing_unit": 1,
+            "demand_value": 10.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DuesseldorfFrankfurt",
+            "source": "Duesseldorf",
+            "target": "Frankfurt",
+            "routing_unit": 1,
+            "demand_value": 12.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DuesseldorfHamburg",
+            "source": "Duesseldorf",
+            "target": "Hamburg",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DuesseldorfHannover",
+            "source": "Duesseldorf",
+            "target": "Hannover",
+            "routing_unit": 1,
+            "demand_value": 6.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DuesseldorfKarlsruhe",
+            "source": "Duesseldorf",
+            "target": "Karlsruhe",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DuesseldorfKoeln",
+            "source": "Duesseldorf",
+            "target": "Koeln",
+            "routing_unit": 1,
+            "demand_value": 12.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DuesseldorfLeipzig",
+            "source": "Duesseldorf",
+            "target": "Leipzig",
+            "routing_unit": 1,
+            "demand_value": 6.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DuesseldorfMannheim",
+            "source": "Duesseldorf",
+            "target": "Mannheim",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DuesseldorfMuenchen",
+            "source": "Duesseldorf",
+            "target": "Muenchen",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DuesseldorfNuernberg",
+            "source": "Duesseldorf",
+            "target": "Nuernberg",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DuesseldorfStuttgart",
+            "source": "Duesseldorf",
+            "target": "Stuttgart",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "DuesseldorfUlm",
+            "source": "Duesseldorf",
+            "target": "Ulm",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "EssenFrankfurt",
+            "source": "Essen",
+            "target": "Frankfurt",
+            "routing_unit": 1,
+            "demand_value": 8.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "EssenHamburg",
+            "source": "Essen",
+            "target": "Hamburg",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "EssenHannover",
+            "source": "Essen",
+            "target": "Hannover",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "EssenKarlsruhe",
+            "source": "Essen",
+            "target": "Karlsruhe",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "EssenKoeln",
+            "source": "Essen",
+            "target": "Koeln",
+            "routing_unit": 1,
+            "demand_value": 6.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "EssenLeipzig",
+            "source": "Essen",
+            "target": "Leipzig",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "EssenMannheim",
+            "source": "Essen",
+            "target": "Mannheim",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "EssenMuenchen",
+            "source": "Essen",
+            "target": "Muenchen",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "EssenNuernberg",
+            "source": "Essen",
+            "target": "Nuernberg",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "EssenStuttgart",
+            "source": "Essen",
+            "target": "Stuttgart",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "EssenUlm",
+            "source": "Essen",
+            "target": "Ulm",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "FrankfurtHamburg",
+            "source": "Frankfurt",
+            "target": "Hamburg",
+            "routing_unit": 1,
+            "demand_value": 12.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "FrankfurtHannover",
+            "source": "Frankfurt",
+            "target": "Hannover",
+            "routing_unit": 1,
+            "demand_value": 14.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "FrankfurtKarlsruhe",
+            "source": "Frankfurt",
+            "target": "Karlsruhe",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "FrankfurtKoeln",
+            "source": "Frankfurt",
+            "target": "Koeln",
+            "routing_unit": 1,
+            "demand_value": 12.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "FrankfurtLeipzig",
+            "source": "Frankfurt",
+            "target": "Leipzig",
+            "routing_unit": 1,
+            "demand_value": 18.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "FrankfurtMannheim",
+            "source": "Frankfurt",
+            "target": "Mannheim",
+            "routing_unit": 1,
+            "demand_value": 10.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "FrankfurtMuenchen",
+            "source": "Frankfurt",
+            "target": "Muenchen",
+            "routing_unit": 1,
+            "demand_value": 10.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "FrankfurtNorden",
+            "source": "Frankfurt",
+            "target": "Norden",
+            "routing_unit": 1,
+            "demand_value": 50.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "FrankfurtNuernberg",
+            "source": "Frankfurt",
+            "target": "Nuernberg",
+            "routing_unit": 1,
+            "demand_value": 10.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "FrankfurtStuttgart",
+            "source": "Frankfurt",
+            "target": "Stuttgart",
+            "routing_unit": 1,
+            "demand_value": 14.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "FrankfurtUlm",
+            "source": "Frankfurt",
+            "target": "Ulm",
+            "routing_unit": 1,
+            "demand_value": 8.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "HamburgHannover",
+            "source": "Hamburg",
+            "target": "Hannover",
+            "routing_unit": 1,
+            "demand_value": 10.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "HamburgKarlsruhe",
+            "source": "Hamburg",
+            "target": "Karlsruhe",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "HamburgKoeln",
+            "source": "Hamburg",
+            "target": "Koeln",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "HamburgLeipzig",
+            "source": "Hamburg",
+            "target": "Leipzig",
+            "routing_unit": 1,
+            "demand_value": 8.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "HamburgMannheim",
+            "source": "Hamburg",
+            "target": "Mannheim",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "HamburgMuenchen",
+            "source": "Hamburg",
+            "target": "Muenchen",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "HamburgNuernberg",
+            "source": "Hamburg",
+            "target": "Nuernberg",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "HamburgStuttgart",
+            "source": "Hamburg",
+            "target": "Stuttgart",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "HamburgUlm",
+            "source": "Hamburg",
+            "target": "Ulm",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "HannoverKarlsruhe",
+            "source": "Hannover",
+            "target": "Karlsruhe",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "HannoverKoeln",
+            "source": "Hannover",
+            "target": "Koeln",
+            "routing_unit": 1,
+            "demand_value": 6.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "HannoverLeipzig",
+            "source": "Hannover",
+            "target": "Leipzig",
+            "routing_unit": 1,
+            "demand_value": 10.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "HannoverMannheim",
+            "source": "Hannover",
+            "target": "Mannheim",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "HannoverMuenchen",
+            "source": "Hannover",
+            "target": "Muenchen",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "HannoverNuernberg",
+            "source": "Hannover",
+            "target": "Nuernberg",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "HannoverStuttgart",
+            "source": "Hannover",
+            "target": "Stuttgart",
+            "routing_unit": 1,
+            "demand_value": 6.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "HannoverUlm",
+            "source": "Hannover",
+            "target": "Ulm",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "KarlsruheKoeln",
+            "source": "Karlsruhe",
+            "target": "Koeln",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "KarlsruheLeipzig",
+            "source": "Karlsruhe",
+            "target": "Leipzig",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "KarlsruheMannheim",
+            "source": "Karlsruhe",
+            "target": "Mannheim",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "KarlsruheMuenchen",
+            "source": "Karlsruhe",
+            "target": "Muenchen",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "KarlsruheNuernberg",
+            "source": "Karlsruhe",
+            "target": "Nuernberg",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "KarlsruheStuttgart",
+            "source": "Karlsruhe",
+            "target": "Stuttgart",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "KarlsruheUlm",
+            "source": "Karlsruhe",
+            "target": "Ulm",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "KoelnLeipzig",
+            "source": "Koeln",
+            "target": "Leipzig",
+            "routing_unit": 1,
+            "demand_value": 6.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "KoelnMannheim",
+            "source": "Koeln",
+            "target": "Mannheim",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "KoelnMuenchen",
+            "source": "Koeln",
+            "target": "Muenchen",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "KoelnNuernberg",
+            "source": "Koeln",
+            "target": "Nuernberg",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "KoelnStuttgart",
+            "source": "Koeln",
+            "target": "Stuttgart",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "KoelnUlm",
+            "source": "Koeln",
+            "target": "Ulm",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "LeipzigMannheim",
+            "source": "Leipzig",
+            "target": "Mannheim",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "LeipzigMuenchen",
+            "source": "Leipzig",
+            "target": "Muenchen",
+            "routing_unit": 1,
+            "demand_value": 8.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "LeipzigNuernberg",
+            "source": "Leipzig",
+            "target": "Nuernberg",
+            "routing_unit": 1,
+            "demand_value": 6.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "LeipzigStuttgart",
+            "source": "Leipzig",
+            "target": "Stuttgart",
+            "routing_unit": 1,
+            "demand_value": 8.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "LeipzigUlm",
+            "source": "Leipzig",
+            "target": "Ulm",
+            "routing_unit": 1,
+            "demand_value": 6.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "MannheimMuenchen",
+            "source": "Mannheim",
+            "target": "Muenchen",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "MannheimNuernberg",
+            "source": "Mannheim",
+            "target": "Nuernberg",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "MannheimStuttgart",
+            "source": "Mannheim",
+            "target": "Stuttgart",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "MannheimUlm",
+            "source": "Mannheim",
+            "target": "Ulm",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "MuenchenNuernberg",
+            "source": "Muenchen",
+            "target": "Nuernberg",
+            "routing_unit": 1,
+            "demand_value": 6.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "MuenchenStuttgart",
+            "source": "Muenchen",
+            "target": "Stuttgart",
+            "routing_unit": 1,
+            "demand_value": 6.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "MuenchenUlm",
+            "source": "Muenchen",
+            "target": "Ulm",
+            "routing_unit": 1,
+            "demand_value": 6.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "NuernbergStuttgart",
+            "source": "Nuernberg",
+            "target": "Stuttgart",
+            "routing_unit": 1,
+            "demand_value": 6.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "NuernbergUlm",
+            "source": "Nuernberg",
+            "target": "Ulm",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "StuttgartUlm",
+            "source": "Stuttgart",
+            "target": "Ulm",
+            "routing_unit": 1,
+            "demand_value": 8.0,
+            "max_path_length": "UNLIMITED"
+        }
+    ],
+    "admissible_paths": []
+}

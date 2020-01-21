@@ -1,0 +1,1710 @@
+{
+    "nodes": [
+        {
+            "id": "1",
+            "longitude": 359.0,
+            "latitude": 375.0
+        },
+        {
+            "id": "2",
+            "longitude": 223.0,
+            "latitude": 255.0
+        },
+        {
+            "id": "3",
+            "longitude": 406.0,
+            "latitude": 233.0
+        },
+        {
+            "id": "4",
+            "longitude": 384.0,
+            "latitude": 37.0
+        },
+        {
+            "id": "5",
+            "longitude": 394.0,
+            "latitude": 137.0
+        },
+        {
+            "id": "6",
+            "longitude": 223.0,
+            "latitude": 71.0
+        },
+        {
+            "id": "7",
+            "longitude": 56.0,
+            "latitude": 347.0
+        },
+        {
+            "id": "8",
+            "longitude": 14.0,
+            "latitude": 193.0
+        },
+        {
+            "id": "9",
+            "longitude": 210.0,
+            "latitude": 456.0
+        },
+        {
+            "id": "10",
+            "longitude": 164.0,
+            "latitude": 374.0
+        },
+        {
+            "id": "11",
+            "longitude": 106.0,
+            "latitude": 37.0
+        }
+    ],
+    "links": [
+        {
+            "id": "L1",
+            "source": "7",
+            "target": "8",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 159300.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 161300.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 164300.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 174300.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 194300.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 254300.0
+                }
+            ]
+        },
+        {
+            "id": "L2",
+            "source": "1",
+            "target": "3",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 23700.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 25700.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 28700.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 38700.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 58700.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 118700.0
+                }
+            ]
+        },
+        {
+            "id": "L3",
+            "source": "1",
+            "target": "7",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 148600.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 150600.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 153600.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 163600.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 183600.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 243600.0
+                }
+            ]
+        },
+        {
+            "id": "L4",
+            "source": "1",
+            "target": "9",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 99900.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 101900.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 104900.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 114900.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 134900.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 194900.0
+                }
+            ]
+        },
+        {
+            "id": "L5",
+            "source": "2",
+            "target": "3",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 9100.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 11100.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 14100.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 24100.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 44100.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 104100.0
+                }
+            ]
+        },
+        {
+            "id": "L6",
+            "source": "2",
+            "target": "4",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 28000.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 30000.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 33000.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 43000.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 63000.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 123000.0
+                }
+            ]
+        },
+        {
+            "id": "L7",
+            "source": "2",
+            "target": "5",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 40300.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 42300.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 45300.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 55300.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 75300.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 135300.0
+                }
+            ]
+        },
+        {
+            "id": "L8",
+            "source": "2",
+            "target": "6",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 35700.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 37700.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 40700.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 50700.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 70700.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 130700.0
+                }
+            ]
+        },
+        {
+            "id": "L9",
+            "source": "2",
+            "target": "8",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 49100.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 51100.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 54100.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 64100.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 84100.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 144100.0
+                }
+            ]
+        },
+        {
+            "id": "L10",
+            "source": "4",
+            "target": "8",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 31000.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 33000.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 36000.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 46000.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 66000.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 126000.0
+                }
+            ]
+        },
+        {
+            "id": "L11",
+            "source": "4",
+            "target": "9",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 70400.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 72400.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 75400.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 85400.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 105400.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 165400.0
+                }
+            ]
+        },
+        {
+            "id": "L12",
+            "source": "6",
+            "target": "8",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 80700.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 82700.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 85700.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 95700.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 115700.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 175700.0
+                }
+            ]
+        },
+        {
+            "id": "L13",
+            "source": "3",
+            "target": "6",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 44200.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 46200.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 49200.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 59200.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 79200.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 139200.0
+                }
+            ]
+        },
+        {
+            "id": "L14",
+            "source": "3",
+            "target": "8",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 45300.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 47300.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 50300.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 60300.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 80300.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 140300.0
+                }
+            ]
+        },
+        {
+            "id": "L15",
+            "source": "3",
+            "target": "9",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 98800.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 100800.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 103800.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 113800.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 133800.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 193800.0
+                }
+            ]
+        },
+        {
+            "id": "L16",
+            "source": "5",
+            "target": "6",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 8200.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 10200.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 13200.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 23200.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 43200.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 103200.0
+                }
+            ]
+        },
+        {
+            "id": "L17",
+            "source": "5",
+            "target": "8",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 87100.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 89100.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 92100.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 102100.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 122100.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 182100.0
+                }
+            ]
+        },
+        {
+            "id": "L18",
+            "source": "5",
+            "target": "9",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 100200.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 102200.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 105200.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 115200.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 135200.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 195200.0
+                }
+            ]
+        },
+        {
+            "id": "L19",
+            "source": "10",
+            "target": "9",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 45000.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 47000.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 50000.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 60000.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 80000.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 140000.0
+                }
+            ]
+        },
+        {
+            "id": "L20",
+            "source": "8",
+            "target": "10",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 47600.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 49600.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 52600.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 62600.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 82600.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 142600.0
+                }
+            ]
+        },
+        {
+            "id": "L21",
+            "source": "4",
+            "target": "10",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 29100.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 31100.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 34100.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 44100.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 64100.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 124100.0
+                }
+            ]
+        },
+        {
+            "id": "L22",
+            "source": "1",
+            "target": "11",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 34600.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 36600.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 39600.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 49600.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 69600.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 129600.0
+                }
+            ]
+        },
+        {
+            "id": "L23",
+            "source": "2",
+            "target": "11",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 62300.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 64300.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 67300.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 77300.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 97300.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 157300.0
+                }
+            ]
+        },
+        {
+            "id": "L24",
+            "source": "11",
+            "target": "7",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 150000.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 152000.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 155000.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 165000.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 185000.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 245000.0
+                }
+            ]
+        },
+        {
+            "id": "L25",
+            "source": "11",
+            "target": "8",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 40000.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 42000.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 45000.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 55000.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 75000.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 135000.0
+                }
+            ]
+        },
+        {
+            "id": "L26",
+            "source": "11",
+            "target": "4",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 60000.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 62000.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 65000.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 75000.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 95000.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 155000.0
+                }
+            ]
+        },
+        {
+            "id": "L27",
+            "source": "7",
+            "target": "4",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 80000.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 82000.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 85000.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 95000.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 115000.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 175000.0
+                }
+            ]
+        },
+        {
+            "id": "L28",
+            "source": "7",
+            "target": "10",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 75000.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 77000.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 80000.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 90000.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 110000.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 170000.0
+                }
+            ]
+        },
+        {
+            "id": "L29",
+            "source": "1",
+            "target": "10",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 85000.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 87000.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 90000.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 100000.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 120000.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 180000.0
+                }
+            ]
+        },
+        {
+            "id": "L30",
+            "source": "2",
+            "target": "10",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 68000.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 70000.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 73000.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 83000.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 103000.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 163000.0
+                }
+            ]
+        },
+        {
+            "id": "L31",
+            "source": "3",
+            "target": "10",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 110000.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 112000.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 115000.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 125000.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 145000.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 205000.0
+                }
+            ]
+        },
+        {
+            "id": "L32",
+            "source": "1",
+            "target": "2",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 80000.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 82000.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 85000.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 95000.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 115000.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 175000.0
+                }
+            ]
+        },
+        {
+            "id": "L33",
+            "source": "11",
+            "target": "3",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 20000.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 22000.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 25000.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 35000.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 55000.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 115000.0
+                }
+            ]
+        },
+        {
+            "id": "L34",
+            "source": "3",
+            "target": "5",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 48000.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 50000.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 53000.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 63000.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 83000.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 143000.0
+                }
+            ]
+        },
+        {
+            "id": "L35",
+            "source": "6",
+            "target": "10",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 30000.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 32000.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 35000.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 45000.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 65000.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 125000.0
+                }
+            ]
+        },
+        {
+            "id": "L36",
+            "source": "7",
+            "target": "9",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 50000.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 52000.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 55000.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 65000.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 85000.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 145000.0
+                }
+            ]
+        },
+        {
+            "id": "L37",
+            "source": "1",
+            "target": "8",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 20000.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 22000.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 25000.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 35000.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 55000.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 115000.0
+                }
+            ]
+        },
+        {
+            "id": "L38",
+            "source": "11",
+            "target": "6",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 90000.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 92000.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 95000.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 105000.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 125000.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 185000.0
+                }
+            ]
+        },
+        {
+            "id": "L39",
+            "source": "11",
+            "target": "9",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 110000.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 112000.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 115000.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 125000.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 145000.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 205000.0
+                }
+            ]
+        },
+        {
+            "id": "L40",
+            "source": "4",
+            "target": "5",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 50000.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 52000.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 55000.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 65000.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 85000.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 145000.0
+                }
+            ]
+        },
+        {
+            "id": "L41",
+            "source": "5",
+            "target": "7",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 80000.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 82000.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 85000.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 95000.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 115000.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 175000.0
+                }
+            ]
+        },
+        {
+            "id": "L42",
+            "source": "4",
+            "target": "6",
+            "pre_installed_capacity": 0.0,
+            "pre_installed_capacity_cost": 0.0,
+            "routing_cost": 0.0,
+            "setup_cost": 0.0,
+            "modules": [
+                {
+                    "module_capacity": 1.0,
+                    "module_cost": 10000.0
+                },
+                {
+                    "module_capacity": 2.0,
+                    "module_cost": 12000.0
+                },
+                {
+                    "module_capacity": 4.0,
+                    "module_cost": 15000.0
+                },
+                {
+                    "module_capacity": 8.0,
+                    "module_cost": 25000.0
+                },
+                {
+                    "module_capacity": 16.0,
+                    "module_cost": 45000.0
+                },
+                {
+                    "module_capacity": 32.0,
+                    "module_cost": 105000.0
+                }
+            ]
+        }
+    ],
+    "demands": [
+        {
+            "id": "D1",
+            "source": "1",
+            "target": "2",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "D2",
+            "source": "1",
+            "target": "5",
+            "routing_unit": 1,
+            "demand_value": 3.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "D3",
+            "source": "1",
+            "target": "6",
+            "routing_unit": 1,
+            "demand_value": 3.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "D4",
+            "source": "1",
+            "target": "8",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "D5",
+            "source": "2",
+            "target": "3",
+            "routing_unit": 1,
+            "demand_value": 1.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "D6",
+            "source": "5",
+            "target": "6",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "D7",
+            "source": "5",
+            "target": "7",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "D8",
+            "source": "4",
+            "target": "5",
+            "routing_unit": 1,
+            "demand_value": 1.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "D9",
+            "source": "4",
+            "target": "10",
+            "routing_unit": 1,
+            "demand_value": 1.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "D10",
+            "source": "1",
+            "target": "11",
+            "routing_unit": 1,
+            "demand_value": 1.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "D11",
+            "source": "11",
+            "target": "6",
+            "routing_unit": 1,
+            "demand_value": 3.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "D12",
+            "source": "11",
+            "target": "7",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "D13",
+            "source": "1",
+            "target": "7",
+            "routing_unit": 1,
+            "demand_value": 1.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "D14",
+            "source": "7",
+            "target": "9",
+            "routing_unit": 1,
+            "demand_value": 4.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "D15",
+            "source": "3",
+            "target": "10",
+            "routing_unit": 1,
+            "demand_value": 5.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "D16",
+            "source": "2",
+            "target": "10",
+            "routing_unit": 1,
+            "demand_value": 2.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "D17",
+            "source": "4",
+            "target": "9",
+            "routing_unit": 1,
+            "demand_value": 1.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "D18",
+            "source": "8",
+            "target": "10",
+            "routing_unit": 1,
+            "demand_value": 3.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "D19",
+            "source": "3",
+            "target": "4",
+            "routing_unit": 1,
+            "demand_value": 1.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "D20",
+            "source": "3",
+            "target": "7",
+            "routing_unit": 1,
+            "demand_value": 3.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "D21",
+            "source": "11",
+            "target": "9",
+            "routing_unit": 1,
+            "demand_value": 5.0,
+            "max_path_length": "UNLIMITED"
+        },
+        {
+            "id": "D22",
+            "source": "7",
+            "target": "8",
+            "routing_unit": 1,
+            "demand_value": 3.0,
+            "max_path_length": "UNLIMITED"
+        }
+    ],
+    "admissible_paths": []
+}

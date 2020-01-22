@@ -111,7 +111,7 @@ class _Network:
         return network
 
     @staticmethod
-    def get_nodes_and_edges(filename):
+    def get_nodes_and_edges(filename, has_duplicate_edges=False):
         nodes, edges = [], []
         node_by_name = {}
 
@@ -124,7 +124,8 @@ class _Network:
             for e in model['links']:
                 s, t = e['source'], e['target']
                 s, t = node_by_name[s], node_by_name[t]
-                edges.append((s, t))
+                if has_duplicate_edges and ((s, t) not in edges and (t, s) not in edges):
+                    edges.append((s, t))
 
         return nodes, edges
 

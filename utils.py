@@ -15,15 +15,16 @@ def pairwise(iterable):
     return zip(a, b)
 
 
-def get_predefined_paths(network_filename, dat_filename, npaths):
+def get_predefined_paths(network_filename, dat_filename, npaths, has_duplicate_edges=False):
     """
     Load predefined paths from kozdro *.dat file.
 
     :param network_filename: sndlib *.json file
     :param dat_filename: kozdro's *.dat file
     :param npaths: number of predefined paths in *.dat file
+    :param has_duplicate_edges: snblib sometimes stores twice as much edges
     """
-    nodes, edges = sndlib.UndirectedNetwork.get_nodes_and_edges(network_filename)
+    nodes, edges = sndlib.UndirectedNetwork.get_nodes_and_edges(network_filename, has_duplicate_edges)
     paths_dict = {(n1, n2): [list() for _ in range(npaths)] for n1 in nodes for n2 in nodes if n1 != n2}
     nnodes, nedges = len(nodes), len(edges)
 
@@ -49,7 +50,7 @@ def get_predefined_paths(network_filename, dat_filename, npaths):
         start_node, end_node = key
         current_node = start_node
         organised_path = [start_node]
-        starting_path = copy(path)
+        # starting_path = copy(path)
         while path:
             l = len(path)
             for edge in path:

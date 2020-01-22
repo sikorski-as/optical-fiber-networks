@@ -31,7 +31,7 @@ predefined_paths = None
 
 # demands = {key: DEMAND for key in predefined_paths}
 # transponders_config = {DEMAND: t_config.create_config([(40, 4), (100, 4), (200, 8), (400, 12)], DEMAND, 3)}
-t_config_file = 'data/transponder_configs_ip_5.json'
+t_config_file = 'data/transponder_configs_ip_2020-01-03-19_10_27.json'
 transponders_config = tconfiger.load_config(t_config_file)
 
 # for config_key in transponders_config:
@@ -41,15 +41,17 @@ demands = None
 chromosome_type = structure.MultipleSubgeneChromosome
 
 max_repetitions = 1
+has_duplicate_edges = False
 
 
-def init(new_net_name, new_dat_source_prefix, new_intensity, new_max_repetitions):
-    global net_name, dat_source_prefix, intensity, intensity_str, net, predefined_paths, t_config_file, transponders_config, demands, max_repetitions
+def init(new_net_name, new_dat_source_prefix, new_intensity, new_max_repetitions, new_has_duplicate_edges):
+    global net_name, dat_source_prefix, intensity, intensity_str, net, predefined_paths, t_config_file, transponders_config, demands, max_repetitions, has_duplicate_edges
 
     max_repetitions = new_max_repetitions
     net_name = new_net_name
     dat_source_prefix = new_dat_source_prefix
     intensity = new_intensity
+    has_duplicate_edges = new_has_duplicate_edges
 
     intensity_str = str(intensity).replace(".", "")
     net = sndlib.create_undirected_net(net_name,
@@ -60,7 +62,7 @@ def init(new_net_name, new_dat_source_prefix, new_intensity, new_max_repetitions
     predefined_paths = utils.get_predefined_paths(
         network_filename="data/sndlib/json/{}/{}.json".format(net_name, net_name),
         dat_filename="data/{}{}.dat".format(dat_source_prefix, intensity_str),
-        npaths=K)
+        npaths=K, has_duplicate_edges=has_duplicate_edges)
 
     demands = {key: math.ceil(value) for key, value in net.demands.items()}
 

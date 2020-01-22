@@ -17,6 +17,7 @@ import main_config
 #         ('polska', 'pol'): [0.25, 1, 2, 5, 10, 20, 30],
 #         ('abilene', 'abilene'): [0.01, 0.02],
 #         ('germany50', 'germany'): [10, 20, 30],
+#         ('janos-us-ca', 'usca'): [0.1],
 #     }
 # }
 
@@ -29,10 +30,12 @@ def main():
         genetic.algorithm.main,
         bees.algorithm.main,
     ]
+    # key: (sndlib`s json name, .dat name), value: (intensities list, redundant edges)
     nets = {
-        ('polska', 'pol'): [0.25, 1, 2, 5, 10, 20, 30],
-        ('abilene', 'abilene'): [0.01, 0.02],
-        ('germany50', 'germany'): [10, 20, 30],
+        # ('polska', 'pol'): ([0.25, 1, 2, 5, 10, 20, 30], False),
+        # ('abilene', 'abilene'): ([0.01, 0.02], False),
+        # ('germany50', 'germany'): ([10, 20, 30], False),
+        ('janos-us-ca', 'usca'): ([0.1], True),
     }
 
     max_repetitions = {
@@ -43,10 +46,11 @@ def main():
         'bees.algorithm': 500,
     }
 
-    for (netfile, datfile), intensities in nets.items():
+    for (netfile, datfile), (intensities, has_duplicate_edges) in nets.items():
         for intensity in intensities:
             for algorithm in algorithms:
-                main_config.init(netfile, datfile, intensity, max_repetitions[algorithm.__module__])
+                main_config.init(netfile, datfile, intensity, max_repetitions[algorithm.__module__],
+                                 has_duplicate_edges)
                 algorithm()
                 print("\n\n\n")
 

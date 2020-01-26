@@ -9,11 +9,12 @@ Uruchomienie projektu w środowisku Linux
 https://tecadmin.net/install-python-3-5-on-ubuntu/
 2. Projekty w Pythonie warto przechowywać w wirtualnych środowiskach, może być konieczna instalacja pakietu, który to umożliwia:  
 apt-get install python3-venv
-3. Następnie w głównym folderze o nazwie optical_fiber_networks wykonać polecenie: source deploy.sh.
+3. Następnie w głównym folderze o nazwie optical_fiber_networks wykonać polecenie:  
+source deploy.sh  
 Polecenie to utworzy wirtualne środowisko do pracy.
-4. Proszę ustawić zmienną środowiskową będąc cały czas w głównym folderze:  
-export PYTHONPATH=. 
-5. Skrypty znajdują się w folderze batchtests. Pierwszy - single.sh uruchamia raz kod z pliku batch_example.py również znajdującego się w folderze batchtests.
+W przypadku kolejnych uruchomień wirtualne środowisko można uruchomić poleceniem:   
+source venv/bin/activate
+4. Skrypty znajdują się w folderze batchtests. Pierwszy - single.sh uruchamia raz kod z pliku batch_example.py również znajdującego się w folderze batchtests.
 Drugi, uruchamia skrypt batch_example.py równolegle w tle odpowiednią ilość razy, którą można zmodyfikować w owym pliku. 
 Uruchomienia skryptów należy wykonać z głównego folderu poleceniami:   
 source batchtests/single.sh  

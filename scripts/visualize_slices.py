@@ -36,19 +36,26 @@ def legend():
 
 
 class setup:
-    sndlib_file = 'data/sndlib/json/germany50/germany50.json'
+    # sndlib_file = 'data/sndlib/json/abilene/abilene.json'
+    sndlib_file = 'data/sndlib-modified/ger20.json'
     usage_file = 'data/usage.json'
 
-    size = (512 * 2, 768 * 2)
-    padding = 60
-    linewidth = 5.5
+    size = (768 * 2, 768 * 2)
+    padding = 250
+    linewidth = 6.5
     node_size = 6
 
-    draw_border = True
-    country = 'deu'
+    latitude_center_translation = 0.0
+    longitude_center_translation = 0
+    zoom_modifier = 0.15
 
+    draw_border = True
+    countries = ['deu']
+
+    fontsize = 25
     draw_topology = True
     name_mapping = {
+        'SanFrancisco': 'San\nFrancisco',
         'Lodz': 'Łódź',
         'Bialystok': 'Białystok',
         'Kolobrzeg': 'Kołobrzeg',
@@ -65,7 +72,7 @@ class setup:
 
     draw_usage = False
     save_output = True
-    output_image_file = 'results/germany50.png'
+    output_image_file = 'output/topology_ger_20.pdf'
 
 
 def main():
@@ -73,6 +80,10 @@ def main():
     net = sndlib.UndirectedNetwork.load_json(setup.sndlib_file)
     points = net.get_list_of_coordinates()
     projection = geomanip.MercatorProjection.from_points(points=points, map_size=setup.size, padding=setup.padding)
+    projection.center_lati += setup.latitude_center_translation
+    projection.center_long += setup.longitude_center_translation
+    projection.zoom += setup.zoom_modifier
+
     net.add_pixel_coordinates(projection)
 
     with open(setup.usage_file) as jsonf:
@@ -91,19 +102,20 @@ def main():
 
     draw.prepare_empty(*setup.size)
     if setup.draw_border:
-        for feature in jsonmanip.get_features(jsonmanip.load_geojson(setup.country)):
-            polys = jsonmanip.get_list_of_polygons(feature)
-            for poly in polys:
-                for j, point in enumerate(poly):
-                    poly[j] = projection.get_xy(*point)
-            draw.polygons(
-                polys,
-                closed=True,
-                facecolor='white',
-                alpha=0.5,
-                linewidth=1,
-                edgecolor='black',
-            )
+        for country in setup.countries:
+            for feature in jsonmanip.get_features(jsonmanip.load_geojson(country)):
+                polys = jsonmanip.get_list_of_polygons(feature)
+                for poly in polys:
+                    for j, point in enumerate(poly):
+                        poly[j] = projection.get_xy(*point)
+                draw.polygons(
+                    polys,
+                    closed=True,
+                    facecolor='white',
+                    alpha=1,
+                    linewidth=1,
+                    edgecolor=(0.5, 0.5, 0.5, 1.0),
+                )
 
     for u, v, d in net.edges(data=True):
         if setup.draw_usage:
@@ -123,7 +135,7 @@ def main():
         draw.circle((node.x, node.y), radius=setup.node_size, color=(0.5, 0.5, 0.5, 1), zorder=2)
         if setup.draw_topology:
             text = setup.name_mapping.get(node.name, node.name)
-            draw.text(node.x, node.y - 10, text, fontsize=12, color='black', weight='bold',
+            draw.text(node.x, node.y - 10, text, fontsize=setup.fontsize, color='black', weight='bold',
                       horizontalalignment='center')
 
     if setup.save_output:

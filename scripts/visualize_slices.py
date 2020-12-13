@@ -1,4 +1,5 @@
 import json
+from enum import Enum
 
 import matplotlib.pyplot as plt
 
@@ -35,9 +36,15 @@ def legend():
     draw.save_as('legend.pdf')
 
 
+class DrawMode(Enum):
+    TOPOLOGY = 0
+    USAGE_AS_COLORS = 1
+    USAGE_AS_STYLED_LINES = 2
+
+
 class setup:
     # sndlib_file = 'data/sndlib/json/abilene/abilene.json'
-    sndlib_file = 'data/sndlib-modified/ger20.json'
+    sndlib_file = 'data/sndlib/json/polska/polska.json'
     usage_file = 'data/usage.json'
 
     size = (768 * 2, 768 * 2)
@@ -50,7 +57,7 @@ class setup:
     zoom_modifier = 0.15
 
     draw_border = True
-    countries = ['deu']
+    countries = ['pol']
 
     fontsize = 25
     draw_topology = True
@@ -70,9 +77,11 @@ class setup:
         'Szczecin': 'Szczecin',
     }
 
-    draw_usage = False
+    edge_draw_mode = DrawMode.USAGE_AS_STYLED_LINES
+    assert isinstance(edge_draw_mode, DrawMode)
+
     save_output = True
-    output_image_file = 'output/topology_ger_20.pdf'
+    output_image_file = 'output/visualised_slices.pdf'
 
 
 def main():
@@ -90,7 +99,6 @@ def main():
         raw = json.load(jsonf)
 
     done = {}
-
     for edge in range(1, net.number_of_edges() + 1):
         raw_one = raw.get('Edge {}'.format(edge), {})
         done[edge] = {
@@ -118,18 +126,26 @@ def main():
                 )
 
     for u, v, d in net.edges(data=True):
-        if setup.draw_usage:
-            eid = d['edge_id']
+        eid = d['edge_id']
+        if setup.edge_draw_mode == DrawMode.TOPOLOGY:
+            draw.line(u.x, u.y, v.x, v.y, color=(0.5, 0.5, 0.5, 1), linewidth=3, zorder=1)
+        elif setup.edge_draw_mode == DrawMode.USAGE_AS_COLORS:
             C_slices = slices_in_bands[eid][1]
             # L_slices = slices_in_bands[eid][2]
             C_color = (0, 0, 1, linear_map(C_slices, 0, 192, 0.0, 1))
             # L_color = (1, 0, 0, linear_map(L_slices, 0, 100, 0.0, 1))
-
             # oxs, oys = draw.offset_curve([u.x, v.x], [u.y, v.y], linewidth)
             # draw.line(oxs[0], oys[0], oxs[1], oys[1], color=C_color, linewidth=linewidth, zorder=1)
             draw.line(u.x, u.y, v.x, v.y, color=C_color, linewidth=setup.linewidth, zorder=1)
-        elif setup.draw_topology:
-            draw.line(u.x, u.y, v.x, v.y, color=(0.5, 0.5, 0.5, 1), linewidth=3, zorder=1)
+        elif setup.edge_draw_mode == DrawMode.USAGE_AS_STYLED_LINES:
+            percent = slices_in_bands[eid][1] / 192 * 100
+            linestyle = '-' if percent < 70 else '--' if percent < 85 else ':'
+            print(linestyle, percent)
+            draw.line(u.x, u.y, v.x, v.y,
+                      color=(0.5, 0.5, 0.5, 1),
+                      linewidth=setup.linewidth,
+                      linestyle=linestyle,
+                      zorder=1)
 
     for node in net.nodes:
         draw.circle((node.x, node.y), radius=setup.node_size, color=(0.5, 0.5, 0.5, 1), zorder=2)

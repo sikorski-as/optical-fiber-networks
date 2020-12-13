@@ -8,6 +8,11 @@ def load_from_file(filename):
         return data
 
 
+def save_to_file(filename, obj):
+    with open(filename, 'w') as f:
+        json.dump(obj, f)
+
+
 def load_geojson(a3_code):
     return load_from_file('data/countries/data/{}.geo.json'.format(a3_code.lower()))
 
